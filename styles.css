@@ -324,6 +324,33 @@ h2 {
   color: var(--text);
 }
 
+.skills-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 138px;
+  gap: 18px;
+  align-items: stretch;
+}
+
+.skill-visual,
+.project-thumb {
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid rgba(145, 115, 79, 0.16);
+  border-radius: var(--radius);
+  background: #efe5d6;
+}
+
+.skill-visual img,
+.project-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.skill-visual {
+  min-height: 142px;
+}
+
 .projects-card {
   grid-column: 1 / -1;
 }
@@ -335,10 +362,8 @@ h2 {
 }
 
 .project-card {
-  display: grid;
-  gap: 12px;
-  min-height: 230px;
-  padding: 18px;
+  min-height: 250px;
+  padding: 14px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: rgba(255, 250, 244, 0.62);
@@ -349,6 +374,28 @@ h2 {
   transform: translateY(-2px);
   border-color: rgba(185, 143, 88, 0.36);
   background: rgba(255, 250, 244, 0.90);
+}
+
+.project-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 150px;
+  gap: 14px;
+  height: 100%;
+  align-items: stretch;
+}
+
+.project-copy {
+  display: grid;
+  gap: 12px;
+  min-width: 0;
+}
+
+.project-thumb img {
+  transition: transform 220ms ease;
+}
+
+.project-card:hover .project-thumb img {
+  transform: scale(1.03);
 }
 
 .project-card h3 {
@@ -451,5 +498,15 @@ h2 {
   .focus-card,
   .info-card {
     padding: 20px;
+  }
+
+  .skills-layout,
+  .project-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .skill-visual,
+  .project-thumb {
+    min-height: 156px;
   }
 }
