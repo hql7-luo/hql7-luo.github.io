@@ -12,13 +12,18 @@ content.html
 styles.css
 video.mp4
 portfolio-banner.png
+ai-visual-1.png
+ai-visual-2.png
+ai-visual-3.png
+ai-visual-4.png
+ai-visual-5.png
 README.md
 ```
 
 ## Pages
 
 - `index.html`: Home page with the AI-generated portfolio video.
-- `content.html`: Portfolio page with the AI-generated banner image, About Me, Skills, Projects, and Contact sections.
+- `content.html`: Portfolio page with the AI-generated banner image, AI supporting visuals, About Me, Skills, Projects, and Contact sections.
 
 ## Local Preview
 
@@ -45,6 +50,11 @@ Upload these files to the root of a public GitHub repository:
 - `styles.css`
 - `video.mp4`
 - `portfolio-banner.png`
+- `ai-visual-1.png`
+- `ai-visual-2.png`
+- `ai-visual-3.png`
+- `ai-visual-4.png`
+- `ai-visual-5.png`
 - `README.md`
 
 In GitHub, go to repository `Settings` > `Pages`, choose `Deploy from a branch`, select the `main` branch and the root folder, then save.
