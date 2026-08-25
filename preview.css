@@ -1,0 +1,393 @@
+/*
+ * Portfolio Preview V2
+ * Original structure + restrained preview palette + light How I Work card.
+ * This stylesheet exists only in the disposable preview directory.
+ */
+
+:root {
+  --paper: #f7f8fa;
+  --paper-blue: #f1f3f6;
+  --white: #ffffff;
+  --ink: #151820;
+  --ink-soft: #293142;
+  --navy: #182033;
+  --navy-light: #27324b;
+  --muted: #60697a;
+  --muted-light: #7b8493;
+  --line: #e0e3e8;
+  --line-dark: #cdd2da;
+  --purple: #4b2e83;
+  --purple-dark: #382066;
+  --purple-soft: #eee9f6;
+  --blue: #4b2e83;
+  --blue-soft: #eee9f6;
+  --shadow-sm: 0 10px 30px rgba(24, 32, 51, 0.06);
+  --shadow-lg: 0 22px 58px rgba(24, 32, 51, 0.1);
+}
+
+body {
+  background: var(--paper);
+}
+
+body::before {
+  opacity: 0.1;
+  background-size: 16px 16px;
+}
+
+.site-header {
+  border-bottom-color: rgba(224, 227, 232, 0.92);
+  background: rgba(247, 248, 250, 0.92);
+  backdrop-filter: blur(16px) saturate(120%);
+}
+
+.site-header.is-scrolled {
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 8px 28px rgba(24, 32, 51, 0.055);
+}
+
+.brand-mark {
+  background: var(--purple);
+}
+
+.nav-links a {
+  color: #687181;
+}
+
+.nav-links .nav-github {
+  background: var(--navy);
+}
+
+.button-primary {
+  background: var(--purple);
+  box-shadow: 0 8px 20px rgba(75, 46, 131, 0.14);
+}
+
+.button-primary:hover {
+  background: var(--purple-dark);
+  box-shadow: 0 10px 24px rgba(75, 46, 131, 0.18);
+}
+
+.button-secondary {
+  border-color: var(--line-dark);
+  background: rgba(255, 255, 255, 0.74);
+}
+
+/* Keep the V1 strategy-sheet treatment exactly where it was preferred. */
+.decision-map {
+  overflow: visible;
+  color: var(--ink);
+  border: 1px solid var(--line-dark);
+  border-top: 4px solid var(--purple);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: var(--shadow-sm);
+}
+
+.decision-map::before,
+.decision-map::after {
+  display: none;
+}
+
+.decision-map-header {
+  border-bottom-color: var(--line);
+  color: var(--ink-soft);
+}
+
+.status {
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  text-transform: none;
+}
+
+.status i {
+  background: var(--purple);
+  box-shadow: 0 0 0 4px var(--purple-soft);
+}
+
+.decision-flow::before {
+  background: var(--line-dark);
+}
+
+.flow-index {
+  border-color: #cbbfe0;
+  color: var(--purple);
+  background: var(--purple-soft);
+  border-radius: 8px;
+  font-weight: 700;
+}
+
+.decision-flow strong {
+  color: var(--ink);
+}
+
+.decision-flow small {
+  color: var(--muted);
+}
+
+.decision-map-foot {
+  border-top-color: var(--line);
+  background: var(--paper-blue);
+  border-radius: 0 0 calc(var(--radius-lg) - 1px) calc(var(--radius-lg) - 1px);
+}
+
+.decision-map-foot span {
+  color: var(--muted);
+}
+
+.decision-map-foot span + span {
+  border-left-color: var(--line);
+}
+
+.decision-map-foot strong {
+  color: var(--purple-dark);
+}
+
+.principle-strip {
+  color: var(--muted);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.76);
+}
+
+.principle-strip i {
+  background: #b8a9cf;
+}
+
+.category-mark,
+.category-mark-analysis {
+  color: var(--purple-dark);
+  background: var(--purple-soft);
+}
+
+.project-feature,
+.project-secondary,
+.analysis-card {
+  border-color: var(--line);
+  box-shadow: var(--shadow-sm);
+}
+
+.project-feature {
+  background: var(--white);
+}
+
+.project-feature:hover,
+.analysis-card:hover {
+  border-color: var(--line-dark);
+}
+
+.project-visual {
+  background: #eceff3;
+}
+
+.project-visual::after {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.project-visual:hover::after {
+  border-width: 6px;
+}
+
+.project-visual:hover img,
+.analysis-card:hover .analysis-image img {
+  transform: scale(1.01);
+}
+
+.project-type {
+  color: var(--purple);
+}
+
+.project-chain,
+.project-details,
+.analysis-facts {
+  border-color: var(--line);
+}
+
+.project-chain > div,
+.analysis-facts > div {
+  border-bottom-color: var(--line);
+}
+
+.project-chain dt {
+  color: var(--purple);
+}
+
+.metric-row span,
+.compact-metrics span {
+  background: var(--paper-blue);
+}
+
+.metric-row strong,
+.compact-metrics strong {
+  color: var(--purple-dark);
+}
+
+.tag-row span,
+.skill-tags li {
+  border-color: #d9dde4;
+  color: var(--muted);
+}
+
+.text-link {
+  color: var(--purple);
+}
+
+.text-link:hover {
+  color: var(--purple-dark);
+}
+
+.project-secondary {
+  background: rgba(255, 255, 255, 0.82);
+}
+
+.project-secondary-image,
+.analysis-image {
+  background: var(--paper-blue);
+}
+
+.analysis-image {
+  border-bottom-color: var(--line);
+}
+
+.award-note {
+  color: var(--purple-dark);
+  background: var(--purple-soft);
+}
+
+.claim-note {
+  color: var(--muted);
+  border-left: 3px solid #b8accb;
+  background: var(--paper-blue);
+}
+
+.section-tinted {
+  border-color: var(--line);
+  background: var(--paper-blue);
+}
+
+.timeline-marker::before {
+  background: var(--line-dark);
+}
+
+.timeline-marker::after {
+  border-color: var(--paper-blue);
+  background: var(--purple);
+}
+
+.timeline-title p {
+  color: var(--purple-dark);
+}
+
+.timeline-content ul {
+  color: #626b7a;
+}
+
+.skills-grid {
+  border-color: var(--line-dark);
+}
+
+.skill-group {
+  border-color: var(--line-dark);
+  background: rgba(255, 255, 255, 0.66);
+}
+
+.skill-group:hover {
+  background: var(--white);
+}
+
+.skill-mode {
+  width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 10px;
+  margin-bottom: 30px;
+  color: var(--purple);
+  background: var(--purple-soft);
+  border-radius: 8px;
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.skill-mode span {
+  color: #917fa9;
+  font-weight: 500;
+}
+
+.skill-mode span::after {
+  margin-left: 6px;
+  content: "·";
+}
+
+.skill-tags .skill-primary {
+  border-color: #c8bbe0;
+  color: var(--purple-dark);
+  background: var(--purple-soft);
+}
+
+.education-grid {
+  border-color: var(--line);
+  box-shadow: var(--shadow-sm);
+}
+
+.honors-card {
+  background: var(--navy);
+}
+
+.contact-section {
+  border-top: 4px solid var(--purple);
+  background: var(--navy);
+}
+
+.contact-inner > div:first-child > p:last-child {
+  color: #c8ced9;
+}
+
+.button-outline-light {
+  border-color: rgba(255, 255, 255, 0.42);
+}
+
+.contact-actions > span {
+  color: #b2bac8;
+}
+
+.site-footer {
+  background: #111827;
+}
+
+@media (max-width: 620px) {
+  .principle-strip-inner {
+    min-height: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    padding-block: 10px;
+    white-space: normal;
+  }
+
+  .principle-strip-inner span {
+    padding: 6px 4px;
+    font-size: 0.56rem;
+    text-align: center;
+  }
+
+  .principle-strip-inner i {
+    display: none;
+  }
+
+  .decision-map-foot {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .decision-map-foot span + span {
+    border-top: 0;
+    border-left: 1px solid var(--line);
+  }
+
+  .skill-mode {
+    margin-bottom: 24px;
+  }
+}
