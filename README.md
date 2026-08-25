@@ -1,67 +1,57 @@
-# Haoqi Luo Portfolio Website
+# Haoqi Luo — Portfolio
 
-This is a simple static personal portfolio website for Haoqi Luo, a Business & Technology Student at the University of Washington Foster School of Business.
+Professional portfolio for Haoqi Luo, positioned at the intersection of business analysis, AI applications, and strategy and operations.
 
-The site is designed for GitHub Pages and uses only HTML, CSS, and simple browser features. No backend, API key, React, npm, or external image assets are required.
+**Live site:** [https://hql7-luo.github.io/](https://hql7-luo.github.io/)
 
-## Files
+## Architecture
+
+The site is intentionally implemented as a lightweight static single page for reliable GitHub Pages deployment:
 
 ```text
 index.html
-content.html
 styles.css
-video.mp4
-portfolio-banner.png
-ai-visual-1.png
-ai-visual-2.png
-ai-visual-3.png
-ai-visual-4.png
-ai-visual-5.png
-README.md
+script.js
+assets/
+  academic/
+  meta/
+  projects/
+.nojekyll
 ```
 
-## Pages
+There is no build step, package manager, backend, environment variable, or external JavaScript dependency.
 
-- `index.html`: Home page with the AI-generated portfolio video.
-- `content.html`: Portfolio page with the AI-generated banner image, AI supporting visuals, About Me, Skills, Projects, and Contact sections.
+## Content structure
 
-## Local Preview
+- Hero and professional positioning
+- Featured independent products
+- Analytics and decision-modeling team projects
+- Professional experience
+- Categorized capabilities
+- Education, honors, and languages
+- Contact
 
-Open `index.html` directly in a browser.
+Project claims and metrics were verified against current public repositories, the attached resume, and source academic presentations. Independent projects use real interface screenshots; academic cards use selected source-presentation visuals.
 
-Optional local server:
+## Local preview
+
+Run a static server from the repository root:
 
 ```bash
 python3 -m http.server 8000
 ```
 
-Then visit:
+Then open [http://localhost:8000](http://localhost:8000).
 
-```text
-http://localhost:8000
-```
+## QA targets
 
-## GitHub Pages Deployment
+- Responsive layouts at 1440px, 1024px, 768px, and 390px
+- Semantic HTML and logical heading order
+- Keyboard navigation and visible focus states
+- Reduced-motion support
+- No horizontal overflow
+- Valid internal anchors and public project links
 
-Upload these files to the root of a public GitHub repository:
+## Deployment
 
-- `index.html`
-- `content.html`
-- `styles.css`
-- `video.mp4`
-- `portfolio-banner.png`
-- `ai-visual-1.png`
-- `ai-visual-2.png`
-- `ai-visual-3.png`
-- `ai-visual-4.png`
-- `ai-visual-5.png`
-- `README.md`
-
-In GitHub, go to repository `Settings` > `Pages`, choose `Deploy from a branch`, select the `main` branch and the root folder, then save.
-
-## Design Features
-
-- Hover effects on cards, navigation links, and buttons.
-- Soft gradient background with warm glow effects.
-- Fade-in page animation.
-- Responsive layout for desktop and mobile.
+GitHub Pages serves the repository root from `main`. The `.nojekyll` file keeps deployment behavior simple and predictable.
