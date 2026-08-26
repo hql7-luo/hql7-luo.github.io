@@ -37,14 +37,14 @@ const ZH_TRANSLATIONS = {
   "how.problem.body": "找到真正需要解决的决策问题",
   "how.evidence.title": "证据",
   "how.evidence.body": "梳理数据、约束条件与关键权衡",
-  "how.system.title": "可用系统",
+  "how.system.title": "系统实现",
   "how.system.body": "构建分析模型、工作流或产品工具",
   "how.decision.title": "决策",
   "how.decision.body": "让下一步行动更清晰",
   "how.gpa": "<strong>3.85</strong> / 4.00 GPA",
   "how.products": "<strong>4</strong> 个可运行产品项目",
   "themes.business": "业务理解",
-  "themes.analytics": "分析严谨性",
+  "themes.analytics": "严谨分析",
   "themes.ai": "AI 驱动工作流",
   "themes.execution": "技术落地",
   "work.kicker": "精选作品",
@@ -205,7 +205,7 @@ const ZH_TRANSLATIONS = {
   "education.kicker": "教育背景",
   "education.university": "University of Washington · 华盛顿大学",
   "education.school": "Foster School of Business · Foster 商学院",
-  "education.degree": "工商管理文学学士",
+  "education.degree": "工商管理学士（B.A.）",
   "education.expected": "预计 2027 年 3 月毕业",
   "education.concentrationsLabel": "专业方向",
   "education.concentrations": "信息系统<br>运营与供应链管理",
@@ -215,8 +215,8 @@ const ZH_TRANSLATIONS = {
   "honors.title": "荣誉与语言能力",
   "honors.trendy": "<strong>The Most Trendy Technology Award（最具潮流科技奖）</strong><br>UW IS 451",
   "honors.nineQuarters": "9 个季度",
-  "honors.deansList": "<strong>Dean’s List（院长名单）</strong><br>University of Washington",
-  "honors.annual": "<strong>Annual Dean’s List（年度院长名单）</strong><br>2023–24 · 2024–25 · 2025–26",
+  "honors.deansList": "<strong>Dean’s List（院长荣誉名单）</strong><br>University of Washington",
+  "honors.annual": "<strong>Annual Dean’s List（年度院长荣誉名单）</strong><br>2023–24 · 2024–25 · 2025–26",
   "honors.mandarin": "普通话 <strong>母语</strong>",
   "honors.english": "英语 <strong>熟练</strong>",
   "contact.kicker": "联系",
@@ -247,6 +247,13 @@ const readSavedLanguage = () => {
   } catch {
     return "en";
   }
+};
+
+const readUrlLanguage = () => {
+  const language = new URLSearchParams(window.location.search).get("lang")?.toLowerCase();
+  if (language === "zh") return "zh-CN";
+  if (language === "en") return "en";
+  return null;
 };
 
 const saveLanguage = (language) => {
@@ -307,7 +314,11 @@ languageToggle?.addEventListener("click", () => {
   setMenuOpen(false);
 });
 
-setLanguage(readSavedLanguage(), { persist: false, announce: false });
+const urlLanguage = readUrlLanguage();
+setLanguage(urlLanguage ?? readSavedLanguage(), {
+  persist: urlLanguage !== null,
+  announce: false,
+});
 
 window.portfolioI18n = Object.freeze({
   storageKey: LANGUAGE_STORAGE_KEY,
