@@ -224,6 +224,21 @@ body::before {
   transform: scale(1.01);
 }
 
+.project-visual-colorbox img {
+  width: calc(100% - 32px);
+  height: calc(100% - 32px);
+  margin: 16px;
+  object-fit: contain;
+  object-position: center;
+  border: 1px solid rgba(19, 31, 52, 0.08);
+  border-radius: 8px;
+  box-shadow: 0 12px 30px rgba(19, 31, 52, 0.1);
+}
+
+.project-visual-colorbox:hover img {
+  transform: none;
+}
+
 .project-type {
   color: var(--purple);
 }
