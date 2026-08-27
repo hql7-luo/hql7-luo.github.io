@@ -80,7 +80,8 @@ const ZH_TRANSLATIONS = {
   "b2b.detailsTitle": "工作流详情",
   "b2b.details": "经过测试的报价引擎可处理汇率与成本逻辑；持久化关联让每条询盘都能追溯到客户、匹配产品、报价、任务和活动时间线。可选的 AI 辅助分析用于增强核心流程；即使没有 API Key，系统也可正常运行。",
   "colorbox.openDemo": "打开 ColorBox AI 在线演示",
-  "colorbox.imageAlt": "ColorBox AI 审单界面，展示可编辑生产规格、字段置信度、缺失信息与生产风险",
+  "colorbox.imageAlt": "ColorBox AI 中文首页，展示文件导入、客户需求输入和三步生产审单流程",
+  "colorbox.imageSrc": "assets/projects/colorbox-ai-zh.webp",
   "colorbox.visualLabel": "在线生产审单界面",
   "colorbox.type": "AI 辅助生产审单 · 工厂运营",
   "colorbox.title": "ColorBox AI · 彩盒智能审单系统",
@@ -244,6 +245,10 @@ const englishValues = new Map(
     return [element, value];
   }),
 );
+const localizedSourceElements = [...document.querySelectorAll("[data-i18n-src]")];
+const englishSources = new Map(
+  localizedSourceElements.map((element) => [element, element.getAttribute("src") ?? ""]),
+);
 
 let currentLanguage = "en";
 
@@ -291,6 +296,15 @@ const setLanguage = (language, { persist = true, announce = true } = {}) => {
     }
   });
 
+  localizedSourceElements.forEach((element) => {
+    const key = element.dataset.i18nSrc;
+    const translatedValue = ZH_TRANSLATIONS[key];
+    const value = normalizedLanguage === "zh-CN" && translatedValue !== undefined
+      ? translatedValue
+      : englishSources.get(element);
+    element.setAttribute("src", value);
+  });
+
   currentLanguage = normalizedLanguage;
   document.documentElement.lang = normalizedLanguage;
   document.documentElement.dataset.language = normalizedLanguage;
@@ -334,8 +348,8 @@ window.portfolioI18n = Object.freeze({
   },
   setLanguage,
   missingKeys: [...new Set(
-    translatableElements
-      .map((element) => element.dataset.i18n)
+    [...translatableElements.map((element) => element.dataset.i18n),
+      ...localizedSourceElements.map((element) => element.dataset.i18nSrc)]
       .filter((key) => ZH_TRANSLATIONS[key] === undefined),
   )],
 });
