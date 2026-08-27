@@ -225,9 +225,9 @@ body::before {
 }
 
 .project-visual-colorbox img {
-  width: calc(100% - 32px);
-  height: calc(100% - 32px);
-  margin: 16px;
+  width: calc(100% - 16px);
+  height: calc(100% - 16px);
+  margin: 8px;
   object-fit: contain;
   object-position: center;
   border: 1px solid rgba(19, 31, 52, 0.08);
