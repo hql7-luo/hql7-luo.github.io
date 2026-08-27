@@ -224,12 +224,99 @@ body::before {
   transform: scale(1.01);
 }
 
+.project-visual-colorbox {
+  display: flex;
+  padding: 10px;
+  background: #e7eaf0;
+}
+
+.colorbox-browser-frame {
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+  min-height: 0;
+  display: grid;
+  grid-template-rows: 46px minmax(0, 1fr);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 16px 38px rgba(12, 18, 28, 0.2);
+}
+
+.colorbox-browser-chrome {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr) 64px;
+  align-items: center;
+  gap: 10px;
+  padding: 0 12px;
+  background: #12161c;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.colorbox-browser-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.colorbox-browser-controls span {
+  width: 7px;
+  height: 7px;
+  display: block;
+  border-radius: 50%;
+  background: #818895;
+}
+
+.colorbox-browser-controls span:nth-child(2) {
+  opacity: 0.72;
+}
+
+.colorbox-browser-controls span:nth-child(3) {
+  opacity: 0.48;
+}
+
+.colorbox-browser-address {
+  width: min(100%, 360px);
+  min-width: 0;
+  height: 27px;
+  justify-self: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 0 14px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 7px;
+  background: #252b34;
+  color: #dbe0e8;
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.02em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.colorbox-browser-spacer {
+  display: block;
+}
+
+.colorbox-browser-content {
+  min-width: 0;
+  min-height: 0;
+  display: block;
+  overflow: hidden;
+  background: #ffffff;
+}
+
 .project-visual-colorbox img {
   width: 100%;
   height: 100%;
+  display: block;
   margin: 0;
   object-fit: cover;
-  object-position: center;
+  object-position: center top;
   border: 0;
   border-radius: 0;
   box-shadow: none;
@@ -237,6 +324,42 @@ body::before {
 
 .project-visual-colorbox:hover img {
   transform: none;
+}
+
+.project-visual-colorbox:hover::after {
+  border-width: 0;
+}
+
+@media (max-width: 560px) {
+  .project-visual-colorbox {
+    padding: 6px;
+  }
+
+  .colorbox-browser-frame {
+    grid-template-rows: 38px minmax(0, 1fr);
+    border-radius: 10px;
+  }
+
+  .colorbox-browser-chrome {
+    grid-template-columns: 42px minmax(0, 1fr) 42px;
+    gap: 6px;
+    padding: 0 8px;
+  }
+
+  .colorbox-browser-controls {
+    gap: 4px;
+  }
+
+  .colorbox-browser-controls span {
+    width: 5px;
+    height: 5px;
+  }
+
+  .colorbox-browser-address {
+    height: 24px;
+    padding: 0 8px;
+    font-size: 0.54rem;
+  }
 }
 
 .project-type {
