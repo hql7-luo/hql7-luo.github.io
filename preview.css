@@ -226,7 +226,7 @@ body::before {
 
 .project-visual-colorbox {
   display: flex;
-  padding: 10px;
+  padding: 0;
   background: #e7eaf0;
 }
 
@@ -236,15 +236,18 @@ body::before {
   height: 100%;
   min-height: 0;
   display: grid;
-  grid-template-rows: 46px minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr) 8px;
+  grid-template-rows: 46px minmax(0, 1fr) 8px;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 12px;
-  background: #ffffff;
-  box-shadow: 0 16px 38px rgba(12, 18, 28, 0.2);
+  border: 0;
+  border-radius: 0 12px 12px 0;
+  background: #12161c;
+  box-shadow: 8px 12px 28px rgba(12, 18, 28, 0.18);
 }
 
 .colorbox-browser-chrome {
+  grid-column: 1 / -1;
+  grid-row: 1;
   min-width: 0;
   display: grid;
   grid-template-columns: 64px minmax(0, 1fr) 64px;
@@ -253,6 +256,7 @@ body::before {
   padding: 0 12px;
   background: #12161c;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 0 12px 0 0;
 }
 
 .colorbox-browser-controls {
@@ -303,10 +307,13 @@ body::before {
 }
 
 .colorbox-browser-content {
+  grid-column: 1;
+  grid-row: 2;
   min-width: 0;
   min-height: 0;
   display: block;
   overflow: hidden;
+  border-left: 0;
   background: #ffffff;
 }
 
@@ -331,19 +338,17 @@ body::before {
 }
 
 @media (max-width: 560px) {
-  .project-visual-colorbox {
-    padding: 6px;
-  }
-
   .colorbox-browser-frame {
-    grid-template-rows: 38px minmax(0, 1fr);
-    border-radius: 10px;
+    grid-template-columns: minmax(0, 1fr) 6px;
+    grid-template-rows: 38px minmax(0, 1fr) 6px;
+    border-radius: 0 10px 10px 0;
   }
 
   .colorbox-browser-chrome {
     grid-template-columns: 42px minmax(0, 1fr) 42px;
     gap: 6px;
     padding: 0 8px;
+    border-radius: 0 10px 0 0;
   }
 
   .colorbox-browser-controls {
