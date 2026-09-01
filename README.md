@@ -17,6 +17,7 @@ assets/
   academic/
   meta/
   projects/
+  resume/
 .nojekyll
 ```
 
@@ -25,13 +26,14 @@ The production site has no runtime backend, package manager, external JavaScript
 ## Content and behavior
 
 - Complete Chinese and English experiences with persisted language preference
+- Two language-synchronized résumé links backed by the supplied English and Chinese PDF files
 - Curated Selected Work and seven bilingual project case studies
 - Experience, education, capabilities, and contact sections
 - Responsive desktop, tablet, and mobile layouts
 - Keyboard focus styles, reduced-motion support, lazy-loaded images, and mobile menu scroll locking
 - SEO metadata, canonical URLs, hreflang, Open Graph fields, and a local favicon
 
-LinkedIn is intentionally omitted because no verified profile URL is stored in the project. No résumé file was found, so the résumé call to action opens a pre-addressed email request rather than linking to a missing or invented file.
+LinkedIn is intentionally omitted because no verified profile URL is stored in the project. The Hero and Contact résumé links open the supplied English or Chinese PDF in a new tab according to the active site language.
 
 ## Local preview
 
