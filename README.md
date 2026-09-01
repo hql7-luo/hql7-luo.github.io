@@ -1,17 +1,18 @@
-# Haoqi Luo — Portfolio
+# Haoqi Luo — Portfolio V2
 
-Professional portfolio for Haoqi Luo, positioned at the intersection of business analysis, AI applications, and strategy and operations.
+Bilingual portfolio for Haoqi Luo, focused on AI tools for business decisions and operations.
 
 **Live site:** [https://hql7-luo.github.io/](https://hql7-luo.github.io/)
 
-## Architecture
+## Production architecture
 
-The site is intentionally implemented as a lightweight static single page for reliable GitHub Pages deployment:
+GitHub Pages serves the static production output from the repository root on `main`:
 
 ```text
 index.html
-styles.css
-script.js
+projects/
+app.js
+style.css
 assets/
   academic/
   meta/
@@ -19,19 +20,18 @@ assets/
 .nojekyll
 ```
 
-There is no build step, package manager, backend, environment variable, or external JavaScript dependency.
+The production site has no runtime backend, package manager, external JavaScript dependency, or framework bundle. Language switching, motion, navigation, and image dialogs use local vanilla JavaScript and CSS.
 
-## Content structure
+## Content and behavior
 
-- Hero and professional positioning
-- Featured independent products
-- Analytics and decision-modeling team projects
-- Professional experience
-- Categorized capabilities
-- Education, honors, and languages
-- Contact
+- Complete Chinese and English experiences with persisted language preference
+- Curated Selected Work and seven bilingual project case studies
+- Experience, education, capabilities, and contact sections
+- Responsive desktop, tablet, and mobile layouts
+- Keyboard focus styles, reduced-motion support, lazy-loaded images, and mobile menu scroll locking
+- SEO metadata, canonical URLs, hreflang, Open Graph fields, and a local favicon
 
-Project claims and metrics were verified against current public repositories, the attached resume, and source academic presentations. Independent projects use real interface screenshots; academic cards use selected source-presentation visuals.
+LinkedIn is intentionally omitted because no verified profile URL is stored in the project. No résumé file was found, so the résumé call to action opens a pre-addressed email request rather than linking to a missing or invented file.
 
 ## Local preview
 
@@ -41,17 +41,28 @@ Run a static server from the repository root:
 python3 -m http.server 8000
 ```
 
-Then open [http://localhost:8000](http://localhost:8000).
+Open the address printed by the server. Add `?lang=zh` or `?lang=en` to test each language explicitly.
 
-## QA targets
+## Source and build
 
-- Responsive layouts at 1440px, 1024px, 768px, and 390px
-- Semantic HTML and logical heading order
-- Keyboard navigation and visible focus states
-- Reduced-motion support
-- No horizontal overflow
-- Valid internal anchors and public project links
+The editable V2 source and build script are retained locally in `portfolio-v2-demo/`. Production output can be regenerated from that directory with:
 
-## Deployment
+```bash
+node build.mjs --production ../portfolio-v2-production
+python3 verify-production.py ../portfolio-v2-production
+```
 
-GitHub Pages serves the repository root from `main`. The `.nojekyll` file keeps deployment behavior simple and predictable.
+Local source, staging, screenshots, and prior design backups are excluded from the Pages branch so they are not published as public routes.
+
+## Deployment and rollback
+
+GitHub Pages deploys `main` from the repository root. The previous live version is preserved remotely as branch `portfolio-before-v2-deployment` and annotated tag `pre-v2-portfolio`.
+
+For a safe rollback without rewriting history, restore the previous tree into a new commit:
+
+```bash
+git switch main
+git restore --source=pre-v2-portfolio -- .
+git commit -m "Restore portfolio before V2 deployment"
+git push origin main
+```
