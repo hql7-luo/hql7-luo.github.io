@@ -27,13 +27,16 @@ The production site has no runtime backend, package manager, external JavaScript
 
 - Complete Chinese and English experiences with persisted language preference
 - Two language-synchronized résumé links backed by the supplied English and Chinese PDF files
-- Curated Selected Work and seven bilingual project case studies
+- Curated Selected Work and eight bilingual project case studies
+- Featured enterprise knowledge workflow with real screenshots, an original architecture diagram and an on-demand demo video
 - Experience, education, capabilities, and contact sections
 - Responsive desktop, tablet, and mobile layouts
 - Keyboard focus styles, reduced-motion support, lazy-loaded images, and mobile menu scroll locking
 - SEO metadata, canonical URLs, hreflang, Open Graph fields, and a local favicon
 
 LinkedIn is intentionally omitted because no verified profile URL is stored in the project. The Hero and Contact résumé links open the supplied English or Chinese PDF in a new tab according to the active site language.
+
+Foreign Trade Enterprise RAG is presented as a fully synthetic public demo, with no production deployment claimed. Its evaluation block preserves the offline hash configuration, developer-authored data and non-independent validation caveats. Asset provenance is recorded in `assets/projects/foreign-trade-enterprise-rag/SOURCES.md`.
 
 ## Local preview
 

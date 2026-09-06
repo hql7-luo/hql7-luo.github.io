@@ -209,3 +209,102 @@ html.menu-restoring{scroll-behavior:auto!important}
   .hero-social .text-link,.social-links .text-link,.site-footer a{min-height:44px;align-items:center}
   .case-top .eyebrow,.case-cover figcaption{font-size:9px}
 }
+
+/* Keep observable bounds on standalone titles; a fully clipped observer target can never enter. */
+.js .research-heading.reveal.motion-title:not(.is-visible),.js .skills-layout>h2.reveal.motion-title:not(.is-visible){clip-path:none}
+
+/* Enterprise RAG content extension. Existing layouts and motion tokens are unchanged. */
+.theme-rag{background:#dce6e4}
+.work-card-rag{margin-bottom:64px}
+.work-card-rag .project-media{height:auto;aspect-ratio:1.72}
+.work-card-rag .project-frame{width:88%;left:6%;top:14%;border-radius:8px}
+.work-card-rag .project-caption h3{font-size:clamp(28px,3.3vw,48px)}
+.case-rag .case-head{grid-template-columns:1.25fr .75fr;gap:64px}
+.case-rag .case-head h1{font-size:clamp(52px,6.4vw,92px);line-height:1.04}
+.case-rag .case-meta{grid-template-columns:1fr 1fr}
+.case-rag .case-links{grid-column:1/-1;justify-content:flex-start;flex-wrap:wrap}
+.case-rag .case-cover{padding:40px 40px 24px}
+.case-rag .case-cover-image{max-width:1180px}
+.case-rag .case-cover figcaption{letter-spacing:0;line-height:1.8;max-width:800px;margin-inline:auto;font-family:inherit;font-size:12px}
+.rag-body .case-story{min-width:0}
+.rag-body .story-lead+p{margin-top:24px}
+.rag-body .rag-workflow{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;margin:36px 0}
+.rag-body .rag-workflow>div{display:block;min-width:0;padding-top:18px}
+.rag-workflow h3{font-size:23px;margin:14px 0 12px}
+.rag-body .rag-workflow p{font-size:14px;line-height:1.75}
+.rag-body .source-note{font-size:13px;line-height:1.85}
+.rag-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin:36px 0}
+.rag-gallery-single{grid-template-columns:1fr}
+.rag-gallery .gallery-figure{width:100%;min-width:0}
+.rag-gallery .image-expand{border:1px solid var(--line);border-radius:8px}
+.rag-gallery .expand-label{font-size:10px;right:12px;bottom:12px;padding:8px 12px;gap:12px}
+.rag-gallery figcaption{font-size:12px;line-height:1.75}
+.rag-body .rag-lifecycle{font-size:13px;line-height:1.8;margin-top:20px;color:var(--iris)}
+.rag-role-heading{font-size:22px;margin:36px 0 24px}
+.rag-roles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.rag-roles article{border-top:1px solid var(--line);padding-top:18px}
+.rag-roles h3{font-size:17px;margin-bottom:12px}
+.rag-body .rag-roles p{font-size:13px;line-height:1.75}
+.rag-splits{display:flex;flex-wrap:wrap;gap:12px 24px;margin:24px 0;font-size:12px;color:var(--muted)}
+.rag-metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;margin:30px 0}
+.rag-metrics>div{border-top:1px solid #aaa5ce;padding-top:22px}
+.rag-metrics strong{display:block;font-size:clamp(44px,5vw,68px);font-weight:450;letter-spacing:-.05em;line-height:1.15;margin-bottom:12px}
+.rag-metrics span{font-size:12px;color:var(--muted);display:block}
+.rag-body .scope-note p+p{margin-top:16px}
+.rag-body #validation>.text-link{margin-top:24px;font-size:13px}
+.rag-stack{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;margin-top:40px}
+.rag-stack>div{border-top:1px solid var(--line);padding-top:18px;min-width:0}
+.rag-stack h3{font-size:14px;margin-bottom:10px}
+.rag-body .rag-stack p{font-size:13px;line-height:1.75}
+.rag-architecture .section-heading{align-items:flex-start}
+.rag-architecture .section-heading h2{max-width:720px;font-size:clamp(34px,4.1vw,60px)}
+.rag-architecture .section-heading>p{max-width:390px;flex-shrink:0}
+.rag-diagram{max-width:1120px}
+.rag-diagram .image-expand{background:#f8fafb;border:1px solid var(--line)}
+.rag-diagram figcaption{font-size:12px}
+.dialog-image-slot:has(img[data-architecture]){overflow:auto;max-height:calc(94svh - 104px);overscroll-behavior:contain}
+.dialog-image-slot img[data-architecture]{min-width:1000px;max-width:none;width:100%;height:auto}
+@media(max-width:1200px){
+  .case-rag .case-head{gap:40px}
+  .rag-architecture .section-heading>p{max-width:310px}
+}
+@media(max-width:900px){
+  .work-card-rag{margin-bottom:48px}
+  .work-card-rag .project-media{aspect-ratio:1.5}
+  .work-card-rag .project-frame{top:18%}
+  .case-rag .case-head{grid-template-columns:1fr;gap:28px}
+  .case-rag .case-head h1{font-size:68px;max-width:650px}
+  .case-rag .case-cover{padding:28px 24px 20px}
+  .rag-architecture .section-heading{display:block}
+  .rag-architecture .section-heading>p{max-width:600px;margin-top:24px}
+}
+@media(max-width:600px){
+  .work-card-rag{margin-bottom:38px}
+  .work-card-rag .project-media{aspect-ratio:auto;height:290px}
+  .work-card-rag .project-frame{top:24%;width:94%;left:3%;border-radius:5px}
+  .work-card-rag .project-caption h3{font-size:29px;max-width:330px}
+  .case-rag .case-head h1{font-size:48px;line-height:1.08}
+  .case-rag .case-meta{gap:22px}
+  .case-rag .case-links{gap:10px 8px}
+  .case-rag .pill{font-size:11px;padding:10px 13px;gap:12px;min-height:44px}
+  .case-rag .case-cover{padding:20px 10px 16px}
+  .case-rag .case-cover figcaption{font-size:11px;text-align:left}
+  .rag-body .rag-workflow{grid-template-columns:1fr;gap:0;margin-block:28px}
+  .rag-body .rag-workflow>div{display:grid;grid-template-columns:32px minmax(0,1fr);gap:8px 10px;padding:18px 0}
+  .rag-workflow h3{font-size:21px;margin:0}
+  .rag-body .rag-workflow p{grid-column:2;font-size:13px;line-height:1.8}
+  .rag-workflow .step-number{padding-top:5px}
+  .rag-gallery{grid-template-columns:1fr;gap:28px;margin-block:28px}
+  .rag-roles{grid-template-columns:1fr;gap:20px}
+  .rag-roles h3{font-size:18px;margin-bottom:8px}
+  .rag-role-heading{font-size:21px;margin-top:30px}
+  .rag-metrics{gap:20px}
+  .rag-metrics strong{font-size:46px}
+  .rag-metrics span{font-size:11px;line-height:1.6}
+  .rag-splits{gap:10px 20px;font-size:11px}
+  .rag-stack{gap:24px 20px}
+  .rag-architecture .section-heading h2{font-size:34px}
+  .rag-diagram figcaption,.rag-gallery figcaption{font-size:11px}
+  .dialog-image-slot:has(img[data-rag-image]){overflow:auto;max-height:calc(96svh - 84px);overscroll-behavior:contain}
+  .dialog-image-slot img[data-rag-image]{min-width:960px;max-width:none;width:960px;height:auto}
+}
