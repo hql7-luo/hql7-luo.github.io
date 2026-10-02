@@ -17,7 +17,9 @@ assets/
   academic/
   meta/
   projects/
-  resume/Haoqi_Luo_CV.pdf
+  resume/
+    Haoqi_Luo_Resume_EN.pdf
+    Haoqi_Luo_Resume_ZH.pdf
 .nojekyll
 ```
 
@@ -27,19 +29,20 @@ The ignored `portfolio-v2-demo/`, its generator and local staging/backups are hi
 
 ## Content
 
-Personal facts were updated against the supplied `Haoqi_Luo_CV.pdf` in October 2026. The homepage prioritizes four projects:
+Personal facts were updated against the supplied English Resume in October 2026. The homepage prioritizes four projects:
 
 1. Foreign Trade Enterprise Knowledge Assistant — independent project, Sep 2026
 2. LLM Price-Performance Analytics — UW IS 451 team project, Apr–Jun 2026
 3. AutoZone Workforce Optimization & Demand Forecasting — UW supply chain team project, Sep–Dec 2025
 4. Gen Z Consumer Spending Analytics — UW IS 445 team project, Mar–Jun 2025
 
-Four existing independent builds remain in a secondary section, with their screenshots, technical explanations and demo links. Detailed project descriptions preserve accurate information beyond the CV.
+Four existing independent builds remain in a secondary section, with their screenshots, technical explanations and demo links. Detailed project descriptions preserve accurate information beyond the Resume.
 
 - English and Chinese pages with persisted language preference
 - Experience, education, skills and contact sections
-- Both CV download buttons point to the exact supplied English PDF, regardless of page language
-- GitHub and CV email contact links; LinkedIn is omitted until a verified profile URL is supplied
+- Both Resume download buttons follow the page language: English downloads `Haoqi_Luo_Resume_EN.pdf`, and Chinese downloads `Haoqi_Luo_Resume_ZH.pdf`. Switching languages updates the link, filename, label and accessible description immediately.
+- The English Resume preserves the supplied PDF; the Chinese Resume translates the same facts.
+- GitHub and email contact links; LinkedIn is omitted until a verified profile URL is supplied
 - Responsive layouts, keyboard focus styles, reduced-motion support and mobile navigation
 - Canonical URLs, hreflang, page metadata, Open Graph fields and a local favicon
 
@@ -55,6 +58,6 @@ From the repository root:
 python3 -m http.server 8000
 ```
 
-Open [http://localhost:8000/](http://localhost:8000/). Use `?lang=en` or `?lang=zh` to check either language. Verify the homepage and all eight project pages at desktop, tablet and mobile widths; test navigation, language switching, reduced motion, image dialogs, local assets, links and the PDF download. Check key dates and statistics against the latest CV before future updates.
+Open [http://localhost:8000/](http://localhost:8000/). Use `?lang=en` or `?lang=zh` to check either language. Verify the homepage and all eight project pages at desktop, tablet and mobile widths; test navigation, language switching, reduced motion, image dialogs, local assets, links and both Resume PDF downloads. Switch English → Chinese → English and confirm each Resume button's destination, download filename and label. Check key dates and statistics against the latest Resume before future updates.
 
 Changes to these local files do not update the public site until they are committed and pushed to the configured GitHub Pages branch.
