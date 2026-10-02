@@ -1,12 +1,12 @@
-# Haoqi Luo — Portfolio V2
+# Haoqi Luo — Portfolio
 
-Bilingual portfolio for Haoqi Luo, focused on AI tools for business decisions and operations.
+Bilingual portfolio for a University of Washington Foster School of Business student, focused on business, data, AI and operations.
 
 **Live site:** [https://hql7-luo.github.io/](https://hql7-luo.github.io/)
 
-## Production architecture
+## Current production files
 
-GitHub Pages serves the static production output from the repository root on `main`:
+GitHub Pages serves the static files from the repository root on `main`:
 
 ```text
 index.html
@@ -17,57 +17,44 @@ assets/
   academic/
   meta/
   projects/
-  resume/
+  resume/Haoqi_Luo_CV.pdf
 .nojekyll
 ```
 
-The production site has no runtime backend, package manager, external JavaScript dependency, or framework bundle. Language switching, motion, navigation, and image dialogs use local vanilla JavaScript and CSS.
+Edit these root files directly. There is no package manager, framework bundle, runtime backend or build step. Each HTML page contains its English default markup and an embedded `translations` JSON dictionary; update both languages and the default markup together. Local vanilla JavaScript handles language preference, navigation, motion and image dialogs.
 
-## Content and behavior
+The ignored `portfolio-v2-demo/`, its generator and local staging/backups are historical files. They contain older content and assets and must not be used to regenerate or overwrite the current production files.
 
-- Complete Chinese and English experiences with persisted language preference
-- Two language-synchronized résumé links backed by the supplied English and Chinese PDF files
-- Curated Selected Work and eight bilingual project case studies
-- Featured enterprise knowledge workflow with real screenshots, an original architecture diagram and an on-demand demo video
-- Experience, education, capabilities, and contact sections
-- Responsive desktop, tablet, and mobile layouts
-- Keyboard focus styles, reduced-motion support, lazy-loaded images, and mobile menu scroll locking
-- SEO metadata, canonical URLs, hreflang, Open Graph fields, and a local favicon
+## Content
 
-LinkedIn is intentionally omitted because no verified profile URL is stored in the project. The Hero and Contact résumé links open the supplied English or Chinese PDF in a new tab according to the active site language.
+Personal facts were updated against the supplied `Haoqi_Luo_CV.pdf` in October 2026. The homepage prioritizes four projects:
 
-Foreign Trade Enterprise RAG is presented as a fully synthetic public demo, with no production deployment claimed. Its evaluation block preserves the offline hash configuration, developer-authored data and non-independent validation caveats. Asset provenance is recorded in `assets/projects/foreign-trade-enterprise-rag/SOURCES.md`.
+1. Foreign Trade Enterprise Knowledge Assistant — independent project, Sep 2026
+2. LLM Price-Performance Analytics — UW IS 451 team project, Apr–Jun 2026
+3. AutoZone Workforce Optimization & Demand Forecasting — UW supply chain team project, Sep–Dec 2025
+4. Gen Z Consumer Spending Analytics — UW IS 445 team project, Mar–Jun 2025
 
-## Local preview
+Four existing independent builds remain in a secondary section, with their screenshots, technical explanations and demo links. Detailed project descriptions preserve accurate information beyond the CV.
 
-Run a static server from the repository root:
+- English and Chinese pages with persisted language preference
+- Experience, education, skills and contact sections
+- Both CV download buttons point to the exact supplied English PDF, regardless of page language
+- GitHub and CV email contact links; LinkedIn is omitted until a verified profile URL is supplied
+- Responsive layouts, keyboard focus styles, reduced-motion support and mobile navigation
+- Canonical URLs, hreflang, page metadata, Open Graph fields and a local favicon
+
+The knowledge assistant is a synthetic public demo. Its 92.5% figure is average relevant-source coverage in Top-5 results over 20 held-out synthetic questions; it is not a production performance claim or independent external validation. Existing architecture, screenshots and evaluation context remain documented in `assets/projects/foreign-trade-enterprise-rag/SOURCES.md`.
+
+AutoZone's approximately $142.7K (~15%) annual labor savings are model estimates. Academic project results and the IS 451 award are attributed to the teams.
+
+## Local preview and validation
+
+From the repository root:
 
 ```bash
 python3 -m http.server 8000
 ```
 
-Open the address printed by the server. Add `?lang=zh` or `?lang=en` to test each language explicitly.
+Open [http://localhost:8000/](http://localhost:8000/). Use `?lang=en` or `?lang=zh` to check either language. Verify the homepage and all eight project pages at desktop, tablet and mobile widths; test navigation, language switching, reduced motion, image dialogs, local assets, links and the PDF download. Check key dates and statistics against the latest CV before future updates.
 
-## Source and build
-
-The editable V2 source and build script are retained locally in `portfolio-v2-demo/`. Production output can be regenerated from that directory with:
-
-```bash
-node build.mjs --production ../portfolio-v2-production
-python3 verify-production.py ../portfolio-v2-production
-```
-
-Local source, staging, screenshots, and prior design backups are excluded from the Pages branch so they are not published as public routes.
-
-## Deployment and rollback
-
-GitHub Pages deploys `main` from the repository root. The previous live version is preserved remotely as branch `portfolio-before-v2-deployment` and annotated tag `pre-v2-portfolio`.
-
-For a safe rollback without rewriting history, restore the previous tree into a new commit:
-
-```bash
-git switch main
-git restore --source=pre-v2-portfolio -- .
-git commit -m "Restore portfolio before V2 deployment"
-git push origin main
-```
+Changes to these local files do not update the public site until they are committed and pushed to the configured GitHub Pages branch.
