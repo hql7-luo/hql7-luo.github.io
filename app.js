@@ -76,7 +76,11 @@
       else element.innerHTML = value;
     }
     for (const image of document.querySelectorAll('[data-src-en]')) image.src = image.dataset[next === 'zh' ? 'srcZh' : 'srcEn'];
-    for (const link of document.querySelectorAll('[data-resume-link]')) link.setAttribute('href', link.dataset[next === 'zh' ? 'resumeZh' : 'resumeEn']);
+    for (const link of document.querySelectorAll('[data-resume-link]')) {
+      const href = link.dataset[next === 'zh' ? 'resumeZh' : 'resumeEn'];
+      link.setAttribute('href', href);
+      link.setAttribute('download', href.split('/').pop());
+    }
     for (const button of document.querySelectorAll('button[data-language]')) button.setAttribute('aria-pressed', String(button.dataset.language === next));
     root.lang = next === 'zh' ? 'zh-CN' : 'en';
     root.dataset.language = next;
