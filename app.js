@@ -124,7 +124,10 @@
     const wasOpen = menu.getAttribute('aria-expanded') === 'true';
     menu.setAttribute('aria-expanded', String(open));
     nav.classList.toggle('is-open', open);
-    if (open && !wasOpen) lockMenuScroll();
+    if (open && !wasOpen) {
+      lockMenuScroll();
+      nav.querySelector('a[href]')?.focus();
+    }
     if (!open && wasOpen) unlockMenuScroll();
     const label = menu.querySelector('[data-i18n]');
     label.dataset.i18n = open ? 'nav.close' : 'nav.menu';
@@ -134,7 +137,27 @@
 
   menu.addEventListener('click', () => setMenu(menu.getAttribute('aria-expanded') !== 'true'));
   document.addEventListener('keydown', event => {
-    if (event.key === 'Escape' && menu.getAttribute('aria-expanded') === 'true') setMenu(false, { returnFocus: true });
+    if (menu.getAttribute('aria-expanded') !== 'true') return;
+    if (event.key === 'Escape') {
+      setMenu(false, { returnFocus: true });
+      return;
+    }
+    if (event.key !== 'Tab' || !menuMedia.matches) return;
+    const controls = [...header.querySelectorAll('a[href], button:not([disabled])')]
+      .filter(control => control.getClientRects().length > 0);
+    const first = controls[0];
+    const last = controls[controls.length - 1];
+    if (!first) return;
+    if (!controls.includes(document.activeElement)) {
+      event.preventDefault();
+      first.focus();
+    } else if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
   });
   document.addEventListener('click', event => {
     if (!event.target.closest('.site-header') && menu.getAttribute('aria-expanded') === 'true') setMenu(false);

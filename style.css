@@ -219,6 +219,42 @@ html.menu-restoring{scroll-behavior:auto!important}
 .work-card-rag .project-media{height:auto;aspect-ratio:1.72}
 .work-card-rag .project-frame{width:88%;left:6%;top:14%;border-radius:8px}
 .work-card-rag .project-caption h3{font-size:clamp(28px,3.3vw,48px)}
+.project-caption>div{min-width:0;max-width:800px}
+.project-caption p{line-height:1.7}
+.project-type{display:block;font-size:9px;color:var(--muted);margin-bottom:12px}
+.project-caption .caption-kind{flex-shrink:0;max-width:200px;text-align:right}
+.project-facts{display:flex;justify-content:space-between;align-items:flex-start;gap:28px;margin-top:24px}
+.project-tags{display:flex;flex-wrap:wrap;gap:8px 14px;list-style:none;padding:0;margin:0;font-size:11px;color:var(--muted)}
+.project-tags li{border-bottom:1px solid var(--line);padding-bottom:4px}
+.project-result{font-size:13px;color:var(--muted);max-width:340px;line-height:1.7}
+.project-result strong{font-size:24px;font-weight:500;letter-spacing:-.035em;color:var(--ink);margin-right:5px}
+.project-result small{display:block;font-size:11px;margin-top:4px}
+.featured-analytics .research-title{min-width:0}
+.featured-analytics .research-title h3{line-height:1.25}
+.project-summary{font-size:13px;line-height:1.7;margin-top:14px;max-width:610px;color:var(--muted)}
+.featured-analytics .project-tags{margin-top:18px}
+.project-extra{font-size:10px;line-height:1.7;color:var(--muted);margin-top:12px}
+.additional-work{margin-top:100px}
+.education-period{font-size:12px;color:var(--muted);margin-top:12px}
+.email-link{overflow-wrap:anywhere}
+@media(max-width:900px){
+  .project-facts{gap:24px}
+  .featured-analytics .research-row{grid-template-columns:minmax(0,1fr) 170px 40px}
+  .project-result{max-width:270px}
+  .additional-work{margin-top:80px}
+}
+@media(max-width:600px){
+  .project-facts{flex-direction:column;gap:20px;margin-top:18px}
+  .decision-lens{top:-24px}
+  .project-result{max-width:100%}
+  .project-tags{font-size:10px;gap:8px 12px}
+  .featured-analytics .research-row{grid-template-columns:minmax(0,1fr) 38px}
+  .featured-analytics .research-stat{flex-wrap:wrap;gap:6px 12px}
+  .featured-analytics .research-stat>span{line-height:1.7}
+  .project-extra{flex-basis:100%;margin-top:4px}
+  .project-summary{font-size:12px}
+  .additional-work{margin-top:64px}
+}
 .case-rag .case-head{grid-template-columns:1.25fr .75fr;gap:64px}
 .case-rag .case-head h1{font-size:clamp(52px,6.4vw,92px);line-height:1.04}
 .case-rag .case-meta{grid-template-columns:1fr 1fr}
