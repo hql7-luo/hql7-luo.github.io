@@ -29,12 +29,13 @@ The ignored `portfolio-v2-demo/`, its generator and local staging/backups are hi
 
 ## Content
 
-Personal facts were updated against the supplied English Resume in October 2026. The homepage prioritizes four projects:
+Personal facts were updated against the supplied English Resume in October 2026. The homepage prioritizes five projects:
 
 1. Foreign Trade Enterprise Knowledge Assistant — independent project, Sep 2026
-2. LLM Price-Performance Analytics — UW IS 451 team project, Apr–Jun 2026
-3. AutoZone Workforce Optimization & Demand Forecasting — UW supply chain team project, Sep–Dec 2025
-4. Gen Z Consumer Spending Analytics — UW IS 445 team project, Mar–Jun 2025
+2. Supply Chain Decision Intelligence — independent project, Oct 2026
+3. LLM Price-Performance Analytics — UW IS 451 team project, Apr–Jun 2026
+4. AutoZone Workforce Optimization & Demand Forecasting — UW supply chain team project, Sep–Dec 2025
+5. Gen Z Consumer Spending Analytics — UW IS 445 team project, Mar–Jun 2025
 
 Four existing independent builds remain in a secondary section, with their screenshots, technical explanations and demo links. Detailed project descriptions preserve accurate information beyond the Resume.
 
@@ -50,6 +51,8 @@ The knowledge assistant is a synthetic public demo. Its 92.5% figure is average 
 
 AutoZone's approximately $142.7K (~15%) annual labor savings are model estimates. Academic project results and the IS 451 award are attributed to the teams.
 
+Supply Chain Decision Intelligence uses the public FreshRetailNet-50K dataset from Dingdong-Inc: 4.85 million daily observations across 50,000 anonymized store–product series and 97 days. Sales and stockout observations are real source data; sales are normalized. Its replenishment scenarios use explicit assumptions because on-hand inventory, procurement records and supplier data are unavailable. The project source and reproducible setup are at [hql7-luo/supply-chain-decision-intelligence](https://github.com/hql7-luo/supply-chain-decision-intelligence). The case study uses an actual dashboard screenshot in `assets/projects/supply-chain-decision-intelligence/dashboard.png`.
+
 ## Local preview and validation
 
 From the repository root:
@@ -58,6 +61,6 @@ From the repository root:
 python3 -m http.server 8000
 ```
 
-Open [http://localhost:8000/](http://localhost:8000/). Use `?lang=en` or `?lang=zh` to check either language. Verify the homepage and all eight project pages at desktop, tablet and mobile widths; test navigation, language switching, reduced motion, image dialogs, local assets, links and both Resume PDF downloads. Switch English → Chinese → English and confirm each Resume button's destination, download filename and label. Check key dates and statistics against the latest Resume before future updates.
+Open [http://localhost:8000/](http://localhost:8000/). Use `?lang=en` or `?lang=zh` to check either language. Verify the homepage and all nine project pages at desktop, tablet and mobile widths; test navigation, language switching, reduced motion, image dialogs, local assets, links and both Resume PDF downloads. Switch English → Chinese → English and confirm each Resume button's destination, download filename and label. Check key dates and statistics against the latest Resume before future updates.
 
 Changes to these local files do not update the public site until they are committed and pushed to the configured GitHub Pages branch.
