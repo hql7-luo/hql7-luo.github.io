@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="790" viewBox="0 0 900 790" role="img" aria-labelledby="title">
+<title id="title">Customer investigation: input to decision and reports</title>
+<style>text{font-family:Arial,"PingFang SC","Microsoft YaHei",sans-serif;fill:#182c3c}.muted{fill:#536575}.accent{fill:#166b67}.bold{font-weight:700}</style>
+<rect width="900" height="790" rx="24" fill="#f4f7f8"/>
+<text x="44" y="58" font-size="29" class="bold" text-anchor="start">CUSTOMER INVESTIGATION WORKFLOW</text>
+<rect x="40" y="85" width="820" height="95" rx="16" fill="#ffffff" stroke="#d6e0e5"/>
+<text x="65" y="122" font-size="31" class="bold" text-anchor="start">01  Input</text>
+<text x="65" y="159" font-size="28" class="muted" text-anchor="start">Company name · Website · Business card · Inquiry</text>
+<path d="M450 186v20m-7-7 7 7 7-7" fill="none" stroke="#68818e" stroke-width="3"/>
+<rect x="40" y="219" width="390" height="105" rx="16" fill="#ffffff" stroke="#d6e0e5"/>
+<text x="65" y="258" font-size="30" class="bold" text-anchor="start">02  Collect evidence</text>
+<text x="65" y="295" font-size="26" class="muted" text-anchor="start">Sources + evidence status</text>
+<text x="450" y="279" font-size="35" class="muted" text-anchor="middle">→</text>
+<rect x="470" y="219" width="390" height="105" rx="16" fill="#ffffff" stroke="#d6e0e5"/>
+<text x="495" y="258" font-size="30" class="bold" text-anchor="start">03  Verify company</text>
+<text x="495" y="295" font-size="25" class="muted" text-anchor="start">Entity + contact consistency</text>
+<path d="M450 330v20m-7-7 7 7 7-7" fill="none" stroke="#68818e" stroke-width="3"/>
+<rect x="40" y="363" width="820" height="102" rx="16" fill="#ffffff" stroke="#d6e0e5"/>
+<text x="65" y="402" font-size="31" class="bold" text-anchor="start">04  Assess the commercial opportunity</text>
+<text x="65" y="439" font-size="27" class="muted" text-anchor="start">Customer type · Product fit · Purchase signals · Risk</text>
+<path d="M450 471v20m-7-7 7 7 7-7" fill="none" stroke="#68818e" stroke-width="3"/>
+<rect x="40" y="504" width="820" height="110" rx="16" fill="#e8f3f0" stroke="#c1dbd3"/>
+<text x="65" y="549" font-size="31" class="bold" text-anchor="start">05  Score 0–100 → Grade A / B / C / D</text>
+<text x="65" y="586" font-size="27" class="accent" text-anchor="start">Evidence-based grade caps → One priority action</text>
+<path d="M450 620v20m-7-7 7 7 7-7" fill="none" stroke="#68818e" stroke-width="3"/>
+<rect x="40" y="653" width="820" height="92" rx="16" fill="#ffffff" stroke="#d6e0e5"/>
+<text x="65" y="690" font-size="31" class="bold" text-anchor="start">06  Generate consistent reports</text>
+<text x="65" y="725" font-size="29" class="accent" text-anchor="start">DOCX  /  XLSX  /  JSON</text>
+<text x="450" y="776" font-size="21" class="muted" text-anchor="middle">Agent research + Python validation/export; evidence gaps remain explicit.</text>
+</svg>

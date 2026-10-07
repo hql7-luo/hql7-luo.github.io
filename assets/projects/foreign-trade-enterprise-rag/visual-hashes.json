@@ -1,0 +1,12 @@
+{
+  "governance-workflow.png": {
+    "source_repository_path": "foreign-trade-enterprise-rag/docs/demo/governance-workflow.png",
+    "sha256": "9bb21ba7f5711e8a7a749fbc49dff22a4d3112fd163765af76b6390fe2635605",
+    "bytes": 314293
+  },
+  "governance-workflow-mobile.png": {
+    "source_repository_path": "foreign-trade-enterprise-rag/docs/demo/governance-workflow-mobile.png",
+    "sha256": "c2c16dd1e7a25ad48330b3e51347b9356ecbb68f44f66b7c2e7e868199b6de2e",
+    "bytes": 323865
+  }
+}
