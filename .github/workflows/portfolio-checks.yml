@@ -19,3 +19,5 @@ jobs:
           node --check demos/supply-chain/demo.js
       - name: Verify published analytics and bilingual assets
         run: node scripts/check-supply-chain.mjs
+      - name: Verify bilingual project pages and visual references
+        run: node scripts/check-portfolio-pages.mjs

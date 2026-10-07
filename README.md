@@ -37,7 +37,7 @@ Personal facts were updated against the supplied English Resume in October 2026.
 4. AutoZone Workforce Optimization & Demand Forecasting — UW supply chain team project, Sep–Dec 2025
 5. Gen Z Consumer Spending Analytics — UW IS 445 team project, Mar–Jun 2025
 
-Four existing independent builds remain in a secondary section, with their screenshots, technical explanations and demo links. Detailed project descriptions preserve accurate information beyond the Resume.
+Five independent builds remain in a secondary section, with their selected visuals, technical explanations and verified demo links where available. Detailed project descriptions preserve accurate information beyond the Resume.
 
 - English and Chinese pages with persisted language preference
 - Experience, education, skills and contact sections
@@ -55,6 +55,8 @@ Supply Chain Decision Intelligence uses the public FreshRetailNet-50K dataset fr
 
 The public [200-series interactive explorer](https://hql7-luo.github.io/demos/supply-chain/) is a separate, nonrepresentative real-data subset: 19,400 observations across 97 days. Its own KPIs are explicitly scoped to that cohort. Static Plotly charts, Top 20/50 queues, forecast inspection and CSV/PNG downloads require no visitor login or Python. The complete six-tab Streamlit app, including planning scenarios, retains local launch instructions in the analytics repository. Rebuild with `scripts/build_web_demo.py` in that repository; the Plotly runtime is served locally under MIT and the source-data adaptation retains CC BY 4.0.
 
+Customer Investigation Skill now has a bilingual case study in the secondary builds section. Its two visual concepts show the implemented investigation workflow and a source-derived fictional Aurora report summary with actual score dimensions. No public web demo or real customer result is claimed. Both language pairs are copied unchanged from the MIT-licensed skill repository; hashes and sources are retained under `assets/projects/foreign-customer-investigation/`.
+
 ## Local preview and validation
 
 From the repository root:
@@ -63,8 +65,10 @@ From the repository root:
 python3 -m http.server 8000
 ```
 
-Open [http://localhost:8000/](http://localhost:8000/). Use `?lang=en` or `?lang=zh` to check either language. Verify the homepage and all nine project pages at desktop, tablet and mobile widths; test navigation, language switching, reduced motion, image dialogs, local assets, links and both Resume PDF downloads. Switch English → Chinese → English and confirm each Resume button's destination, download filename and label. Check key dates and statistics against the latest Resume before future updates.
+Open [http://localhost:8000/](http://localhost:8000/). Use `?lang=en` or `?lang=zh` to check either language. Verify the homepage and all ten project pages at desktop, tablet and mobile widths; test navigation, language switching, reduced motion, image dialogs, local assets, links and both Resume PDF downloads. Switch English → Chinese → English and confirm each Resume button's destination, download filename and label. Check key dates and statistics against the latest Resume before future updates.
 
 Changes to these local files do not update the public site until they are committed and pushed to the configured GitHub Pages branch.
+
+Bilingual HTML, local and responsive image references, selected visual hashes and image-size limits are checked with `node scripts/check-portfolio-pages.mjs`. B2B, meal-decision and knowledge-governance cases reuse their actual source-project visuals, with provenance in each assets folder. Image dialogs preserve the currently selected mobile image and allow detail inspection.
 
 Supply-chain publication checks run in CI: `node --check demos/supply-chain/demo.js` and `node scripts/check-supply-chain.mjs`. These reconcile the 200-series payload and KPIs, holdout/future forecast splits, bilingual case keys, and chart image hashes.

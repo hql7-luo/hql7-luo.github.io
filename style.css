@@ -426,3 +426,26 @@ html.menu-restoring{scroll-behavior:auto!important}
   .scdi-image-dialog .dialog-image-slot{max-height:calc(96svh - 152px)}
   .scdi-image-dialog .dialog-image-slot img[data-scdi-chart]{width:1060px}
 }
+
+/* Customer investigation case: the same portfolio typography and image viewer. */
+.fci-page .case-head{grid-template-columns:1.15fr .85fr;gap:48px}
+.fci-page .case-head h1{font-size:clamp(48px,5.2vw,76px);line-height:1.06}
+.fci-page .case-cover{padding:28px;background:#eef2f3}
+.fci-page .case-cover-image{max-width:760px;box-shadow:none}
+.fci-page .gallery-figure{margin-top:32px}
+.fci-page .gallery-image{display:block;width:100%;padding:0;border:0;background:transparent;position:relative}
+.fci-page .gallery-image img{display:block;width:100%;height:auto;max-width:760px;margin:auto}
+.fci-page .case-cover-zoom,.fci-page .expand-label{position:static;display:flex;width:max-content;margin:12px 0 0 auto}
+.fci-image-dialog .fci-viewer-hint{font-size:12px;color:var(--muted);margin-bottom:12px}
+.fci-image-dialog .dialog-image-slot{max-height:calc(94svh - 140px);overflow:auto;overscroll-behavior:contain}
+.fci-image-dialog .dialog-image-slot img{min-width:760px;width:100%;max-width:none;height:auto}
+.visual-workflow-dialog .dialog-image-slot{max-height:calc(94svh - 130px);overflow:auto;overscroll-behavior:contain}
+.visual-workflow-dialog .dialog-image-slot img{min-width:760px;width:100%;max-width:none;height:auto}
+@media(max-width:900px){
+  .fci-page .case-head{grid-template-columns:1fr;gap:24px}
+  .fci-page .case-head h1{font-size:clamp(43px,8vw,68px)}
+}
+@media(max-width:600px){
+  .fci-page .case-cover{padding:12px}
+  .fci-page .case-head h1,html[data-language=zh] .fci-page .case-head h1{font-size:43px}
+}

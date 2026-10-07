@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="790" viewBox="0 0 900 790" role="img" aria-labelledby="title">
+<title id="title">客户调查：从输入到开发决策与报告</title>
+<style>text{font-family:Arial,"PingFang SC","Microsoft YaHei",sans-serif;fill:#182c3c}.muted{fill:#536575}.accent{fill:#166b67}.bold{font-weight:700}</style>
+<rect width="900" height="790" rx="24" fill="#f4f7f8"/>
+<text x="44" y="58" font-size="29" class="bold" text-anchor="start">客户调查 · 核心业务流程</text>
+<rect x="40" y="85" width="820" height="95" rx="16" fill="#ffffff" stroke="#d6e0e5"/>
+<text x="65" y="122" font-size="31" class="bold" text-anchor="start">01  输入</text>
+<text x="65" y="159" font-size="28" class="muted" text-anchor="start">公司名称 · 官网 · 名片 · 询盘信息</text>
+<path d="M450 186v20m-7-7 7 7 7-7" fill="none" stroke="#68818e" stroke-width="3"/>
+<rect x="40" y="219" width="390" height="105" rx="16" fill="#ffffff" stroke="#d6e0e5"/>
+<text x="65" y="258" font-size="30" class="bold" text-anchor="start">02  收集证据</text>
+<text x="65" y="295" font-size="26" class="muted" text-anchor="start">来源 + 证据状态</text>
+<text x="450" y="279" font-size="35" class="muted" text-anchor="middle">→</text>
+<rect x="470" y="219" width="390" height="105" rx="16" fill="#ffffff" stroke="#d6e0e5"/>
+<text x="495" y="258" font-size="30" class="bold" text-anchor="start">03  核验公司</text>
+<text x="495" y="295" font-size="25" class="muted" text-anchor="start">主体 + 联系方式一致性</text>
+<path d="M450 330v20m-7-7 7 7 7-7" fill="none" stroke="#68818e" stroke-width="3"/>
+<rect x="40" y="363" width="820" height="102" rx="16" fill="#ffffff" stroke="#d6e0e5"/>
+<text x="65" y="402" font-size="31" class="bold" text-anchor="start">04  判断商业机会</text>
+<text x="65" y="439" font-size="27" class="muted" text-anchor="start">客户类型 · 产品匹配 · 采购信号 · 风险</text>
+<path d="M450 471v20m-7-7 7 7 7-7" fill="none" stroke="#68818e" stroke-width="3"/>
+<rect x="40" y="504" width="820" height="110" rx="16" fill="#e8f3f0" stroke="#c1dbd3"/>
+<text x="65" y="549" font-size="31" class="bold" text-anchor="start">05  0–100 分 → A / B / C / D 等级</text>
+<text x="65" y="586" font-size="27" class="accent" text-anchor="start">证据条件限制等级 → 一个最优先行动</text>
+<path d="M450 620v20m-7-7 7 7 7-7" fill="none" stroke="#68818e" stroke-width="3"/>
+<rect x="40" y="653" width="820" height="92" rx="16" fill="#ffffff" stroke="#d6e0e5"/>
+<text x="65" y="690" font-size="31" class="bold" text-anchor="start">06  生成一致的报告</text>
+<text x="65" y="725" font-size="29" class="accent" text-anchor="start">DOCX  /  XLSX  /  JSON</text>
+<text x="450" y="776" font-size="21" class="muted" text-anchor="middle">Agent 研究 + Python 验证与导出；信息缺口明确保留。</text>
+</svg>

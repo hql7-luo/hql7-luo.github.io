@@ -1,0 +1,36 @@
+{
+  "source": "examples/chinese-user-overseas-customer/FICTIONAL_Aurora_Printworks_investigation.json",
+  "source_sha256": "ddb7910cabd4038eac72e55cdcdb981f15cfa2330b913138476879aacd188787",
+  "fictional_notice": "FICTIONAL EXAMPLE — NOT A REAL COMPANY",
+  "total_score": 97,
+  "grade": "A",
+  "dimensions": {
+    "authenticity": {
+      "score": 20,
+      "maximum": 20
+    },
+    "business_fit": {
+      "score": 25,
+      "maximum": 25
+    },
+    "purchase_signal": {
+      "score": 25,
+      "maximum": 25
+    },
+    "purchase_potential": {
+      "score": 14,
+      "maximum": 15
+    },
+    "contact_execution": {
+      "score": 15,
+      "maximum": 15
+    }
+  },
+  "risk_deduction": -2,
+  "visual_sha256": {
+    "workflow-en.svg": "99f4bf4064986658025191203a6eb48062eb3c6db34a3c49f566fc3de35d80fa",
+    "result-en.svg": "1be9555d9bd53ae0bd8faadd7aad37e81711bceb801fe20e5c0e3884a99d8f03",
+    "workflow-zh.svg": "e84f7b44289b4dd1275a830221eddcfcf0ec9f77dfac53316ab3e073efa31f1b",
+    "result-zh.svg": "e8454e90a11c048708897c37ba92f706124fae7fe7ad231bba1db2519b1e2165"
+  }
+}

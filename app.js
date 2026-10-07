@@ -347,7 +347,13 @@
       opener = button;
       clearTimeout(closeTimer);
       dialog.classList.remove('is-closing');
-      const image = button.querySelector('img').cloneNode();
+      const sourceImage = button.querySelector('img');
+      const image = sourceImage.cloneNode();
+      // A cloned <img> no longer has its <picture> sources. Keep the image
+      // selected for the current viewport instead of its desktop fallback.
+      image.src = sourceImage.currentSrc || sourceImage.src;
+      image.removeAttribute('srcset');
+      image.removeAttribute('sizes');
       image.loading = 'eager';
       dialog.querySelector('.dialog-image-slot').replaceChildren(image);
       dialog.showModal();

@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1250" viewBox="0 0 900 1250" role="img" aria-labelledby="title">
+<title id="title">虚构 Aurora 报告摘要与实际评分拆解</title>
+<style>text{font-family:Arial,"PingFang SC","Microsoft YaHei",sans-serif;fill:#182c3c}.muted{fill:#536575}.accent{fill:#166b67}.bold{font-weight:700}</style>
+<rect width="900" height="1250" rx="24" fill="#f4f7f8"/>
+<rect x="30" y="28" width="840" height="42" rx="16" fill="#fff2d7" stroke="#e4cca0"/>
+<text x="450" y="56" font-size="24" class="bold" text-anchor="middle">虚构示例 — 不是真实公司或客户结果</text>
+<text x="45" y="115" font-size="31" class="bold" text-anchor="start">FICTIONAL Aurora Printworks</text>
+<text x="45" y="151" font-size="24" class="muted" text-anchor="start">生成报告摘要  ·  2026-07-26</text>
+<text x="45" y="245" font-size="88" class="bold" text-anchor="start">97</text>
+<text x="169" y="242" font-size="30" class="muted" text-anchor="start">/ 100</text>
+<text x="365" y="235" font-size="48" class="accent bold" text-anchor="start">等级 A</text>
+<text x="365" y="271" font-size="28" class="accent" text-anchor="start">优先开发</text>
+<text x="45" y="302" font-size="25" class="muted" text-anchor="start">开发价值：值得继续核实</text>
+<text x="45" y="344" font-size="23" class="muted" text-anchor="start">客户类型</text>
+<text x="280" y="344" font-size="27" class="bold" text-anchor="start">印刷/包装生产商</text>
+<text x="45" y="389" font-size="23" class="muted" text-anchor="start">采购信号</text>
+<text x="280" y="389" font-size="27" class="bold" text-anchor="start">明确询价 / 索样测试</text>
+<text x="45" y="434" font-size="23" class="muted" text-anchor="start">匹配产品</text>
+<text x="280" y="434" font-size="27" class="bold" text-anchor="start">UV油墨 / UV兼容橡皮布</text>
+<text x="45" y="479" font-size="23" class="muted" text-anchor="start">主要风险</text>
+<text x="280" y="479" font-size="27" class="bold" text-anchor="start">付款条款尚未核实</text>
+<rect x="30" y="545" width="840" height="132" rx="16" fill="#e8f3f0" stroke="#c1dbd3"/>
+<text x="50" y="578" font-size="23" class="accent bold" text-anchor="start">建议下一步</text>
+<text x="50" y="618" font-size="28" class="bold" text-anchor="start">先确认设备、承印物和测试规格后发送一份定向样品方案。</text>
+<text x="45" y="730" font-size="28" class="bold" text-anchor="start">可追溯评分拆解</text>
+<text x="45" y="763" font-size="23" class="muted" text-anchor="start">已得分 / 该维度满分</text>
+<text x="45" y="808" font-size="27" class="" text-anchor="start">客户真实性</text>
+<rect x="360" y="787" width="360" height="22" rx="16" fill="#dce6e8" stroke="none"/>
+<rect x="360" y="787" width="360.0" height="22" rx="16" fill="#247a77" stroke="none"/>
+<text x="850" y="808" font-size="27" class="bold" text-anchor="end">20 / 20</text>
+<text x="45" y="858" font-size="27" class="" text-anchor="start">业务匹配度</text>
+<rect x="360" y="837" width="360" height="22" rx="16" fill="#dce6e8" stroke="none"/>
+<rect x="360" y="837" width="360.0" height="22" rx="16" fill="#247a77" stroke="none"/>
+<text x="850" y="858" font-size="27" class="bold" text-anchor="end">25 / 25</text>
+<text x="45" y="908" font-size="27" class="" text-anchor="start">采购信号</text>
+<rect x="360" y="887" width="360" height="22" rx="16" fill="#dce6e8" stroke="none"/>
+<rect x="360" y="887" width="360.0" height="22" rx="16" fill="#247a77" stroke="none"/>
+<text x="850" y="908" font-size="27" class="bold" text-anchor="end">25 / 25</text>
+<text x="45" y="958" font-size="27" class="" text-anchor="start">采购潜力</text>
+<rect x="360" y="937" width="360" height="22" rx="16" fill="#dce6e8" stroke="none"/>
+<rect x="360" y="937" width="336.0" height="22" rx="16" fill="#247a77" stroke="none"/>
+<text x="850" y="958" font-size="27" class="bold" text-anchor="end">14 / 15</text>
+<text x="45" y="1008" font-size="27" class="" text-anchor="start">联系可执行性</text>
+<rect x="360" y="987" width="360" height="22" rx="16" fill="#dce6e8" stroke="none"/>
+<rect x="360" y="987" width="360.0" height="22" rx="16" fill="#247a77" stroke="none"/>
+<text x="850" y="1008" font-size="27" class="bold" text-anchor="end">15 / 15</text>
+<text x="45" y="1062" font-size="27" class="" text-anchor="start">风险扣分</text>
+<text x="850" y="1062" font-size="28" class="bold" text-anchor="end">-2</text>
+<text x="45" y="1111" font-size="29" class="accent bold" text-anchor="start">99 + (-2) = 97</text>
+<text x="45" y="1148" font-size="23" class="muted" text-anchor="start">等级同时受证据条件限制；高分本身不代表 A。</text>
+<text x="45" y="1225" font-size="21" class="muted" text-anchor="start">来源：已验证的 Aurora 示例 JSON；所有评分和叙述沿用现有示例。</text>
+</svg>

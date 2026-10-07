@@ -1,0 +1,17 @@
+{
+  "workflow.png": {
+    "source_repository_path": "b2b-export-sales-intelligence/docs/visuals/sales-workflow.png",
+    "sha256": "c51e88e03a46d81c60be2437f6f600f8989c80fb760a8ae3621132a46cf3b62b",
+    "bytes": 226161
+  },
+  "workflow-mobile.png": {
+    "source_repository_path": "b2b-export-sales-intelligence/docs/visuals/sales-workflow-mobile.png",
+    "sha256": "142980298c35935f9cc0486f67a342d0825f46e420def0e9b2104225914cb9d9",
+    "bytes": 236173
+  },
+  "analytics.png": {
+    "source_repository_path": "b2b-export-sales-intelligence/docs/visuals/sources/analytics.png",
+    "sha256": "ecbb6361791b3d3ae1a37009b03e800da064669145c817c282380f106b9c725a",
+    "bytes": 80679
+  }
+}
