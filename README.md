@@ -51,7 +51,9 @@ The knowledge assistant is a synthetic public demo. Its 92.5% figure is average 
 
 AutoZone's approximately $142.7K (~15%) annual labor savings are model estimates. Academic project results and the IS 451 award are attributed to the teams.
 
-Supply Chain Decision Intelligence uses the public FreshRetailNet-50K dataset from Dingdong-Inc: 4.85 million daily observations across 50,000 anonymized store–product series and 97 days. Sales and stockout observations are real source data; sales are normalized. Its replenishment scenarios use explicit assumptions because on-hand inventory, procurement records and supplier data are unavailable. The project source and reproducible setup are at [hql7-luo/supply-chain-decision-intelligence](https://github.com/hql7-luo/supply-chain-decision-intelligence). The case study uses an actual dashboard screenshot in `assets/projects/supply-chain-decision-intelligence/dashboard.png`.
+Supply Chain Decision Intelligence uses the public FreshRetailNet-50K dataset from Dingdong-Inc: 4.85 million daily observations across 50,000 anonymized store–product series and 97 days. Sales and stockout observations are real source data; sales are normalized. Its replenishment scenarios use explicit assumptions because on-hand inventory, procurement records and supplier data are unavailable. The project source and reproducible setup are at [hql7-luo/supply-chain-decision-intelligence](https://github.com/hql7-luo/supply-chain-decision-intelligence). The bilingual case study pairs five generated full-data charts with findings and management decisions, and retains an actual full-data dashboard screenshot. Chart provenance and cross-repository hashes are in `assets/projects/supply-chain-decision-intelligence/SOURCES.md`.
+
+The public [200-series interactive explorer](https://hql7-luo.github.io/demos/supply-chain/) is a separate, nonrepresentative real-data subset: 19,400 observations across 97 days. Its own KPIs are explicitly scoped to that cohort. Static Plotly charts, Top 20/50 queues, forecast inspection and CSV/PNG downloads require no visitor login or Python. The complete six-tab Streamlit app, including planning scenarios, retains local launch instructions in the analytics repository. Rebuild with `scripts/build_web_demo.py` in that repository; the Plotly runtime is served locally under MIT and the source-data adaptation retains CC BY 4.0.
 
 ## Local preview and validation
 
@@ -64,3 +66,5 @@ python3 -m http.server 8000
 Open [http://localhost:8000/](http://localhost:8000/). Use `?lang=en` or `?lang=zh` to check either language. Verify the homepage and all nine project pages at desktop, tablet and mobile widths; test navigation, language switching, reduced motion, image dialogs, local assets, links and both Resume PDF downloads. Switch English → Chinese → English and confirm each Resume button's destination, download filename and label. Check key dates and statistics against the latest Resume before future updates.
 
 Changes to these local files do not update the public site until they are committed and pushed to the configured GitHub Pages branch.
+
+Supply-chain publication checks run in CI: `node --check demos/supply-chain/demo.js` and `node scripts/check-supply-chain.mjs`. These reconcile the 200-series payload and KPIs, holdout/future forecast splits, bilingual case keys, and chart image hashes.

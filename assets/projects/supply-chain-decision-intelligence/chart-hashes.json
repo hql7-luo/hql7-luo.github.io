@@ -1,0 +1,13 @@
+{
+  "source_repository": "hql7-luo/supply-chain-decision-intelligence",
+  "source_directory": "docs/assets",
+  "scope": "full dataset: 4,850,000 daily observations; 50,000 series; 97 days",
+  "license": "CC BY 4.0, source Dingdong-Inc / FreshRetailNet-50K",
+  "sha256": {
+    "historical-demand-stockouts.png": "2a7f4124e439bd7d3796210c34a30033ed81fd77ebd90b7abe50dce1374bf647",
+    "product-pareto.png": "63f3efeee15130eb11037057dcf64086f38b674ac1c74ea2bb1e3509f92cc3b5",
+    "forecast-comparison.png": "6740435906f1313c57675f5a4cdaf1e4100d5add9585bf9dd428589cf374a03b",
+    "stockout-risk-matrix.png": "9af3bc950aea3fabff1ada4cee5261238e7fad2597a5a29ff46e32a59db3f86b",
+    "availability-zero-sales.png": "fd5564f5c746110bd4595bcd47619600d3fc90aa53f4d8c36add950839c7127a"
+  }
+}
