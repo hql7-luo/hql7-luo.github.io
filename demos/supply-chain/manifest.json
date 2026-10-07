@@ -1,0 +1,16 @@
+{
+  "scope": "demo",
+  "rows": 19400,
+  "series": 200,
+  "days": 97,
+  "source_revision": "08c1fab7f9257bc73679d415d65d644165d351d4",
+  "database_sha256": "0bdaf185430fbb117da1f145f3fe07e8d591cdb44d05d2b798cbfbb72bed6c3b",
+  "data_sha256": "6c40464e927bb345c642bf4d7bbb6af4b158872b7ce1b2787d21a881ca06dca7",
+  "plotly_python_version": "6.9.0",
+  "kpis": {
+    "stockout_day_rate": 0.40164948453608246,
+    "stockout_hour_rate": 0.20191688144329897,
+    "wape": 0.3692270414270753,
+    "review_series": 100
+  }
+}
