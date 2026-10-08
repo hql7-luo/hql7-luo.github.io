@@ -449,3 +449,58 @@ html.menu-restoring{scroll-behavior:auto!important}
   .fci-page .case-cover{padding:12px}
   .fci-page .case-head h1,html[data-language=zh] .fci-page .case-head h1{font-size:43px}
 }
+/* Marketing case: a plain-language introduction before the original evidence. */
+.marketing-readable .case-top{margin-top:32px;margin-bottom:28px}
+.marketing-intro{display:grid;grid-template-columns:1.15fr 1fr;align-items:start;gap:48px}
+.marketing-intro-copy{min-width:0}
+.marketing-project-label{font-size:10px;margin:0 0 14px}
+.marketing-intro h1{font-size:clamp(34px,3.4vw,48px);line-height:1.1;letter-spacing:-.045em;max-width:660px;margin:0 0 20px}
+.marketing-purpose{font-size:16px;line-height:1.6;max-width:600px;margin:0 0 22px;color:var(--muted)}
+.marketing-answer{background:#edf3f0;border-left:3px solid #628678;padding:17px 20px;margin-bottom:22px}
+.marketing-intro h2{font-size:12px;letter-spacing:0;line-height:1.4;margin:0 0 7px;font-weight:600}
+.marketing-intro .marketing-answer p,.marketing-my-work p{font-size:14px;line-height:1.65;margin:0}
+.marketing-my-work{margin-bottom:18px}
+.marketing-quick-skills{font-size:14px;line-height:1.5;color:var(--muted);margin:0 0 18px}
+.marketing-quick-skills strong{font-weight:600;color:var(--ink)}
+.marketing-hero-links{display:flex;flex-wrap:wrap;gap:12px 24px;margin:0;font-size:11px}
+.marketing-intro .marketing-overview{margin:0;min-width:0;padding-top:12px}
+.marketing-overview .image-expand{background:#f8f8fa;border:1px solid var(--line)}
+.marketing-overview img{width:100%;height:auto;display:block}
+.marketing-overview figcaption{margin-top:16px}
+.marketing-overview figcaption .marketing-overview-takeaway{font-size:16px;line-height:1.5;color:var(--ink);font-weight:500;margin-bottom:10px}
+.marketing-body{margin-top:70px}
+.marketing-readable .marketing-body>.case-story>.story-section{margin-bottom:56px}
+.marketing-readable .marketing-body>.case-story>.story-section>h2{font-size:28px;line-height:1.2;letter-spacing:-.025em;margin-bottom:20px}
+.marketing-steps{margin:22px 0;padding-left:22px}
+.marketing-steps li{padding-left:7px;margin-bottom:14px;font-size:14px;line-height:1.75}
+.marketing-skills-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 32px;margin-top:24px}
+.marketing-skills-grid h3{font-size:15px;margin:0 0 8px;line-height:1.4}
+.marketing-skills-grid p{font-size:13px;line-height:1.75;margin:0;color:var(--muted)}
+.marketing-analysis{border-top:1px solid var(--line);padding-top:40px}
+.marketing-analysis .scdi-glance{margin:28px 0}
+@media(max-width:1000px){
+ .marketing-intro{grid-template-columns:1fr;gap:32px}
+ .marketing-intro h1{font-size:42px;max-width:700px}
+ .marketing-intro .marketing-overview{max-width:700px;padding-top:0}
+}
+@media(max-width:600px){
+ .marketing-readable .case-top{margin-top:24px;margin-bottom:24px}
+ .marketing-intro{gap:28px}
+ .marketing-project-label{font-size:9px;letter-spacing:.07em;margin-bottom:12px}
+ .marketing-intro h1,html[data-language=zh] .marketing-intro h1{font-size:31px;line-height:1.12;letter-spacing:-.035em;margin-bottom:16px}
+ .marketing-purpose{font-size:14px;line-height:1.6;margin-bottom:18px}
+ .marketing-answer{padding:14px 16px;margin-bottom:18px}
+ .marketing-intro .marketing-answer p,.marketing-my-work p{font-size:13px;line-height:1.6}
+ .marketing-my-work{margin-bottom:14px}
+ .marketing-quick-skills{font-size:14px;line-height:1.5;margin-bottom:14px}
+ .marketing-overview figcaption .marketing-overview-takeaway{font-size:15px}
+ .marketing-body{margin-top:44px}
+ .marketing-readable .marketing-body>.case-story>.story-section{margin-bottom:40px}
+ .marketing-readable .marketing-body>.case-story>.story-section>h2{font-size:25px;margin-bottom:16px}
+ .marketing-steps li{font-size:13px;line-height:1.75}
+ .marketing-skills-grid{grid-template-columns:1fr;gap:20px}
+}
+
+.marketing-explore-links{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+
+.marketing-intro .marketing-answer .marketing-hero-recommendation{margin-top:10px;font-weight:600;color:var(--ink)}

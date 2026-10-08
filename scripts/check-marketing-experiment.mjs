@@ -64,9 +64,48 @@ for (const [key, value] of Object.entries(expectedClaims)) {
   near(display, Math.round(value * 1000) / 1000, `Rendered headline: ${key}`);
  }
 }
-assert((page.match(/<figure /g) || []).length === 6, 'Case must use exactly six chart concepts');
+// The original analytical assets remain frozen; the overview is a separate presentation artifact.
+assert(manifest.source_commit === '4ee54130564414a15f85316b5807a16508492272', 'Original analysis anchor changed');
+const overviewBytes = readFileSync(join(asset, 'overview-manifest.json'));
+const overview = JSON.parse(overviewBytes);
+const overviewProvenance = JSON.parse(readFileSync(join(asset, 'overview-provenance.json')));
+assert(/^[a-f0-9]{40}$/.test(overviewProvenance.source_commit), 'Missing separately pinned overview source commit');
+assert(overviewProvenance.original_analysis_commit === manifest.source_commit, 'Overview lost its original analysis anchor');
+assert(hash(overviewBytes) === overviewProvenance.source_manifest_sha256, 'Source overview manifest checksum drift');
+assert(overviewProvenance.source_table === overview.source_path && overviewProvenance.source_table_sha256 === overview.source_sha256, 'Overview aggregate-table identity mismatch');
+assert(readFileSync(join(asset, 'SOURCES.md'), 'utf8').includes(overviewProvenance.source_commit), 'Overview source commit is not documented');
+assert(overview.customers === 64000 && overview.historical_year === 2008, 'Overview lost historical scope');
+assert(overview.source_dataset_sha256 === manifest.source_dataset_sha256, 'Overview uses a different dataset');
+assert(overview.rates.length === 3, 'Overview must compare three email options');
+for (const rate of overview.rates) {
+ const expected = rate.action === 0 ? men.mean_c : contrast('conversion', rate.action).mean_t;
+ near(rate.purchase_rate, expected, `Overview purchase rate: ${rate.label}`);
+ assert(rate.display_percent === `${(expected * 100).toFixed(3)}%`, 'Overview displayed rate drift');
+}
+near(overview.estimated_extra_buyers_per_1000, men.effect * 1000, 'Overview additional buyers');
+assert(Object.keys(overview.figures).length === 2, 'Expected one separate overview PNG/SVG pair');
+for (const [path, expected] of Object.entries(overview.figures)) {
+ const name = path.split('/').pop();
+ assert(/^00_purchase_rate_overview\.(png|svg)$/.test(name), 'Unexpected overview filename');
+ const bytes = readFileSync(join(asset, name));
+ assert(hash(bytes) === expected, `Overview integrity mismatch: ${name}`);
+ if (name.endsWith('.svg')) assert(!/<script|<foreignObject|(?:href|src)="https?:/i.test(bytes.toString()), 'Overview SVG contains active/external content');
+}
+assert((page.match(/<figure /g) || []).length === 7, 'Case must use one plain overview and six original analysis charts');
+const introduction = page.slice(page.indexOf('<section id="marketing-intro"'), page.indexOf('<div class="shell case-body'));
+assert(!/\b(?:Holm|AUROC|Brier|HT|confidence interval|incremental spend|learned targeting)\b/i.test(introduction), 'Technical jargon leaked into the introduction');
+assert(dict.en['meg.heading'] === 'Do promotional emails actually make customers more likely to buy?', 'The plain business question is missing');
+const storyIds = ['problem', 'approach', 'data-showed', 'recommendation', 'skills-demonstrated', 'explore', 'analysis'];
+let previousIndex = -1;
+for (const id of storyIds) {
+ const position = page.indexOf(`<section id="${id}"`);
+ assert(position > previousIndex, `Missing or out-of-order story section: ${id}`);
+ previousIndex = position;
+}
+assert((page.slice(page.indexOf('<section id="analysis"')).match(/<figure /g) || []).length === 6, 'Original six charts must remain in the full analysis');
+assert(page.includes('property="og:image" content="https://hql7-luo.github.io/assets/projects/marketing-experimentation-growth-strategy/00_purchase_rate_overview.png"'), 'Social preview must use the plain overview');
 for (const lang of ['en', 'zh']) {
  for (const [, key] of page.matchAll(/data-i18n="([^"]+)"/g)) assert(typeof dict[lang][key] === 'string', `Missing ${lang} translation: ${key}`);
  assert(dict[lang]['meg.limit'] && dict[lang]['meg.rights'] && dict[lang]['meg.factualBoundary'] && dict[lang]['meg.methodPolicy'], `Incomplete ${lang} evidence boundary`);
 }
-console.log('Verified six source-derived chart pairs, campaign/paired-policy evidence, assumed financial arithmetic, bilingual case and unchanged Resume hashes.');
+console.log('Verified one plain overview and six frozen analysis chart pairs, historical purchase rates, campaign/paired-policy evidence, financial arithmetic, bilingual story order and unchanged Resume hashes.');
