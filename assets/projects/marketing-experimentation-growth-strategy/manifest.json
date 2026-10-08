@@ -1,0 +1,97 @@
+{
+  "project_url": "https://github.com/hql7-luo/marketing-experimentation-growth-strategy",
+  "source_dataset_sha256": "0e5893329d8b93cefecc571777672028290ab69865718020c78c7284f291aece",
+  "figures": [
+    {
+      "file": "01_conversion_lift.png",
+      "source_path": "reports/figures/01_conversion_lift.png",
+      "sha256": "643bdd636d9395b4f7c3ea8ad9195382afac9460bfb08ba84e91b430284b5f58",
+      "bytes": 61948,
+      "width": 1530,
+      "height": 799
+    },
+    {
+      "file": "01_conversion_lift.svg",
+      "source_path": "reports/figures/01_conversion_lift.svg",
+      "sha256": "c85ad2934124c9b0db5487c7faddf6ba8cc36f0493212af6de7772a3193be720",
+      "bytes": 56738
+    },
+    {
+      "file": "02_incremental_spend.png",
+      "source_path": "reports/figures/02_incremental_spend.png",
+      "sha256": "2d9f150bb45be73674d455f8250c4bebe4d7249e32c606d868fc6a797c603681",
+      "bytes": 67888,
+      "width": 1530,
+      "height": 816
+    },
+    {
+      "file": "02_incremental_spend.svg",
+      "source_path": "reports/figures/02_incremental_spend.svg",
+      "sha256": "c2f84aaa282baaf59899889a6551af2d25dcf6030b298ab299bbe7a4a6144774",
+      "bytes": 57453
+    },
+    {
+      "file": "03_segment_heterogeneity.png",
+      "source_path": "reports/figures/03_segment_heterogeneity.png",
+      "sha256": "be7a67a280790933535372d07daeefcc8f37046e7fc84f17103060e20970fa73",
+      "bytes": 91176,
+      "width": 1700,
+      "height": 1020
+    },
+    {
+      "file": "03_segment_heterogeneity.svg",
+      "source_path": "reports/figures/03_segment_heterogeneity.svg",
+      "sha256": "ba89e56a0caa1a15c8846c5c891251c2d48a86549a31c01c0896266b8a1ac727",
+      "bytes": 67673
+    },
+    {
+      "file": "04_customer_context.png",
+      "source_path": "reports/figures/04_customer_context.png",
+      "sha256": "b0da999c9612d0ef6432250bbb71918a2d7f3c709ab4bdd9ac39e97a62eac18c",
+      "bytes": 113642,
+      "width": 1870,
+      "height": 850
+    },
+    {
+      "file": "04_customer_context.svg",
+      "source_path": "reports/figures/04_customer_context.svg",
+      "sha256": "8c8d4952fa68d7773fe620cc6079ceb42d50017423ee5692191b232b4ed41fed",
+      "bytes": 71198
+    },
+    {
+      "file": "05_policy_comparison.png",
+      "source_path": "reports/figures/05_policy_comparison.png",
+      "sha256": "6956ab1c5ccb0fc85ce585b9a6d5e21b92d659e9483d9faaf038c23744aeaaec",
+      "bytes": 90800,
+      "width": 1700,
+      "height": 1054
+    },
+    {
+      "file": "05_policy_comparison.svg",
+      "source_path": "reports/figures/05_policy_comparison.svg",
+      "sha256": "0766488a40e39ef0aea3593a52c48c223edd20c0c8dcb5720da04579bdec5cd6",
+      "bytes": 66596
+    },
+    {
+      "file": "06_budget_sensitivity.png",
+      "source_path": "reports/figures/06_budget_sensitivity.png",
+      "sha256": "5915f20bc3fd310de6b3e6d244b80c6c9a78b5ba0722154373967b3250d474ef",
+      "bytes": 118947,
+      "width": 1530,
+      "height": 884
+    },
+    {
+      "file": "06_budget_sensitivity.svg",
+      "source_path": "reports/figures/06_budget_sensitivity.svg",
+      "sha256": "45c3ba5aa3b68808888903e189ce43fbc4802c37894164f849514a14baff6d6c",
+      "bytes": 62571
+    }
+  ],
+  "evidence_sha256": "b369a38c869213d06f20a1e8418e8ed3325dc0d430497f63e4623a4684abf471",
+  "source_results_sha256": "e52c964d452471036c2e681daea277194652cb740e1573332f49429e139667d4",
+  "protected_resume_sha256": {
+    "Haoqi_Luo_Resume_EN.pdf": "751e052ee076932a3aae8bc0fda048b433b85bd306e0b6a7d46fd5e7acac6a6d",
+    "Haoqi_Luo_Resume_ZH.pdf": "06fc952e2adbbcd9b6312c9508095939fc86b49d49a4bda7cbc60ed70a863dd4"
+  },
+  "source_commit": "4ee54130564414a15f85316b5807a16508492272"
+}

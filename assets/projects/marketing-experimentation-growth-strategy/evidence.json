@@ -1,0 +1,515 @@
+{
+  "dataset": {
+    "publisher": "Kevin Hillstrom / MineThatData",
+    "published": "2008-03-20",
+    "outcome_window": "two weeks",
+    "source_url": "https://blog.minethatdata.com/2008/03/minethatdata-e-mail-analytics-and-data.html",
+    "raw_data_redistribution": "No explicit redistribution license located; raw and customer-level derived rows excluded."
+  },
+  "results": {
+    "audit": {
+      "source_sha256": "0e5893329d8b93cefecc571777672028290ab69865718020c78c7284f291aece",
+      "field_profile": {
+        "recency": {
+          "dtype": "int64",
+          "unique_values": 12,
+          "missing": 0,
+          "minimum": 1.0,
+          "maximum": 12.0
+        },
+        "history_segment": {
+          "dtype": "str",
+          "unique_values": 7,
+          "missing": 0,
+          "categories": [
+            "1) $0 - $100",
+            "2) $100 - $200",
+            "3) $200 - $350",
+            "4) $350 - $500",
+            "5) $500 - $750",
+            "6) $750 - $1,000",
+            "7) $1,000 +"
+          ]
+        },
+        "history": {
+          "dtype": "float64",
+          "unique_values": 34833,
+          "missing": 0,
+          "minimum": 29.99,
+          "maximum": 3345.93
+        },
+        "mens": {
+          "dtype": "int64",
+          "unique_values": 2,
+          "missing": 0,
+          "minimum": 0.0,
+          "maximum": 1.0
+        },
+        "womens": {
+          "dtype": "int64",
+          "unique_values": 2,
+          "missing": 0,
+          "minimum": 0.0,
+          "maximum": 1.0
+        },
+        "zip_code": {
+          "dtype": "str",
+          "unique_values": 3,
+          "missing": 0,
+          "categories": [
+            "Rural",
+            "Surburban",
+            "Urban"
+          ]
+        },
+        "newbie": {
+          "dtype": "int64",
+          "unique_values": 2,
+          "missing": 0,
+          "minimum": 0.0,
+          "maximum": 1.0
+        },
+        "channel": {
+          "dtype": "str",
+          "unique_values": 3,
+          "missing": 0,
+          "categories": [
+            "Multichannel",
+            "Phone",
+            "Web"
+          ]
+        },
+        "segment": {
+          "dtype": "str",
+          "unique_values": 3,
+          "missing": 0,
+          "categories": [
+            "Mens E-Mail",
+            "No E-Mail",
+            "Womens E-Mail"
+          ]
+        },
+        "visit": {
+          "dtype": "int64",
+          "unique_values": 2,
+          "missing": 0,
+          "minimum": 0.0,
+          "maximum": 1.0
+        },
+        "conversion": {
+          "dtype": "int64",
+          "unique_values": 2,
+          "missing": 0,
+          "minimum": 0.0,
+          "maximum": 1.0
+        },
+        "spend": {
+          "dtype": "float64",
+          "unique_values": 429,
+          "missing": 0,
+          "minimum": 0.0,
+          "maximum": 499.0
+        }
+      },
+      "records": 64000,
+      "columns": 12,
+      "missing_cells": 0,
+      "identical_full_records_beyond_first": 6562,
+      "rows_removed": 0,
+      "arm_counts": {
+        "Women's Email": 21387,
+        "Men's Email": 21307,
+        "No Email": 21306
+      },
+      "spend_positive_rows": 578,
+      "max_spend": 499.0,
+      "spend_quantiles": {
+        "0.5": 0.0,
+        "0.95": 0.0,
+        "0.99": 0.0,
+        "0.999": 243.6604899999983
+      },
+      "category_correction": {
+        "Surburban": "Suburban"
+      },
+      "identifier_available": false
+    },
+    "split": {
+      "seed": 20080320,
+      "train_n": 32000,
+      "test_n": 32000,
+      "train_index_sha256": "356aead64ec7bce8de8648d638da124caed29044ea2a13adf9a6734486ef8eed",
+      "test_index_sha256": "fb4b441731d823f36c21139b7ebc9cf3419f80d9308b5116eb6d79ebccdeeed7",
+      "train_arm_counts": {
+        "2": 10693,
+        "1": 10654,
+        "0": 10653
+      },
+      "test_arm_counts": {
+        "2": 10694,
+        "0": 10653,
+        "1": 10653
+      },
+      "policy_prior_weight": 1000,
+      "observed_segments": 6,
+      "known_assignment_probabilities": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ]
+    },
+    "model": {
+      "control_test_n": 10653,
+      "auroc": 0.6537198279193179,
+      "brier": 0.006149477082317461,
+      "log_loss": 0.03694055528968981,
+      "train_control_rate": 0.005256735191964705,
+      "constant_brier": 0.0061579356167662325
+    },
+    "max_absolute_smd": 0.016899120365944938,
+    "heterogeneity": [
+      {
+        "outcome": "conversion",
+        "method": "OLS additive interaction joint Wald, HC3 covariance",
+        "statistic": 18.49457194083722,
+        "df": 10,
+        "p_value": 0.047172353579550796
+      },
+      {
+        "outcome": "spend",
+        "method": "OLS additive interaction joint Wald, HC3 covariance",
+        "statistic": 12.96145140521914,
+        "df": 10,
+        "p_value": 0.2258351071081413
+      }
+    ],
+    "policies": [
+      {
+        "incremental_spend": 0.0,
+        "spend_se": 0.0,
+        "spend_ci_low": 0.0,
+        "spend_ci_high": 0.0,
+        "incremental_conversion": 0.0,
+        "conversion_se": 0.0,
+        "conversion_ci_low": 0.0,
+        "conversion_ci_high": 0.0,
+        "email_fraction": 0.0,
+        "policy": "No Email",
+        "men_fraction": 0.0,
+        "women_fraction": 0.0,
+        "assumed_contribution_per_10000": 0.0,
+        "contribution_ci_low_per_10000": 0.0,
+        "contribution_ci_high_per_10000": 0.0
+      },
+      {
+        "incremental_spend": 0.818139375,
+        "spend_se": 0.20460908557423013,
+        "spend_ci_low": 0.41711293636483504,
+        "spend_ci_high": 1.2191658136351649,
+        "incremental_conversion": 0.00609375,
+        "conversion_se": 0.001315423488722978,
+        "conversion_ci_low": 0.0035155673376849337,
+        "conversion_ci_high": 0.008671932662315068,
+        "email_fraction": 1.0,
+        "policy": "Blanket Men",
+        "men_fraction": 1.0,
+        "women_fraction": 0.0,
+        "assumed_contribution_per_10000": 3072.5575,
+        "contribution_ci_low_per_10000": 1468.4517454593404,
+        "contribution_ci_high_per_10000": 4676.663254540659
+      },
+      {
+        "incremental_spend": 0.42146624999999993,
+        "spend_se": 0.180497548065061,
+        "spend_ci_low": 0.06769755649469306,
+        "spend_ci_high": 0.7752349435053068,
+        "incremental_conversion": 0.00215625,
+        "conversion_se": 0.00116713408061022,
+        "conversion_ci_low": -0.00013129076312529912,
+        "conversion_ci_high": 0.0044437907631252995,
+        "email_fraction": 1.0,
+        "policy": "Blanket Women",
+        "men_fraction": 0.0,
+        "women_fraction": 1.0,
+        "assumed_contribution_per_10000": 1485.8649999999998,
+        "contribution_ci_low_per_10000": 70.79022597877224,
+        "contribution_ci_high_per_10000": 2900.939774021227
+      },
+      {
+        "incremental_spend": 0.43441875,
+        "spend_se": 0.13803899000400321,
+        "spend_ci_low": 0.1638673011298692,
+        "spend_ci_high": 0.7049701988701309,
+        "incremental_conversion": 0.0024375,
+        "conversion_se": 0.0009279921161289169,
+        "conversion_ci_low": 0.0006186688744502114,
+        "conversion_ci_high": 0.004256331125549789,
+        "email_fraction": 0.5,
+        "policy": "Random Men (50%)",
+        "men_fraction": 0.5,
+        "women_fraction": 0.0,
+        "assumed_contribution_per_10000": 1637.6750000000002,
+        "contribution_ci_low_per_10000": 555.4692045194768,
+        "contribution_ci_high_per_10000": 2719.880795480524
+      },
+      {
+        "incremental_spend": 0.2850075,
+        "spend_se": 0.12870346032029795,
+        "spend_ci_low": 0.0327533530865361,
+        "spend_ci_high": 0.5372616469134639,
+        "incremental_conversion": 0.00103125,
+        "conversion_se": 0.0008540970379073529,
+        "conversion_ci_low": -0.0006427494336007529,
+        "conversion_ci_high": 0.0027052494336007532,
+        "email_fraction": 0.5,
+        "policy": "Random Women (50%)",
+        "men_fraction": 0.0,
+        "women_fraction": 0.5,
+        "assumed_contribution_per_10000": 1040.0300000000002,
+        "contribution_ci_low_per_10000": 31.013412346144396,
+        "contribution_ci_high_per_10000": 2049.0465876538556
+      },
+      {
+        "incremental_spend": 0.39196031249999996,
+        "spend_se": 0.15837120853418366,
+        "spend_ci_low": 0.08155844758491754,
+        "spend_ci_high": 0.7023621774150823,
+        "incremental_conversion": 0.00309375,
+        "conversion_se": 0.001056383788237695,
+        "conversion_ci_low": 0.0010232758212021307,
+        "conversion_ci_high": 0.005164224178797869,
+        "email_fraction": 0.5,
+        "policy": "Purchase propensity Men (50%)",
+        "men_fraction": 0.5,
+        "women_fraction": 0.0,
+        "assumed_contribution_per_10000": 1467.84125,
+        "contribution_ci_low_per_10000": 226.23379033967015,
+        "contribution_ci_high_per_10000": 2709.4487096603293
+      },
+      {
+        "incremental_spend": 0.48964125000000003,
+        "spend_se": 0.14878648299267747,
+        "spend_ci_low": 0.1980251019479709,
+        "spend_ci_high": 0.7812573980520292,
+        "incremental_conversion": 0.00346875,
+        "conversion_se": 0.0010395732069864384,
+        "conversion_ci_low": 0.0014312239550137778,
+        "conversion_ci_high": 0.005506276044986222,
+        "email_fraction": 0.5,
+        "policy": "Segment incremental (50%)",
+        "men_fraction": 0.42665625,
+        "women_fraction": 0.07334375,
+        "assumed_contribution_per_10000": 1858.565,
+        "contribution_ci_low_per_10000": 692.1004077918836,
+        "contribution_ci_high_per_10000": 3025.0295922081173
+      }
+    ]
+  },
+  "campaign_contrasts": [
+    {
+      "outcome": "conversion",
+      "treatment": 1.0,
+      "reference": 0.0,
+      "n_t": 21307.0,
+      "n_c": 21306.0,
+      "mean_t": 0.01253109306800582,
+      "mean_c": 0.005726086548390125,
+      "effect": 0.006805006519615695,
+      "se": 0.000920851175531638,
+      "ci_low": 0.005000171380452313,
+      "ci_high": 0.008609841658779076,
+      "p_value": 1.5232235005955425e-13,
+      "p_holm": 4.569670501786628e-13,
+      "sim_ci_low": 0.0046005074067538235,
+      "sim_ci_high": 0.009009505632477566
+    },
+    {
+      "outcome": "conversion",
+      "treatment": 2.0,
+      "reference": 0.0,
+      "n_t": 21387.0,
+      "n_c": 21306.0,
+      "mean_t": 0.008837144059475383,
+      "mean_c": 0.005726086548390125,
+      "effect": 0.003111057511085258,
+      "se": 0.0008226578153482761,
+      "ci_low": 0.0014986778214022348,
+      "ci_high": 0.004723437200768281,
+      "p_value": 0.00015710512910668448,
+      "p_holm": 0.00031421025821336897,
+      "sim_ci_low": 0.0011416313189786587,
+      "sim_ci_high": 0.005080483703191857
+    },
+    {
+      "outcome": "conversion",
+      "treatment": 1.0,
+      "reference": 2.0,
+      "n_t": 21307.0,
+      "n_c": 21387.0,
+      "mean_t": 0.01253109306800582,
+      "mean_c": 0.008837144059475383,
+      "effect": 0.003693949008530437,
+      "se": 0.000995138832370407,
+      "ci_low": 0.0017435127374671971,
+      "ci_high": 0.005644385279593676,
+      "p_value": 0.0002051537746568838,
+      "p_holm": 0.00031421025821336897,
+      "sim_ci_low": 0.0013116067458207037,
+      "sim_ci_high": 0.00607629127124017
+    },
+    {
+      "outcome": "visit",
+      "treatment": 1.0,
+      "reference": 0.0,
+      "n_t": 21307.0,
+      "n_c": 21306.0,
+      "mean_t": 0.18275684047496127,
+      "mean_c": 0.10616727682343002,
+      "effect": 0.07658956365153125,
+      "se": 0.0033858083545245127,
+      "ci_low": 0.06995350121810838,
+      "ci_high": 0.08322562608495411,
+      "p_value": 5.685165482802319e-112,
+      "p_holm": 1.7055496448406957e-111,
+      "sim_ci_low": 0.06848400684474282,
+      "sim_ci_high": 0.08469512045831967
+    },
+    {
+      "outcome": "visit",
+      "treatment": 2.0,
+      "reference": 0.0,
+      "n_t": 21387.0,
+      "n_c": 21306.0,
+      "mean_t": 0.151400383410483,
+      "mean_c": 0.10616727682343002,
+      "effect": 0.045233106587052985,
+      "se": 0.0032343863583279126,
+      "ci_low": 0.03889382581264261,
+      "ci_high": 0.05157238736146336,
+      "p_value": 3.1824031593349214e-44,
+      "p_holm": 6.364806318669843e-44,
+      "sim_ci_low": 0.037490050980407405,
+      "sim_ci_high": 0.052976162193698564
+    },
+    {
+      "outcome": "visit",
+      "treatment": 1.0,
+      "reference": 2.0,
+      "n_t": 21307.0,
+      "n_c": 21387.0,
+      "mean_t": 0.18275684047496127,
+      "mean_c": 0.151400383410483,
+      "effect": 0.03135645706447826,
+      "se": 0.0036079163153119004,
+      "ci_low": 0.02428507102723248,
+      "ci_high": 0.03842784310172404,
+      "p_value": 3.802165220636663e-18,
+      "p_holm": 3.802165220636663e-18,
+      "sim_ci_low": 0.02271917828618594,
+      "sim_ci_high": 0.03999373584277058
+    },
+    {
+      "outcome": "spend",
+      "treatment": 1.0,
+      "reference": 0.0,
+      "n_t": 21307.0,
+      "n_c": 21306.0,
+      "mean_t": 1.422616511005773,
+      "mean_c": 0.6527893551112361,
+      "effect": 0.7698271558945368,
+      "se": 0.14524656024868676,
+      "ci_low": 0.4851397325684076,
+      "ci_high": 1.0545145792206658,
+      "p_value": 1.1638149682254823e-07,
+      "p_holm": 3.4914449046764466e-07,
+      "sim_ci_low": 0.42209386773820057,
+      "sim_ci_high": 1.117560444050873
+    },
+    {
+      "outcome": "spend",
+      "treatment": 2.0,
+      "reference": 0.0,
+      "n_t": 21387.0,
+      "n_c": 21306.0,
+      "mean_t": 1.0772015710478329,
+      "mean_c": 0.6527893551112361,
+      "effect": 0.4244122159365967,
+      "se": 0.13033285852919116,
+      "ci_low": 0.16895678988377877,
+      "ci_high": 0.6798676419894147,
+      "p_value": 0.0011293971023632475,
+      "p_holm": 0.002258794204726495,
+      "sim_ci_low": 0.11238487977840439,
+      "sim_ci_high": 0.7364395520947891
+    },
+    {
+      "outcome": "spend",
+      "treatment": 1.0,
+      "reference": 2.0,
+      "n_t": 21307.0,
+      "n_c": 21387.0,
+      "mean_t": 1.422616511005773,
+      "mean_c": 1.0772015710478329,
+      "effect": 0.34541493995794004,
+      "se": 0.15961741484165423,
+      "ci_low": 0.03256144962609531,
+      "ci_high": 0.6582684302897848,
+      "p_value": 0.030468651185299227,
+      "p_holm": 0.030468651185299227,
+      "sim_ci_low": -0.03672139058133023,
+      "sim_ci_high": 0.7275512704972102
+    }
+  ],
+  "paired_policy_contrasts": [
+    {
+      "incremental_spend": 0.055222499999999994,
+      "spend_se": 0.1614272004866668,
+      "spend_ci_low": -0.2611689990789936,
+      "spend_ci_high": 0.3716139990789936,
+      "incremental_conversion": 0.00103125,
+      "conversion_se": 0.0009877161489173572,
+      "conversion_ci_low": -0.0009046380788266207,
+      "conversion_ci_high": 0.002967138078826621,
+      "email_fraction_a": 0.5,
+      "email_fraction_b": 0.5,
+      "email_fraction_difference": 0.0,
+      "policy_a": "Segment incremental (50%)",
+      "policy_b": "Random Men (50%)"
+    },
+    {
+      "incremental_spend": 0.09768093749999998,
+      "spend_se": 0.11094077425702854,
+      "spend_ci_low": -0.11975898446076433,
+      "spend_ci_high": 0.3151208594607643,
+      "incremental_conversion": 0.000375,
+      "conversion_se": 0.0007015685901403071,
+      "conversion_ci_low": -0.0010000491693595444,
+      "conversion_ci_high": 0.0017500491693595447,
+      "email_fraction_a": 0.5,
+      "email_fraction_b": 0.5,
+      "email_fraction_difference": 0.0,
+      "policy_a": "Segment incremental (50%)",
+      "policy_b": "Purchase propensity Men (50%)"
+    },
+    {
+      "incremental_spend": -0.32849812500000003,
+      "spend_se": 0.15647861532162854,
+      "spend_ci_low": -0.6351905753810895,
+      "spend_ci_high": -0.021805674618910587,
+      "incremental_conversion": -0.002625,
+      "conversion_se": 0.0008991127185085129,
+      "conversion_ci_low": -0.004387228546318585,
+      "conversion_ci_high": -0.0008627714536814154,
+      "email_fraction_a": 0.5,
+      "email_fraction_b": 1.0,
+      "email_fraction_difference": -0.5,
+      "policy_a": "Segment incremental (50%)",
+      "policy_b": "Blanket Men"
+    }
+  ],
+  "financial_assumptions": {
+    "contribution_margin": 0.4,
+    "cost_per_email": 0.02,
+    "eligible_customers": 10000
+  }
+}

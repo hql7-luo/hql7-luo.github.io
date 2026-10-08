@@ -29,13 +29,14 @@ The ignored `portfolio-v2-demo/`, its generator and local staging/backups are hi
 
 ## Content
 
-Personal facts were updated against the supplied English Resume in October 2026. The homepage prioritizes five projects:
+Personal facts were updated against the supplied English Resume in October 2026. The homepage prioritizes six projects:
 
 1. Foreign Trade Enterprise Knowledge Assistant — independent project, Sep 2026
-2. Supply Chain Decision Intelligence — independent project, Oct 2026
-3. LLM Price-Performance Analytics — UW IS 451 team project, Apr–Jun 2026
-4. AutoZone Workforce Optimization & Demand Forecasting — UW supply chain team project, Sep–Dec 2025
-5. Gen Z Consumer Spending Analytics — UW IS 445 team project, Mar–Jun 2025
+2. Marketing Experimentation & Growth Strategy — independent project, Oct 2026
+3. Supply Chain Decision Intelligence — independent project, Oct 2026
+4. LLM Price-Performance Analytics — UW IS 451 team project, Apr–Jun 2026
+5. AutoZone Workforce Optimization & Demand Forecasting — UW supply chain team project, Sep–Dec 2025
+6. Gen Z Consumer Spending Analytics — UW IS 445 team project, Mar–Jun 2025
 
 Five independent builds remain in a secondary section, with their selected visuals, technical explanations and verified demo links where available. Detailed project descriptions preserve accurate information beyond the Resume.
 
@@ -65,10 +66,14 @@ From the repository root:
 python3 -m http.server 8000
 ```
 
-Open [http://localhost:8000/](http://localhost:8000/). Use `?lang=en` or `?lang=zh` to check either language. Verify the homepage and all ten project pages at desktop, tablet and mobile widths; test navigation, language switching, reduced motion, image dialogs, local assets, links and both Resume PDF downloads. Switch English → Chinese → English and confirm each Resume button's destination, download filename and label. Check key dates and statistics against the latest Resume before future updates.
+Open [http://localhost:8000/](http://localhost:8000/). Use `?lang=en` or `?lang=zh` to check either language. Verify the homepage and all eleven project pages at desktop, tablet and mobile widths; test navigation, language switching, reduced motion, image dialogs, local assets, links and both Resume PDF downloads. Switch English → Chinese → English and confirm each Resume button's destination, download filename and label. Check key dates and statistics against the latest Resume before future updates.
 
 Changes to these local files do not update the public site until they are committed and pushed to the configured GitHub Pages branch.
 
 Bilingual HTML, local and responsive image references, selected visual hashes and image-size limits are checked with `node scripts/check-portfolio-pages.mjs`. B2B, meal-decision and knowledge-governance cases reuse their actual source-project visuals, with provenance in each assets folder. Image dialogs preserve the currently selected mobile image and allow detail inspection.
 
 Supply-chain publication checks run in CI: `node --check demos/supply-chain/demo.js` and `node scripts/check-supply-chain.mjs`. These reconcile the 200-series payload and KPIs, holdout/future forecast splits, bilingual case keys, and chart image hashes.
+
+Marketing Experimentation & Growth Strategy adds a [bilingual decision case](https://hql7-luo.github.io/projects/marketing-experimentation-growth-strategy.html) based on Kevin Hillstrom’s 2008 randomized email challenge: 64,000 customers and two-week outcomes. Six generated charts show campaign effects, customer context, exploratory heterogeneity, held-out policy comparisons and assumed cost/capacity sensitivity. Men’s Email is the simple pilot benchmark; the learned segment rule’s advantage over equal-capacity random Men remains uncertain. Financial contribution uses explicit assumptions and is not actual profit or realized growth. No raw or customer-level derived source records are redistributed. Aggregate evidence and chart checksums are preserved under `assets/projects/marketing-experimentation-growth-strategy/`; the reproducible source is [hql7-luo/marketing-experimentation-growth-strategy](https://github.com/hql7-luo/marketing-experimentation-growth-strategy).
+
+Marketing publication checks run with `node scripts/check-marketing-experiment.mjs`: all six PNG/SVG chart hashes, aggregate campaign/policy arithmetic, displayed headline values, bilingual case keys, historical/financial/data-rights limits and protected Resume hashes. Existing all-page checks discover the new case automatically.
