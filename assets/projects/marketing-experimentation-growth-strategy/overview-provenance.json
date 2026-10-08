@@ -1,0 +1,10 @@
+{
+  "source_repository": "https://github.com/hql7-luo/marketing-experimentation-growth-strategy",
+  "source_commit": "b672e4e94cf995bda889acf6ba1eb041d9115614",
+  "source_manifest": "reports/overview_manifest.json",
+  "source_manifest_sha256": "bd75f3f6124d326126e31f057856a54b68b72fe09560c12d0179432611e02f3d",
+  "source_table": "reports/tables/01_campaign_summary.csv",
+  "source_table_sha256": "4e9c69f287e0db40437466baf11ef707b7a617cad20864f49f2adc3002d9e672",
+  "original_analysis_commit": "4ee54130564414a15f85316b5807a16508492272",
+  "scope": "Presentation overview only; the original six chart pairs and aggregate statistical evidence are unchanged."
+}
