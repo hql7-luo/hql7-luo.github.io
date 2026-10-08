@@ -12,3 +12,14 @@ on both result cards; no customer adoption, revenue or conversion is claimed.
 `manifest.json` preserves source and asset hashes, five dimension scores, risk
 deduction, total and grade. Rebuild in the source repository, then copy both
 languages and the manifest together. Source code and assets use its MIT license.
+
+## Social sharing preview
+
+`social-preview.png` (1200 × 630) rasterizes the unchanged `workflow-en.svg`
+for Open Graph / Twitter compatibility. The adjacent title and description use
+the existing project name and workflow responsibilities. It contains no new
+customer results, screenshots or metrics. Internal bilingual SVGs stay unchanged.
+
+Reproduce with `node scripts/render-customer-social-preview.mjs` when Playwright
+and Chrome are available. `PLAYWRIGHT_MODULE` may identify an existing Playwright
+installation; the renderer needs no credentials or external application data.
