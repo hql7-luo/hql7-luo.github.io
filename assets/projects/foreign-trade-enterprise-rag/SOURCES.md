@@ -40,17 +40,20 @@ portfolio under the owner's instruction; public visibility is not a general redi
 Reviewed presentation source commit: `1303efbe56b6adefe39ed6ba4d23c07fec0f75dd`.
 
 `governance-stage-01.png` through `governance-stage-04.png` and their `-480.png`
-variants are byte-identical source-repository outputs. They are actual crops of
+variants are byte-identical source-repository outputs. Stages 1–3 crop
 `03-grounded-product.png`, `08-pending-conflict.png`, `10-master-provenance.png`
-and `12-governed-answer.png`, respectively. Stages 2–4 combine declared regions
-from one original frame with white spacing. No screenshot value, UI success
+respectively. Stage 4 combines `12-governed-answer.png` and
+`13-governed-evidence.png`. Stages 2–3 combine declared regions from one original
+frame; stage 4 combines regions from two original frames, with white spacing.
+No screenshot value, UI success
 state or source text was replaced. Large numbers and bilingual explanations
 are HTML outside the UI captures; every stage links to its complete original.
 The 960px versions are exported directly from original crops; exporting at a
 larger width does not add detail absent from the original screenshot.
 
 `governance-overview.sources.json` is an unchanged source manifest containing
-original frame/crop/output hashes and coordinates. `visual-hashes.json` verifies
+original-frame hashes, crop coordinates/resize parameters and output hashes.
+`visual-hashes.json` verifies
 the eight responsive stage assets alongside the preserved older visual assets.
 The tall four-stage overview is used by the repository README; the website uses
 responsive HTML cards (two columns on desktop, one on mobile).
