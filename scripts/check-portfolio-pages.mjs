@@ -9,6 +9,10 @@ const assert = (condition, message) => { if (!condition) throw new Error(message
 let images = 0;
 for (const file of pages) {
  const html = readFileSync(join(root, file), 'utf8');
+ const head = html.match(/<head>([\s\S]*?)<\/head>/)?.[1];
+ assert(head && /<title\b[^>]*>[^<]+<\/title>/.test(head), `${file}: missing valid page title`);
+ assert(/<link\b[^>]*rel="canonical"/.test(head), `${file}: missing canonical URL`);
+ assert(/<meta\b[^>]*property="og:image"/.test(head), `${file}: missing social preview`);
  const block = html.match(/<script[^>]+id="translations"[^>]*>([\s\S]*?)<\/script>/);
  assert(block, `${file}: missing translations`);
  const dictionary = JSON.parse(block[1]);

@@ -8,5 +8,45 @@
     "source_repository_path": "foreign-trade-enterprise-rag/docs/demo/governance-workflow-mobile.png",
     "sha256": "c2c16dd1e7a25ad48330b3e51347b9356ecbb68f44f66b7c2e7e868199b6de2e",
     "bytes": 323865
+  },
+  "governance-stage-01.png": {
+    "source_repository_path": "foreign-trade-enterprise-rag/docs/demo/governance-stage-01.png",
+    "sha256": "c6f39a615e3c71894464de462d30275ba3502214da2563e05cfea6820151a0e4",
+    "bytes": 101857
+  },
+  "governance-stage-01-480.png": {
+    "source_repository_path": "foreign-trade-enterprise-rag/docs/demo/governance-stage-01-480.png",
+    "sha256": "d4855137789083d6037bd9327c722c52c3033fc3373403267cef2fad865a2d11",
+    "bytes": 35060
+  },
+  "governance-stage-02.png": {
+    "source_repository_path": "foreign-trade-enterprise-rag/docs/demo/governance-stage-02.png",
+    "sha256": "8566366efb7c92a8d015517eabf402450b66c73abbc776e104c5508a19e9af7b",
+    "bytes": 76475
+  },
+  "governance-stage-02-480.png": {
+    "source_repository_path": "foreign-trade-enterprise-rag/docs/demo/governance-stage-02-480.png",
+    "sha256": "5a50bdb930473d1ab9a97c7e3b75e5fbc52d22f3e63f5bdc33bac8cc3bef1f20",
+    "bytes": 25303
+  },
+  "governance-stage-03.png": {
+    "source_repository_path": "foreign-trade-enterprise-rag/docs/demo/governance-stage-03.png",
+    "sha256": "2b0d77e332b56c0d73d149281f6b456d36562e2b21dbc3aab0f8488fabd2abb4",
+    "bytes": 149775
+  },
+  "governance-stage-03-480.png": {
+    "source_repository_path": "foreign-trade-enterprise-rag/docs/demo/governance-stage-03-480.png",
+    "sha256": "561fc6fc62deebee66bb3c09b8f06eafd73170a23aed53ec0861dfd56f2614ab",
+    "bytes": 54167
+  },
+  "governance-stage-04.png": {
+    "source_repository_path": "foreign-trade-enterprise-rag/docs/demo/governance-stage-04.png",
+    "sha256": "6cbb75457e4cae6d52260eea8dab98657a6a0a0a7bf48d7978bc52ca67354f28",
+    "bytes": 306365
+  },
+  "governance-stage-04-480.png": {
+    "source_repository_path": "foreign-trade-enterprise-rag/docs/demo/governance-stage-04-480.png",
+    "sha256": "7295481186d50ed91ebce983e47c981d43afa972fa385de861fb62af7058aa94",
+    "bytes": 100767
   }
 }
