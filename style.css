@@ -388,6 +388,7 @@ html.menu-restoring{scroll-behavior:auto!important}
 .scdi-image-dialog .scdi-viewer-hint{font-size:11px;line-height:1.7;color:var(--muted);margin:0 0 12px}
 .scdi-image-dialog .dialog-image-slot{max-height:calc(94svh - 142px);overflow:auto;overscroll-behavior:contain}
 .scdi-image-dialog .dialog-image-slot img[data-scdi-chart]{min-width:1060px;width:100%;max-width:none;height:auto}
+.scdi-image-dialog .dialog-image-slot img[data-scdi-overview]{min-width:840px;width:100%;max-width:none;height:auto}
 @media(max-width:1200px){
   .scdi-page .case-head{gap:40px}
   .scdi-body{grid-template-columns:170px minmax(0,1fr);gap:44px}
@@ -425,6 +426,81 @@ html.menu-restoring{scroll-behavior:auto!important}
   .scdi-body .story-section .story-lead{font-size:16px}
   .scdi-image-dialog .dialog-image-slot{max-height:calc(96svh - 152px)}
   .scdi-image-dialog .dialog-image-slot img[data-scdi-chart]{width:1060px}
+}
+
+/* Business-first cases: concise purpose and action before analytical detail. */
+.business-readable .case-top{margin-top:28px;margin-bottom:30px}
+.business-readable .case-hero{padding-top:0}
+.business-intro{display:grid;grid-template-columns:1.1fr 1fr;gap:44px;align-items:start}
+.business-copy,.business-visual{min-width:0}
+.business-project-label{font-size:10px;color:var(--iris);margin:0 0 16px}
+.business-copy h1{font-size:clamp(34px,3.2vw,46px);line-height:1.12;letter-spacing:-.04em;margin-bottom:20px;max-width:650px}
+.business-purpose{font-size:16px;line-height:1.7;color:var(--muted);margin-bottom:22px;max-width:630px}
+.business-copy h2{font-size:12px;line-height:1.5;letter-spacing:0;margin-bottom:7px;font-weight:600}
+.business-answer{padding:18px 20px;margin:0 0 22px;background:#edf3f0;border-left:3px solid #628678}
+.business-answer p{font-size:14px;line-height:1.8}
+.business-findings{padding-left:20px;font-size:14px;line-height:1.8;margin:12px 0 20px}
+.business-findings li+li{margin-top:8px}
+.business-skills{font-size:13px;line-height:1.8;margin-bottom:20px;color:var(--iris)}
+.business-role{font-size:12px;line-height:1.8;color:var(--muted);margin-bottom:20px}
+.business-role>strong{margin-right:6px;color:var(--ink)}
+.business-skills>strong{display:block;margin-bottom:6px;color:var(--ink)}
+.business-copy .case-links{justify-content:flex-start;flex-wrap:wrap;margin:20px 0}
+.business-links{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:20px 0}
+.business-copy>.source-note{font-size:11px;line-height:1.8;margin-top:16px}
+.business-visual .image-expand{background:white;border:1px solid var(--line);border-radius:8px}
+.business-visual img{display:block;width:100%;height:auto}
+.business-visual .expand-label{position:static;width:fit-content;margin:10px 12px 10px auto;font-size:10px;padding:8px 12px;pointer-events:none}
+.business-visual figcaption{font-size:11px;line-height:1.8;color:var(--muted);margin-top:14px}
+.business-readable .case-body{margin-top:64px}
+.action-cards{display:grid;grid-template-columns:1fr;gap:20px;margin-top:28px}
+.action-cards article{padding:20px 22px;border:1px solid var(--line);border-radius:8px;background:#f9f9fa;min-width:0}
+.action-cards h3{font-size:19px;line-height:1.35;letter-spacing:-.02em;margin-bottom:12px}
+.action-cards p{font-size:14px;line-height:1.8}
+.action-cards p+p{margin-top:10px}
+.action-cards strong{font-weight:600;color:var(--ink)}
+.action-cards dl{display:grid;grid-template-columns:140px minmax(0,1fr);gap:10px 16px}
+.action-cards dt{font-size:12px;line-height:1.8;font-weight:600;color:var(--iris)}
+.action-cards dd{font-size:14px;line-height:1.8;margin:0}
+.business-readable .story-section>ul{padding-left:20px;font-size:15px;line-height:1.8;margin-top:20px}
+.business-readable .story-section>ul li+li{margin-top:10px}
+.business-stages{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.business-stage{border-top:2px solid #77959b;padding-top:12px;min-width:0}
+.business-stage h3{font-size:15px;line-height:1.4;letter-spacing:0;margin-bottom:8px}
+.business-stage h3 strong{font-size:26px;line-height:1.2;display:block;color:#285d67;letter-spacing:-.02em;margin-top:4px}
+.business-stage>p{font-size:12px;line-height:1.7;margin:10px 0 0;color:var(--muted)}
+.business-readable .rag-metrics{grid-template-columns:repeat(3,minmax(0,1fr))}
+.research-row:has([data-i18n="scdi.statHeadline"]) .research-stat strong{font-size:32px;line-height:1.25}
+.project-result:has([data-i18n="rag.statHeadline"]) strong{font-size:24px;line-height:1.3}
+@media(max-width:1000px){
+  .business-intro{grid-template-columns:1fr;gap:32px}
+  .business-copy{max-width:760px}
+  .business-visual{max-width:760px;width:100%}
+  .business-readable .case-body{grid-template-columns:1fr;gap:32px;margin-top:48px}
+}
+@media(max-width:600px){
+  .business-readable .case-top{margin-top:22px;margin-bottom:24px}
+  .business-copy h1{font-size:32px;line-height:1.16;margin-bottom:17px}
+  .business-project-label{font-size:9px;margin-bottom:12px}
+  .business-purpose{font-size:14px;line-height:1.8;margin-bottom:18px}
+  .business-answer{padding:16px;margin-bottom:20px}
+  .business-answer p,.business-findings{font-size:13px;line-height:1.8}
+  .business-skills{font-size:12px;margin-bottom:16px}
+  .business-role{font-size:12px;line-height:1.8;margin-bottom:16px}
+  .business-links{gap:9px;margin:18px 0}
+  .business-stages{grid-template-columns:1fr;gap:26px}
+  .business-stage h3{font-size:17px}
+  .business-stage h3 strong{font-size:30px}
+  .business-stage>p{font-size:13px}
+  .action-cards article{padding:17px}
+  .action-cards h3{font-size:18px}
+  .action-cards p{font-size:13px}
+  .action-cards dl{grid-template-columns:1fr;gap:4px}
+  .action-cards dd{font-size:13px;margin-bottom:12px}
+  .business-readable .story-section>ul{font-size:14px}
+  .business-readable .rag-metrics{grid-template-columns:1fr;gap:22px}
+  .business-readable .rag-metrics strong{font-size:40px}
+  .research-row:has([data-i18n="scdi.statHeadline"]) .research-stat strong{font-size:24px}
 }
 
 /* Customer investigation case: the same portfolio typography and image viewer. */

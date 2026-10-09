@@ -8,6 +8,14 @@
     "product-pareto.png": "63f3efeee15130eb11037057dcf64086f38b674ac1c74ea2bb1e3509f92cc3b5",
     "forecast-comparison.png": "6740435906f1313c57675f5a4cdaf1e4100d5add9585bf9dd428589cf374a03b",
     "stockout-risk-matrix.png": "9af3bc950aea3fabff1ada4cee5261238e7fad2597a5a29ff46e32a59db3f86b",
-    "availability-zero-sales.png": "fd5564f5c746110bd4595bcd47619600d3fc90aa53f4d8c36add950839c7127a"
+    "availability-zero-sales.png": "fd5564f5c746110bd4595bcd47619600d3fc90aa53f4d8c36add950839c7127a",
+    "management-action-overview.svg": "8ad25aca80d63633d882d7e4bc749250ef9f726fefbd1b0299a36fe4af4f1a3c",
+    "management-action-overview.png": "f6c338b0848b34f8ac82e2d9d0f1b7c628da78ede6822abd237e0cebd51d8f33"
+  },
+  "presentation_overview": {
+    "provenance": "management-action-overview.json",
+    "source_findings_copy": "full-data-findings.json",
+    "width": 840,
+    "height": 1670
   }
 }

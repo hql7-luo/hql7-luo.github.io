@@ -21,3 +21,27 @@ The five analysis charts are generated from the verified **full FreshRetailNet-5
 Sales use the source's globally normalized scale. No conversion into physical units or revenue is possible from the available fields. No actual inventory, supplier, procurement-cost or realized-savings claims are made. The demonstration subset contains 19,400 real source observations / 200 series and is not population-representative; its metrics must not be presented as full-data conclusions.
 
 The PNG files are copied byte-for-byte from the analysis repository's `docs/assets/` outputs. `chart-hashes.json` records their SHA-256 hashes for cross-repository verification.
+
+## Business overview added October 8, 2026
+
+Reviewed presentation source commit: `8baa6508d493c90513e2e6be77d2706a441e3a82`.
+
+`management-action-overview.svg` and `.png` are the same single overview figure,
+copied byte-for-byte from `docs/assets/`. It summarizes saved full-data evidence,
+then separates an availability investigation from a high-contribution review.
+The latter uses saved sales classes and an existing sales sort; an A-only worklist
+is documented, not an added Demo preset or an optimal replenishment policy.
+Top 20 / 50 describes review capacity. Streamlit's sales sort uses 97 days;
+the static 200-series Demo's sales sort uses the latest 28 days.
+
+`management-action-overview.json` is copied from `docs/evidence/` and records
+scope, evidence hash, view definitions and boundaries. `full-data-findings.json`
+is an unchanged copy of the source `docs/evidence/findings.json` used to reconcile
+the overview in portfolio CI. The five original analysis charts and dashboard
+capture retain their existing bytes and definitions. The source revision in
+the overview manifest identifies the evidence baseline, not a fresh data run.
+
+The English overview is accompanied by bilingual page explanations and image
+alternatives. It records no new operating result, financial metric or forecast.
+Project implementation was substantially AI-assisted; the page separately
+states the owner's confirmed business requirements and output-review role.

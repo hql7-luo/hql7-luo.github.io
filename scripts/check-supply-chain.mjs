@@ -38,9 +38,22 @@ const file='projects/supply-chain-decision-intelligence.html', html=read(file);
 const translations=JSON.parse(html.match(/<script type="application\/json" id="translations">([\s\S]*?)<\/script>/)[1]);
 for(const match of html.matchAll(/data-i18n="([^"]+)"/g))for(const lang of ['en','zh'])assert(translations[lang][match[1]],`Missing ${lang}: ${match[1]}`);
 const images=[...html.matchAll(/<img\b[^>]*src="([^"]+)"[^>]*>/g)];
-assert.equal(images.length,6);
+assert.equal(images.length,7);
+assert.equal([...html.matchAll(/data-scdi-chart(?:\s|>)/g)].length,5);
+assert.equal([...html.matchAll(/data-scdi-overview(?:\s|>)/g)].length,1);
 for(const [tag,src] of images){assert(/\balt="[^"]+"/.test(tag));assert(existsSync(resolve(root,dirname(file),src)),`Missing ${src}`);}
 for(const match of html.matchAll(/href="([^"#?]+\.png)"/g))assert(existsSync(resolve(root,dirname(file),match[1])));
 const hashes=JSON.parse(read('assets/projects/supply-chain-decision-intelligence/chart-hashes.json'));
 for(const [name,hash] of Object.entries(hashes.sha256)){if(typeof hash!=='string')continue;assert.equal(createHash('sha256').update(readFileSync(resolve(root,'assets/projects/supply-chain-decision-intelligence',name))).digest('hex'),hash);}
+const overview=JSON.parse(read('assets/projects/supply-chain-decision-intelligence/management-action-overview.json'));
+const sourceBytes=readFileSync(resolve(root,'assets/projects/supply-chain-decision-intelligence/full-data-findings.json'));
+const full=JSON.parse(sourceBytes);
+assert.equal(createHash('sha256').update(sourceBytes).digest('hex'),overview.source_file_sha256);
+for(const [key,value] of Object.entries(overview.full_scope))assert.equal(value,full.data[key]);
+assert.equal(overview.risk_window.high_priority_series,full.risk_window.high_priority_series);
+assert.equal(overview.forecast.fixed_ses_holdout_wape,full.forecast.holdout_metrics.baselines['ses_alpha0.3'].wape);
+assert.equal(overview.forecast.selected_models_holdout_wape,full.forecast.holdout_metrics.all_days.wape);
+assert(overview.forecast.fixed_ses_holdout_wape<overview.forecast.selected_models_holdout_wape);
+const svg=read('assets/projects/supply-chain-decision-intelligence/management-action-overview.svg');
+assert(!/<script|<foreignObject|(?:href|src)="https?:/i.test(svg));
 console.log('Verified: 200 real series, 19,400 observations, scoped KPIs, forecast splits, bilingual case and image integrity.');

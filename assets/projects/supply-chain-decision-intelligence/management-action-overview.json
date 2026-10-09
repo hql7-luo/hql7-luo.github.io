@@ -1,0 +1,123 @@
+{
+  "asset": "docs/assets/management-action-overview.svg",
+  "companion_png": "docs/assets/management-action-overview.png",
+  "type": "Editorial summary of saved results and proposed investigation steps; not a new analysis or metric",
+  "source_project_sha": "605fd679391c8e4deb12b3bcce7901ba60bfbce7",
+  "source_file": "docs/evidence/findings.json",
+  "source_file_sha256": "de52e9eeea122e4b646956c52ee650e9e64873be040da28a744715d6aad8132d",
+  "source_revision": "08c1fab7f9257bc73679d415d65d644165d351d4",
+  "dataset": "Dingdong-Inc / FreshRetailNet-50K",
+  "source_url": "https://huggingface.co/datasets/Dingdong-Inc/FreshRetailNet-50K",
+  "data_license": "CC BY 4.0",
+  "full_scope": {
+    "rows": 4850000,
+    "series": 50000,
+    "products": 865,
+    "date_min": "2024-03-28",
+    "date_max": "2024-07-02",
+    "days_per_series": 97
+  },
+  "risk_window": {
+    "start": "2024-06-05",
+    "end": "2024-07-02",
+    "days": 28,
+    "counts": {
+      "High Risk": 30269,
+      "Critical": 10322,
+      "Watch": 8633,
+      "Healthy": 776
+    },
+    "high_priority_series": 40591,
+    "high_priority_series_share": 0.81182,
+    "high_priority_recent_sales_share": 0.7578843117709934
+  },
+  "forecast": {
+    "fixed_ses_holdout_wape": 0.3600237203279597,
+    "selected_models_holdout_wape": 0.374176926312533,
+    "interpretation": "Lower is better; retrospective comparison does not alter selected models",
+    "holdout": "2024-06-26–2024-07-02; 350,000 observations"
+  },
+  "review_purposes": {
+    "availability_investigation": "Critical/High Risk, existing original severity priority, capacity 20/50",
+    "A_tier_sales_contribution_review": "Critical/High Risk and saved store-product A tier, existing 97-day observed_sales_total sort, capacity 20/50; documented worklist filter, no new online control",
+    "rank_status_and_classification": "Unchanged; display/filter only; city/category filtering does not reclassify saved ABC"
+  },
+  "boundaries": [
+    "No new full-population Top20/50 list",
+    "Public Demo is a separate 200-series / 19,400-row deterministic illustration",
+    "Demo ABC is cohort-specific",
+    "Web Demo recent-sales sort uses 28 days; local Streamlit observed-sales sort uses 97 days",
+    "Normalized observed sales, not money or physical inventory",
+    "Suggested owners and next steps, not actual deployment or team history",
+    "Missing actual inventory, open orders, lead times, shelf life and costs",
+    "No new optimizer, risk rule, scoring weights, automatic orders or savings claim"
+  ],
+  "asset_sha256": {
+    "docs/assets/management-action-overview.svg": "8ad25aca80d63633d882d7e4bc749250ef9f726fefbd1b0299a36fe4af4f1a3c",
+    "docs/assets/management-action-overview.png": "f6c338b0848b34f8ac82e2d9d0f1b7c628da78ede6822abd237e0cebd51d8f33"
+  },
+  "image_dimensions": {
+    "width": 840,
+    "height": 1670,
+    "layout": "single-column portrait"
+  },
+  "brief_demo_comparison": {
+    "scope": "committed deterministic 200-series / 19400-row cohort; not representative of 50000",
+    "input_sqlite_sha256": "0bdaf185430fbb117da1f145f3fe07e8d591cdb44d05d2b798cbfbb72bed6c3b",
+    "source_function": "app/dashboard.py::management_queue",
+    "filter": "Critical or High Risk",
+    "periods": {
+      "sales_sort": "97 days",
+      "recent_sales_share": "latest 28 days; entire 200-series denominator"
+    },
+    "queues": {
+      "current_original_top20": {
+        "rows": 20,
+        "risk_counts": {
+          "Critical": 20
+        },
+        "abc_counts": {
+          "A": 13,
+          "B": 6,
+          "C": 1
+        },
+        "recent_observed_sales_share_of_whole_scope": 0.06580226829275938
+      },
+      "current_streamlit_sales_top20": {
+        "rows": 20,
+        "risk_counts": {
+          "High Risk": 12,
+          "Critical": 8
+        },
+        "abc_counts": {
+          "A": 20
+        },
+        "recent_observed_sales_share_of_whole_scope": 0.1776659881059024
+      },
+      "current_original_top50": {
+        "rows": 50,
+        "risk_counts": {
+          "Critical": 50
+        },
+        "abc_counts": {
+          "A": 26,
+          "B": 18,
+          "C": 6
+        },
+        "recent_observed_sales_share_of_whole_scope": 0.2002755946128899
+      },
+      "current_streamlit_sales_top50": {
+        "rows": 50,
+        "risk_counts": {
+          "Critical": 26,
+          "High Risk": 24
+        },
+        "abc_counts": {
+          "A": 50
+        },
+        "recent_observed_sales_share_of_whole_scope": 0.2910152094918372
+      }
+    },
+    "A_only_illustration": "Saved A class + existing Highest observed sales returns the same 20/50 rows and order as existing sales mode in this Demo; no proven gain"
+  }
+}

@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="1670" viewBox="0 0 840 1670" role="img" aria-labelledby="title desc">
+<title id="title">From Retail Data to Management Action</title>
+<desc id="desc">Full historical evidence: 50,000 store-product series; 40,591 flagged for investigation. Fixed SES has lower holdout WAPE than per-series selection. Compare availability investigation with an A-tier sales-contribution review; verify actual operational data before acting. Public demo scope is 200 series.</desc>
+<rect width="840" height="1670" rx="28" fill="#f3f6f9"/>
+<style>text{font-family:Arial,Helvetica,sans-serif;fill:#142d3d} .heading{font-weight:700} .muted{fill:#435c6b} .step{fill:#0a7782;font-weight:700}</style>
+<text x="56" y="72" font-size="51" class="heading">From Retail Data</text>
+<text x="56" y="135" font-size="51" class="heading">to Management Action</text>
+<text x="56" y="182" font-size="30" class="muted">Historical evidence → focused investigation</text>
+<rect x="44" y="220" width="752" height="224" rx="20" fill="#fff" stroke="#ccd9e1" stroke-width="2"/>
+<text x="80" y="269" font-size="26" class="step">01  REAL DATA</text>
+<text x="80" y="321" font-size="42" class="heading">Start with observed history</text>
+<text x="80" y="366" font-size="38" class="">50,000 store–product series</text>
+<text x="80" y="413" font-size="32" class="muted">97 days · globally normalized sales</text>
+<path d="M420 451 v22 m-9 -9 9 9 9 -9" fill="none" stroke="#0a7782" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="44" y="485" width="752" height="310" rx="20" fill="#fff" stroke="#ccd9e1" stroke-width="2"/>
+<text x="80" y="534" font-size="26" class="step">02  SAVED FINDINGS</text>
+<text x="80" y="586" font-size="42" class="heading">Keep the evidence visible</text>
+<text x="80" y="631" font-size="38" class="heading">40,591 series flagged for review</text>
+<text x="80" y="677" font-size="31" class="muted">81.2% of series · 75.8% of recent sales</text>
+<text x="80" y="733" font-size="36" class="heading">Simple forecast performed better</text>
+<text x="80" y="775" font-size="31" class="muted">Holdout error: 36.0% vs 37.4%</text>
+<path d="M420 803 v22 m-9 -9 9 9 9 -9" fill="none" stroke="#0a7782" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="44" y="837" width="752" height="364" rx="20" fill="#fff" stroke="#ccd9e1" stroke-width="2"/>
+<text x="80" y="886" font-size="26" class="step">03  REVIEW PURPOSE</text>
+<text x="80" y="938" font-size="42" class="heading">Choose a manageable worklist</text>
+<text x="80" y="985" font-size="38" class="heading">Availability investigation</text>
+<text x="80" y="1029" font-size="34" class="muted">Original severity priority</text>
+<text x="80" y="1091" font-size="38" class="heading">High-contribution review</text>
+<text x="80" y="1135" font-size="32" class="muted">Saved sales tier + existing 97-day sort</text>
+<text x="80" y="1177" font-size="32" class="muted">Top 20 / 50 sets review capacity</text>
+<path d="M420 1209 v22 m-9 -9 9 9 9 -9" fill="none" stroke="#0a7782" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="44" y="1243" width="752" height="277" rx="20" fill="#fff" stroke="#ccd9e1" stroke-width="2"/>
+<text x="80" y="1292" font-size="26" class="step">04  MANAGEMENT ACTION</text>
+<text x="80" y="1344" font-size="42" class="heading">Verify before acting</text>
+<text x="80" y="1390" font-size="32" class="">Suggested owners: operations / planning</text>
+<text x="80" y="1435" font-size="34" class="muted">Need actual stock and open orders,</text>
+<text x="80" y="1480" font-size="32" class="muted">lead times and active-assortment checks.</text>
+<text x="56" y="1571" font-size="28" class="muted">Full findings above · public Demo: 200 real series</text>
+<text x="56" y="1614" font-size="28" class="muted">Review aid · no automatic order or savings claim</text>
+</svg>
