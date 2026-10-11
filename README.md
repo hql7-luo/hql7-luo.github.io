@@ -23,7 +23,15 @@ assets/
 .nojekyll
 ```
 
-Edit these root files directly. There is no package manager, framework bundle, runtime backend or build step. Each HTML page contains its English default markup and an embedded `translations` JSON dictionary; update both languages and the default markup together. Local vanilla JavaScript handles language preference, navigation, motion and image dialogs.
+Edit these root files directly. There is no package manager, framework bundle, runtime backend or build step. Each HTML page contains its English default markup and an embedded `translations` JSON dictionary with every key the page uses (including shared interface labels); update both languages and the default markup together. Local vanilla JavaScript handles language preference, navigation, motion and image dialogs.
+
+### Design (Interactive Business, October 2026)
+
+The whole site uses one design system defined at the top of `style.css`: colors, IBM Plex Sans / IBM Plex Mono (Google Fonts, with system fallbacks), type scale, spacing, card radius, motion durations and breakpoints (1180 / 1000 / 900 / 760 / 640 px).
+
+- Homepage: an interactive results board for the three featured projects, project filters, featured cards with Problem / What I did / Takeaway, team coursework rows, and an "Other builds" shelf. The shelf moves with drag, the arrow buttons, a trackpad's horizontal swipe or the keyboard arrows; the ordinary mouse wheel always scrolls the page.
+- Project pages: back link and position (n / 11), a business-first hero, an "On this page" menu, an image viewer (previous / next, zoom, Escape, focus return), and next / previous project links in homepage order. Analytics, AI-system and product cases use section orders suited to their content.
+- `app.js` has three parts: shared behaviour, homepage interactions and project-page interactions. Language priority: a link's `?lang=` value, except after Back / Forward, where the visitor's latest choice wins; otherwise the stored choice, then the browser language.
 
 The ignored `portfolio-v2-demo/`, its generator and local staging/backups are historical files. They contain older content and assets and must not be used to regenerate or overwrite the current production files.
 
@@ -31,9 +39,9 @@ The ignored `portfolio-v2-demo/`, its generator and local staging/backups are hi
 
 Personal facts were updated against the supplied English Resume in October 2026. The homepage prioritizes six projects:
 
-1. Foreign Trade Enterprise Knowledge Assistant — independent project, Sep 2026
+1. Supply Chain Decision Intelligence — independent project, Oct 2026
 2. Marketing Experimentation & Growth Strategy — independent project, Oct 2026
-3. Supply Chain Decision Intelligence — independent project, Oct 2026
+3. Foreign Trade Enterprise Knowledge Assistant — independent project, Sep 2026
 4. LLM Price-Performance Analytics — UW IS 451 team project, Apr–Jun 2026
 5. AutoZone Workforce Optimization & Demand Forecasting — UW supply chain team project, Sep–Dec 2025
 6. Gen Z Consumer Spending Analytics — UW IS 445 team project, Mar–Jun 2025
@@ -43,7 +51,7 @@ Five independent builds remain in a secondary section, with their selected visua
 - English and Chinese pages with persisted language preference
 - Experience, education, skills and contact sections
 - Both Resume download buttons follow the page language: English downloads `Haoqi_Luo_Resume_EN.pdf`, and Chinese downloads `Haoqi_Luo_Resume_ZH.pdf`. Switching languages updates the link, filename, label and accessible description immediately.
-- The English Resume preserves the supplied PDF; the Chinese Resume translates the same facts.
+- The English Resume is the owner's October 2026 PDF, copied byte for byte; the Chinese Resume is a one-page translation of the same facts. Their SHA-256 values are pinned in `assets/projects/marketing-experimentation-growth-strategy/manifest.json` (`protected_resume_sha256`), so any future replacement must update those values deliberately.
 - GitHub and email contact links; LinkedIn is omitted until a verified profile URL is supplied
 - Responsive layouts, keyboard focus styles, reduced-motion support and mobile navigation
 - Canonical URLs, hreflang, page metadata, Open Graph fields and a local favicon
@@ -82,4 +90,4 @@ Marketing publication checks run with `node scripts/check-marketing-experiment.m
 
 The Supply Chain and RAG case pages use concise business questions, findings, actions and skills before detailed methods. Their personal-role lines reflect the owner’s confirmed contribution: business direction, requirements, iteration and result review. Codex and Claude substantially assisted implementation, analysis, tests, visuals and documentation; methods used by the artifact do not establish independent hand-coding or personal technical mastery.
 
-Both current linked CV PDFs are preserved byte for byte. A separate audit flags their RAG role wording and guaranteed consistency claim; private internship work is not inferred from the public synthetic demo. No full-data risk rule, forecast, frozen RAG benchmark, formal demo behavior or realized financial outcome changed.
+The linked Resume PDFs were replaced with the owner's October 2026 versions (English as supplied, Chinese translated from it); website case pages keep their own scoped role and evaluation wording, and private internship work is not inferred from the public synthetic demo. No full-data risk rule, forecast, frozen RAG benchmark, formal demo behavior or realized financial outcome changed.
