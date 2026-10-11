@@ -1,378 +1,529 @@
+/* Haoqi Luo portfolio: shared behaviour for every page.
+   1. Core (all pages): language, motion preference, mobile menu, header state,
+      reading progress, scroll reveal, copy email, Resume links.
+   2. Homepage: decision board tabs, project filters, "Other builds" shelf,
+      nav indicator and experience timeline.
+   3. Project pages: image viewer and the "On this page" menu.
+   No libraries. Each page keeps its English text in the HTML and both
+   languages in its own <script id="translations"> dictionary. */
+
+/* ===================== 1. Core ===================== */
 (() => {
   'use strict';
-
   const root = document.documentElement;
-  const translations = JSON.parse(document.getElementById('translations').textContent);
-  const languageKey = 'portfolio-language';
-  const motionKey = 'portfolio-reduced-motion';
-  const systemMotion = matchMedia('(prefers-reduced-motion: reduce)');
-  const pointerMedia = matchMedia('(hover: hover) and (pointer: fine) and (min-width: 901px)');
-  const lowEnd = (navigator.hardwareConcurrency || 8) <= 4;
+  const siteRoot = document.body.dataset.root || '';   // "" on the homepage, "../" inside /projects/
+  const listeners = [];
+  const dict = JSON.parse(document.getElementById('translations').textContent);
+
+  // Storage can be blocked (private mode), so every access is guarded.
   const read = key => { try { return localStorage.getItem(key); } catch { return null; } };
-  const save = (key, value) => { try { localStorage.setItem(key, value); } catch { /* Preference remains active for this page. */ } };
-  const strip = html => { const template = document.createElement('template'); template.innerHTML = html; return template.content.textContent; };
-  const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
-  const urlLanguage = new URLSearchParams(location.search).get('lang');
-  const savedLanguage = read(languageKey);
-  let language = ['en', 'zh'].includes(urlLanguage) ? urlLanguage : ['en', 'zh'].includes(savedLanguage) ? savedLanguage : navigator.language.toLowerCase().startsWith('zh') ? 'zh' : 'en';
-  let manualReduced = read(motionKey) === 'true';
-  let reduced = systemMotion.matches || manualReduced;
+  const save = (key, value) => { try { localStorage.setItem(key, value); } catch { /* keep for this page only */ } };
+  const strip = html => { const t = document.createElement('template'); t.innerHTML = html; return t.content.textContent; };
+  const valid = v => v === 'en' || v === 'zh';
+  const LANGUAGE_KEY = 'portfolio-language';
+  const MOTION_KEY = 'portfolio-reduced-motion';
 
-  const nav = document.getElementById('navigation');
-  const menu = document.querySelector('.menu-toggle');
-  const motionButton = document.querySelector('.motion-toggle');
-  const header = document.querySelector('.site-header');
-  const progress = document.querySelector('.reading-progress');
-  const menuMedia = matchMedia('(max-width: 900px)');
-  let scrollFrame = 0;
-  let menuScrollY = 0;
+  /* ---------- Motion preference ---------- */
+  const systemMotion = matchMedia('(prefers-reduced-motion: reduce)');
+  let manualReduced = read(MOTION_KEY) === 'true';
+  const reduced = () => systemMotion.matches || manualReduced;
 
-  function configureMotionDOM() {
-    document.querySelectorAll([
-      '.section-heading h2', '.research-heading', '.about-grid h2',
-      '.education-main h2', '.skills-layout > h2', '.contact-main h2',
-      '.project-caption h3', '.case-head h1', '.story-section h2',
-      '.next-project-link h2'
-    ].join(',')).forEach(element => element.classList.add('motion-title'));
-
-    document.querySelectorAll([
-      '.section-heading > p', '.about-copy', '.project-caption p',
-      '.case-head > p', '.story-section > p', '.contact-bottom'
-    ].join(',')).forEach(element => element.classList.add('motion-copy'));
-
-    document.querySelectorAll('.case-meta, .case-cover, .contact-bottom, .next-project').forEach((element, index) => {
-      element.classList.add('reveal');
-      element.style.setProperty('--reveal-delay', `${Math.min(70 + index * 50, 170)}ms`);
+  function applyMotion() {
+    root.dataset.motion = reduced() ? 'reduced' : 'full';
+    document.querySelectorAll('.motion-toggle').forEach(button => {
+      const key = systemMotion.matches ? 'motion.system' : manualReduced ? 'motion.resume' : 'motion.pause';
+      button.textContent = dict[lang][key];
+      button.setAttribute('aria-pressed', String(reduced()));
+      button.disabled = systemMotion.matches;
     });
-    document.querySelectorAll('.case-cover, .gallery-figure').forEach(element => element.classList.add('motion-image-shell'));
-
-    const staggerGroups = [
-      ['.research-list', '.research-row', 70],
-      ['.experience-list', '.experience-row', 70],
-      ['.workflow-line', ':scope > div', 60],
-      ['.outcome-grid', ':scope > div', 60]
-    ];
-    staggerGroups.forEach(([containerSelector, itemSelector, step]) => {
-      document.querySelectorAll(containerSelector).forEach(container => {
-        container.querySelectorAll(itemSelector).forEach((item, index) => {
-          item.classList.add('reveal', 'motion-stagger-item');
-          item.style.setProperty('--reveal-delay', `${Math.min(index * step, 180)}ms`);
-        });
-      });
-    });
+    if (reduced()) document.querySelectorAll('.is-pending').forEach(el => el.classList.replace('is-pending', 'is-in'));
+    emit('motion');
   }
 
-  configureMotionDOM();
-  root.classList.add('js');
+  /* ---------- Language ----------
+     A link with ?lang= opens in that language. When the visitor comes back with
+     the Back or Forward button, their latest choice wins instead, so switching
+     language on a project page and going back keeps that language. */
+  const urlLang = new URLSearchParams(location.search).get('lang');
+  const storedLang = read(LANGUAGE_KEY);
+  const navigation = performance.getEntriesByType ? performance.getEntriesByType('navigation')[0] : null;
+  const cameBack = navigation && navigation.type === 'back_forward';
+  let lang = cameBack && valid(storedLang) ? storedLang
+    : valid(urlLang) ? urlLang
+    : valid(storedLang) ? storedLang
+    : (navigator.language || '').toLowerCase().startsWith('zh') ? 'zh' : 'en';
 
-  function applyLanguage(next, { persist = false, announce = false } = {}) {
-    language = next;
-    const copy = translations[next];
-    for (const element of document.querySelectorAll('[data-i18n]')) {
-      const value = copy[element.dataset.i18n];
-      if (value === undefined) continue;
-      if (element.dataset.i18nAttr) element.setAttribute(element.dataset.i18nAttr, strip(value));
-      else if (element.tagName === 'TITLE') element.textContent = strip(value);
-      else element.innerHTML = value;
-    }
-    for (const image of document.querySelectorAll('[data-src-en]')) image.src = image.dataset[next === 'zh' ? 'srcZh' : 'srcEn'];
-    for (const link of document.querySelectorAll('[data-resume-link]')) {
+  // Internal page links carry the language, keeping any #section.
+  function withLang(href, next) {
+    const url = new URL(href, location.href);
+    url.searchParams.set('lang', next);
+    return url.href;
+  }
+
+  function applyLanguage(next, announce) {
+    lang = next;
+    save(LANGUAGE_KEY, next);
+    const copy = dict[next];
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const value = copy[el.dataset.i18n];
+      if (value === undefined) return;
+      if (el.dataset.i18nAttr) el.setAttribute(el.dataset.i18nAttr, strip(value));
+      else if (el.tagName === 'TITLE') el.textContent = strip(value);
+      else el.innerHTML = value;
+    });
+    document.querySelectorAll('img[data-src-en]').forEach(img => { img.src = img.dataset[next === 'zh' ? 'srcZh' : 'srcEn']; });
+    document.querySelectorAll('[data-bg-en][data-bg-ready]').forEach(paintBackground);
+    document.querySelectorAll('a[data-case]').forEach(a => { a.href = withLang(`${siteRoot}projects/${a.dataset.case}.html`, next); });
+    document.querySelectorAll('a[data-page]:not([data-case])').forEach(a => { a.href = withLang(a.getAttribute('href'), next); });
+    // Resume buttons download the PDF in the page language.
+    document.querySelectorAll('[data-resume-link]').forEach(link => {
       const href = link.dataset[next === 'zh' ? 'resumeZh' : 'resumeEn'];
       link.setAttribute('href', href);
       link.setAttribute('download', href.split('/').pop());
-    }
-    for (const button of document.querySelectorAll('button[data-language]')) button.setAttribute('aria-pressed', String(button.dataset.language === next));
+    });
+    document.querySelectorAll('button[data-language]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.language === next)));
     root.lang = next === 'zh' ? 'zh-CN' : 'en';
     root.dataset.language = next;
-    for (const link of document.querySelectorAll('a[data-page]')) {
-      const url = new URL(link.getAttribute('href'), location.href);
-      url.searchParams.set('lang', next);
-      link.href = url.href;
+    // Keep the address bar in step, so a copied link opens in the language on screen.
+    if (announce || new URL(location.href).searchParams.has('lang')) {
+      try { history.replaceState(history.state, '', withLang(location.href, next)); } catch { /* ignore */ }
     }
-    updateMotionLabel();
-    if (persist) {
-      save(languageKey, next);
-      const url = new URL(location.href);
-      url.searchParams.set('lang', next);
-      history.replaceState(null, '', url);
-    }
-    if (announce) document.getElementById('language-status').textContent = next === 'zh' ? '已切换为中文。' : 'Language changed to English.';
+    const status = document.getElementById('language-status');
+    if (announce && status) status.textContent = copy['lang.changed'];
+    syncMenuLabel();
+    applyMotion();
+    emit('language');
+  }
+
+  // Thumbnails drawn as backgrounds (next-project card) load only when they come near the screen.
+  function paintBackground(el) {
+    el.style.backgroundImage = `url("${el.dataset[lang === 'zh' ? 'bgZh' : 'bgEn']}")`;
+  }
+  function setupBackgrounds() {
+    const items = [...document.querySelectorAll('[data-bg-en]')];
+    const show = el => { el.dataset.bgReady = 'true'; paintBackground(el); };
+    if (!('IntersectionObserver' in window)) { items.forEach(show); return; }
+    const io = new IntersectionObserver(entries => entries.forEach(entry => {
+      if (entry.isIntersecting) { show(entry.target); io.unobserve(entry.target); }
+    }), { rootMargin: '600px 0px' });
+    items.forEach(el => io.observe(el));
   }
 
   document.querySelectorAll('button[data-language]').forEach(button => button.addEventListener('click', () => {
-    if (button.dataset.language === language) return;
-    applyLanguage(button.dataset.language, { persist: true, announce: true });
+    if (button.dataset.language === lang) return;
+    applyLanguage(button.dataset.language, true);
     setMenu(false);
   }));
 
-  function lockMenuScroll() {
-    if (!menuMedia.matches || document.body.classList.contains('menu-open')) return;
-    menuScrollY = window.scrollY;
-    document.body.style.top = `-${menuScrollY}px`;
-    document.body.classList.add('menu-open');
-  }
+  // A page restored by the Back button keeps its old state; bring its language up to date.
+  addEventListener('pageshow', event => {
+    const latest = read(LANGUAGE_KEY);
+    if (event.persisted && valid(latest) && latest !== lang) applyLanguage(latest, false);
+  });
 
-  function unlockMenuScroll() {
-    if (!document.body.classList.contains('menu-open')) return;
-    root.classList.add('menu-restoring');
-    document.body.classList.remove('menu-open');
-    document.body.style.top = '';
-    window.scrollTo(0, menuScrollY);
-    requestAnimationFrame(() => {
-      root.classList.remove('menu-restoring');
-      scheduleScrollUpdate();
-    });
+  /* ---------- Mobile menu ---------- */
+  const menu = document.querySelector('.menu-toggle');
+  const nav = document.getElementById('navigation');
+  function syncMenuLabel() {
+    if (!menu) return;
+    const open = menu.getAttribute('aria-expanded') === 'true';
+    const label = menu.querySelector('.menu-label');
+    if (label) label.textContent = dict[lang][open ? 'nav.close' : 'nav.menu'];
   }
-
-  function setMenu(open, { returnFocus = false } = {}) {
-    const wasOpen = menu.getAttribute('aria-expanded') === 'true';
+  function setMenu(open) {
+    if (!menu || !nav) return;
     menu.setAttribute('aria-expanded', String(open));
     nav.classList.toggle('is-open', open);
-    if (open && !wasOpen) {
-      lockMenuScroll();
-      nav.querySelector('a[href]')?.focus();
-    }
-    if (!open && wasOpen) unlockMenuScroll();
-    const label = menu.querySelector('[data-i18n]');
-    label.dataset.i18n = open ? 'nav.close' : 'nav.menu';
-    label.textContent = translations[language][label.dataset.i18n];
-    if (returnFocus) menu.focus();
+    document.body.classList.toggle('menu-open', open);
+    syncMenuLabel();
+    if (open) nav.querySelector('a')?.focus();
   }
-
-  menu.addEventListener('click', () => setMenu(menu.getAttribute('aria-expanded') !== 'true'));
-  document.addEventListener('keydown', event => {
-    if (menu.getAttribute('aria-expanded') !== 'true') return;
-    if (event.key === 'Escape') {
-      setMenu(false, { returnFocus: true });
-      return;
-    }
-    if (event.key !== 'Tab' || !menuMedia.matches) return;
-    const controls = [...header.querySelectorAll('a[href], button:not([disabled])')]
-      .filter(control => control.getClientRects().length > 0);
-    const first = controls[0];
-    const last = controls[controls.length - 1];
-    if (!first) return;
-    if (!controls.includes(document.activeElement)) {
-      event.preventDefault();
-      first.focus();
-    } else if (event.shiftKey && document.activeElement === first) {
-      event.preventDefault();
-      last.focus();
-    } else if (!event.shiftKey && document.activeElement === last) {
-      event.preventDefault();
-      first.focus();
-    }
+  menu?.addEventListener('click', () => setMenu(menu.getAttribute('aria-expanded') !== 'true'));
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && menu?.getAttribute('aria-expanded') === 'true') { setMenu(false); menu.focus(); }
   });
-  document.addEventListener('click', event => {
-    if (!event.target.closest('.site-header') && menu.getAttribute('aria-expanded') === 'true') setMenu(false);
-    const link = event.target.closest('a[href]');
-    if (!link || event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || link.target === '_blank') return;
-    const url = new URL(link.href);
-    if (url.origin === location.origin && url.pathname === location.pathname && url.hash) {
-      const target = document.getElementById(decodeURIComponent(url.hash.slice(1)));
-      if (target) {
-        event.preventDefault();
-        setMenu(false);
-        history.pushState(null, '', url);
-        target.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' });
-        target.setAttribute('tabindex', '-1');
-        target.focus({ preventScroll: true });
-      }
-    } else if (link.closest('nav')) setMenu(false);
+  matchMedia('(min-width: 901px)').addEventListener('change', e => { if (e.matches) setMenu(false); });
+
+  /* ---------- In-page links: smooth scroll that respects motion settings ---------- */
+  document.addEventListener('click', e => {
+    const link = e.target.closest('a[href^="#"]');
+    if (!link || e.metaKey || e.ctrlKey || e.shiftKey) return;
+    const id = link.getAttribute('href').slice(1);
+    const target = id ? document.getElementById(id) : document.body;
+    if (!target) return;
+    e.preventDefault();
+    setMenu(false);
+    target.scrollIntoView({ behavior: reduced() ? 'auto' : 'smooth', block: 'start' });
+    if (id) { target.setAttribute('tabindex', '-1'); target.focus({ preventScroll: true }); }
+    try { history.replaceState(history.state, '', id ? '#' + id : location.pathname + location.search); } catch { /* ignore */ }
   });
-  menuMedia.addEventListener('change', event => { if (!event.matches) setMenu(false); });
 
-  function updateMotionLabel() {
-    const key = systemMotion.matches ? 'motion.system' : reduced ? 'motion.resume' : 'motion.pause';
-    const span = motionButton.querySelector('[data-i18n]');
-    span.dataset.i18n = key;
-    span.textContent = translations[language][key];
-    motionButton.setAttribute('aria-pressed', String(reduced));
-    motionButton.disabled = systemMotion.matches;
-  }
+  /* ---------- Header state, progress bar, active section ---------- */
+  const header = document.querySelector('.site-header');
+  const progress = document.querySelector('.reading-progress');
+  const sections = [...document.querySelectorAll('main [data-section]')];
+  const navLinks = [...document.querySelectorAll('#navigation a[href^="#"]')];
+  let frame = 0;
 
-  function resetMotionTransforms() {
-    document.querySelectorAll('[style*="--parallax-y"]').forEach(element => element.style.setProperty('--parallax-y', '0px'));
-    document.querySelectorAll('[style*="--lens-x"]').forEach(element => {
-      element.style.setProperty('--lens-x', '0deg');
-      element.style.setProperty('--lens-y', '0deg');
-    });
-  }
-
-  function applyMotion() {
-    reduced = systemMotion.matches || manualReduced;
-    root.dataset.reducedMotion = String(reduced);
-    updateMotionLabel();
-    if (reduced) {
-      document.querySelectorAll('.reveal').forEach(element => element.classList.add('is-visible'));
-      resetMotionTransforms();
-    }
-    scheduleScrollUpdate();
-  }
-
-  motionButton.addEventListener('click', () => {
-    manualReduced = !manualReduced;
-    save(motionKey, String(manualReduced));
-    applyMotion();
-  });
-  systemMotion.addEventListener('change', applyMotion);
-  applyLanguage(language, { persist: Boolean(urlLanguage && ['en', 'zh'].includes(urlLanguage)) });
-  applyMotion();
-
-  if ('IntersectionObserver' in window && !reduced) {
-    const revealObserver = new IntersectionObserver(entries => entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      entry.target.classList.add('is-visible');
-      revealObserver.unobserve(entry.target);
-    }), { threshold: 0.08, rootMargin: '0px 0px -3% 0px' });
-    document.querySelectorAll('.reveal').forEach(item => revealObserver.observe(item));
-  } else {
-    document.querySelectorAll('.reveal').forEach(item => item.classList.add('is-visible'));
-  }
-
-  const navigationSections = [...document.querySelectorAll('main section[id]')].filter(section => ['work', 'about', 'experience', 'education', 'skills', 'contact'].includes(section.id));
-  const navLinks = [...nav.querySelectorAll('a[href*="#"]')];
-  const caseSections = [...document.querySelectorAll('.case-story .story-section[id], .gallery-section[id]')];
-  const caseLinks = [...document.querySelectorAll('.case-sidebar a[href^="#"]')];
-  const ambientBySection = {
-    top: '#f5f5f7', work: '#f4f4f7', about: '#efeff4',
-    experience: '#f6f6f8', education: '#f2f3f4', skills: '#f4f3f7', contact: '#f1f1f4'
-  };
-  const parallaxTargets = [...document.querySelectorAll('.decision-lens, .project-media, .case-cover')];
-  let lastScroll = scrollY;
-
-  function markActive(links, sectionId) {
-    links.forEach(link => {
-      const active = new URL(link.href).hash === `#${sectionId}`;
-      link.classList.toggle('is-active', active);
-      if (active) link.setAttribute('aria-current', 'location');
-      else link.removeAttribute('aria-current');
-    });
-  }
-
-  function sectionAtReadingLine(sections) {
-    const line = innerHeight * 0.42;
-    return sections.find(section => {
-      const rect = section.getBoundingClientRect();
-      return rect.top <= line && rect.bottom > line;
-    });
-  }
-
-  function updateParallax() {
-    if (reduced || lowEnd || !pointerMedia.matches) {
-      resetMotionTransforms();
-      return;
-    }
-    parallaxTargets.forEach(target => {
-      const rect = target.getBoundingClientRect();
-      if (rect.bottom < -120 || rect.top > innerHeight + 120) return;
-      const distance = innerHeight * 0.5 - (rect.top + rect.height * 0.5);
-      const limit = target.classList.contains('decision-lens') ? 24 : target.classList.contains('case-cover') ? 18 : 14;
-      target.style.setProperty('--parallax-y', `${clamp(distance * 0.055, -limit, limit).toFixed(2)}px`);
-    });
-  }
-
-  function updateScroll() {
-    const currentScroll = scrollY;
+  function onScroll() {
+    frame = 0;
+    const y = scrollY;
     const range = root.scrollHeight - innerHeight;
-    progress.style.transform = `scaleX(${range > 0 ? Math.min(1, currentScroll / range) : 0})`;
-    header.classList.toggle('is-scrolled', currentScroll > 24);
-    if (currentScroll < 72) {
-      header.classList.remove('is-going-up', 'is-going-down');
-    } else if (currentScroll > lastScroll + 8) {
-      header.classList.add('is-going-down');
-      header.classList.remove('is-going-up');
-    } else if (currentScroll < lastScroll - 8) {
-      header.classList.add('is-going-up');
-      header.classList.remove('is-going-down');
-    }
-    lastScroll = currentScroll;
-
-    const activeHomeSection = sectionAtReadingLine(navigationSections);
-    markActive(navLinks, activeHomeSection?.id || '');
-    if (activeHomeSection) root.style.setProperty('--page-ambient', ambientBySection[activeHomeSection.id] || ambientBySection.top);
-    else if (navigationSections.length) root.style.setProperty('--page-ambient', ambientBySection.top);
-
-    const activeCaseSection = sectionAtReadingLine(caseSections);
-    markActive(caseLinks, activeCaseSection?.id || '');
-    updateParallax();
-    scrollFrame = 0;
-  }
-
-  function scheduleScrollUpdate() {
-    if (!scrollFrame) scrollFrame = requestAnimationFrame(updateScroll);
-  }
-  addEventListener('scroll', scheduleScrollUpdate, { passive: true });
-  addEventListener('resize', scheduleScrollUpdate, { passive: true });
-  pointerMedia.addEventListener('change', scheduleScrollUpdate);
-  updateScroll();
-
-  // The abstract Hero lens responds lightly; project cards retain the system cursor.
-  document.querySelectorAll('.decision-lens').forEach(surface => {
-    let frame = 0;
-    surface.addEventListener('pointermove', event => {
-      if (reduced || !pointerMedia.matches || frame) return;
-      frame = requestAnimationFrame(() => {
-        const rect = surface.getBoundingClientRect();
-        const x = event.clientX - rect.left;
-        const y = event.clientY - rect.top;
-        surface.style.setProperty('--lens-x', `${(x / rect.width - 0.5) * 8}deg`);
-        surface.style.setProperty('--lens-y', `${(y / rect.height - 0.5) * -6}deg`);
-        frame = 0;
+    if (progress) progress.style.transform = `scaleX(${range > 0 ? Math.min(1, y / range) : 0})`;
+    if (header) header.classList.toggle('is-scrolled', y > 24);
+    if (navLinks.length) {
+      const line = innerHeight * 0.4;
+      const current = sections.find(s => { const r = s.getBoundingClientRect(); return r.top <= line && r.bottom > line; });
+      navLinks.forEach(a => {
+        const on = current && a.getAttribute('href') === '#' + current.id;
+        a.classList.toggle('is-active', Boolean(on));
+        if (on) a.setAttribute('aria-current', 'location'); else a.removeAttribute('aria-current');
       });
-    }, { passive: true });
-    surface.addEventListener('pointerleave', () => {
-      if (frame) { cancelAnimationFrame(frame); frame = 0; }
-      surface.style.setProperty('--lens-x', '0deg');
-      surface.style.setProperty('--lens-y', '0deg');
+    }
+    emit('scroll');
+  }
+  addEventListener('scroll', () => { if (!frame) frame = requestAnimationFrame(onScroll); }, { passive: true });
+  addEventListener('resize', () => { if (!frame) frame = requestAnimationFrame(onScroll); }, { passive: true });
+
+  /* ---------- Scroll reveal ----------
+     Content is visible by default. Only elements that start below the first
+     screen are briefly held back, and only when motion is allowed. */
+  function setupReveal() {
+    const items = [...document.querySelectorAll('[data-reveal]')];
+    items.forEach(el => { if (el.dataset.delay) el.style.setProperty('--reveal-delay', el.dataset.delay + 'ms'); });
+    if (reduced() || !('IntersectionObserver' in window)) return;
+    const io = new IntersectionObserver(entries => entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      el.classList.replace('is-pending', 'is-in');
+      // After the entrance, drop the stagger delay so hover effects respond immediately.
+      setTimeout(() => el.classList.add('is-settled'), (parseInt(el.dataset.delay, 10) || 0) + 950);
+      io.unobserve(el);
+    }), { threshold: 0.08, rootMargin: '0px 0px -4% 0px' });
+    items.forEach(el => {
+      if (el.getBoundingClientRect().top > innerHeight * 0.92) { el.classList.add('is-pending'); io.observe(el); }
+    });
+    // Safety nets: never leave content hidden.
+    const showAll = () => document.querySelectorAll('.is-pending').forEach(el => el.classList.replace('is-pending', 'is-in'));
+    addEventListener('beforeprint', showAll);
+    addEventListener('hashchange', showAll);
+  }
+
+  /* ---------- Copy email ---------- */
+  document.querySelectorAll('[data-copy]').forEach(button => button.addEventListener('click', async () => {
+    const text = button.dataset.copy;
+    const label = button.querySelector('.copy-label') || button;
+    try {
+      await navigator.clipboard.writeText(text);
+      label.textContent = dict[lang]['d.copied'];
+    } catch {
+      const target = document.querySelector(button.dataset.copyTarget || '.email-text');
+      if (target) { const r = document.createRange(); r.selectNodeContents(target); const s = getSelection(); s.removeAllRanges(); s.addRange(r); }
+      label.textContent = dict[lang]['d.copyFallback'];
+    }
+    setTimeout(() => { label.textContent = dict[lang]['d.copyEmail']; }, 2200);
+  }));
+
+  /* ---------- Motion toggle ---------- */
+  document.querySelectorAll('.motion-toggle').forEach(button => button.addEventListener('click', () => {
+    manualReduced = !manualReduced;
+    save(MOTION_KEY, String(manualReduced));
+    applyMotion();
+  }));
+  systemMotion.addEventListener('change', applyMotion);
+
+  /* ---------- Small event bus for the page sections below ---------- */
+  function emit(type) { listeners.forEach(([t, cb]) => { if (t === type) cb(); }); }
+  window.PortfolioCore = {
+    get lang() { return lang; },
+    t: key => dict[lang][key] ?? key,
+    reduced,
+    on(type, cb) { listeners.push([type, cb]); }
+  };
+
+  applyLanguage(lang, false);
+  setupBackgrounds();
+  setupReveal();
+  onScroll();
+  requestAnimationFrame(() => root.classList.add('is-ready'));
+})();
+
+/* ===================== 2. Homepage ===================== */
+(() => {
+  'use strict';
+  if (!document.querySelector('.board')) return;   // only the homepage has the decision board
+  const core = window.PortfolioCore;
+
+  /* ---------- Decision board (ARIA tabs) ---------- */
+  const tabs = [...document.querySelectorAll('.board-tabs [role="tab"]')];
+  const tabList = document.querySelector('.board-tabs');
+  function play(panel) {
+    panel.classList.remove('is-playing');
+    void panel.offsetWidth; // restart the CSS animations
+    panel.classList.add('is-playing');
+  }
+  function selectTab(index, focus) {
+    tabs.forEach((tab, i) => {
+      const on = i === index;
+      tab.setAttribute('aria-selected', String(on));
+      tab.tabIndex = on ? 0 : -1;
+      const panel = document.getElementById(tab.getAttribute('aria-controls'));
+      panel.hidden = !on;
+      if (on) play(panel);
+    });
+    tabList.style.setProperty('--tab', index);
+    if (focus) tabs[index].focus();
+  }
+  tabs.forEach((tab, i) => {
+    tab.addEventListener('click', () => selectTab(i));
+    tab.addEventListener('keydown', e => {
+      const map = { ArrowRight: i + 1, ArrowLeft: i - 1, Home: 0, End: tabs.length - 1 };
+      if (!(e.key in map)) return;
+      e.preventDefault();
+      selectTab((map[e.key] + tabs.length) % tabs.length, true);
     });
   });
+  selectTab(0);
 
-  const dialog = document.querySelector('.image-dialog');
-  if (dialog) {
-    let opener;
-    let closeTimer = 0;
-    const finishClose = () => {
-      clearTimeout(closeTimer);
-      dialog.classList.remove('is-closing');
-      if (dialog.open) dialog.close();
-    };
-    const requestDialogClose = () => {
-      if (!dialog.open || dialog.classList.contains('is-closing')) return;
-      if (reduced) { finishClose(); return; }
-      dialog.classList.add('is-closing');
-      closeTimer = window.setTimeout(finishClose, 260);
-    };
-    document.querySelectorAll('[data-expand-image]').forEach(button => button.addEventListener('click', () => {
-      opener = button;
-      clearTimeout(closeTimer);
-      dialog.classList.remove('is-closing');
-      const sourceImage = button.querySelector('img');
-      const image = sourceImage.cloneNode();
-      // A cloned <img> no longer has its <picture> sources. Keep the image
-      // selected for the current viewport instead of its desktop fallback.
-      image.src = sourceImage.currentSrc || sourceImage.src;
-      image.removeAttribute('srcset');
-      image.removeAttribute('sizes');
-      image.loading = 'eager';
-      dialog.querySelector('.dialog-image-slot').replaceChildren(image);
-      dialog.showModal();
-      document.body.classList.add('dialog-open');
-    }));
-    dialog.querySelector('.dialog-close').addEventListener('click', requestDialogClose);
-    dialog.addEventListener('cancel', event => { event.preventDefault(); requestDialogClose(); });
-    document.addEventListener('keydown', event => {
-      if (event.key === 'Escape' && dialog.open) {
-        event.preventDefault();
-        requestDialogClose();
+  /* ---------- Filters ---------- */
+  const filterButtons = [...document.querySelectorAll('[data-filter]')];
+  const cards = [...document.querySelectorAll('#work [data-tags]')];
+  const groups = [...document.querySelectorAll('[data-group]')];
+  const status = document.getElementById('filter-status');
+  const matches = (card, f) => f === 'all' || card.dataset.tags.split(' ').includes(f);
+  document.querySelectorAll('[data-count]').forEach(el => {
+    el.textContent = cards.filter(c => matches(c, el.dataset.count)).length;
+  });
+  let current = 'all';
+  function announce() {
+    const n = cards.filter(c => !c.hidden).length;
+    status.textContent = `${core.t('d.showing')} ${n} ${core.t('d.projectsWord')}`;
+  }
+  function applyFilter(f) {
+    current = f;
+    filterButtons.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.filter === f)));
+    cards.forEach(card => {
+      const show = matches(card, f);
+      const wasHidden = card.hidden;
+      card.hidden = !show;
+      card.classList.remove('just-shown');
+      if (show) {
+        card.classList.remove('is-pending');
+        card.classList.add('is-in');
+        if (wasHidden || f !== 'all') { void card.offsetWidth; card.classList.add('just-shown'); }
       }
-    }, true);
-    dialog.addEventListener('click', event => { if (event.target === dialog) requestDialogClose(); });
+    });
+    groups.forEach(g => { g.hidden = !g.querySelector('[data-tags]:not([hidden])'); });
+    resetShelf();
+    announce();
+  }
+  filterButtons.forEach(b => b.addEventListener('click', () => applyFilter(b.dataset.filter)));
+  core.on('language', () => { if (current !== 'all') announce(); });
+
+  /* ---------- Other builds shelf ----------
+     Moves only when the reader acts: trackpad swipe or Shift+wheel (native),
+     mouse drag, arrow buttons, or arrow keys when the row is focused.
+     The ordinary mouse wheel always scrolls the page up and down. */
+  const shelf = document.querySelector('.shelf');
+  const prevBtn = document.querySelector('[data-shelf-prev]');
+  const nextBtn = document.querySelector('[data-shelf-next]');
+  const bar = document.querySelector('.shelf-progress');
+  const thumb = bar.querySelector('span');
+
+  function updateShelf() {
+    const max = shelf.scrollWidth - shelf.clientWidth;
+    const x = shelf.scrollLeft;
+    prevBtn.disabled = x <= 2;
+    nextBtn.disabled = x >= max - 2;
+    shelf.classList.toggle('can-left', x > 2);
+    shelf.classList.toggle('can-right', x < max - 2);
+    bar.hidden = max <= 2;
+    const ratio = shelf.clientWidth / shelf.scrollWidth;
+    thumb.style.width = (ratio * 100) + '%';
+    thumb.style.transform = `translateX(${max > 0 ? (x / max) * (1 / ratio - 1) * 100 : 0}%)`;
+  }
+  function stepSize() {
+    const card = shelf.querySelector('.card:not([hidden])');
+    return card ? card.getBoundingClientRect().width + 20 : shelf.clientWidth * 0.8;
+  }
+  function resetShelf() {
+    shelf.scrollTo({ left: 0, behavior: 'auto' });
+    requestAnimationFrame(updateShelf);
+  }
+  prevBtn.addEventListener('click', () => shelf.scrollBy({ left: -stepSize(), behavior: core.reduced() ? 'auto' : 'smooth' }));
+  nextBtn.addEventListener('click', () => shelf.scrollBy({ left: stepSize(), behavior: core.reduced() ? 'auto' : 'smooth' }));
+  shelf.addEventListener('scroll', () => requestAnimationFrame(updateShelf), { passive: true });
+  addEventListener('resize', updateShelf, { passive: true });
+  core.on('language', () => requestAnimationFrame(updateShelf));
+
+  // Keyboard: with the row or one of its cards focused, Left / Right move one card.
+  shelf.addEventListener('keydown', e => {
+    if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+    e.preventDefault();
+    const dir = e.key === 'ArrowRight' ? 1 : -1;
+    const shelfCards = [...shelf.querySelectorAll('.card:not([hidden])')];
+    const i = shelfCards.indexOf(document.activeElement);
+    if (i !== -1 && shelfCards[i + dir]) shelfCards[i + dir].focus({ preventScroll: true });
+    shelf.scrollBy({ left: dir * stepSize(), behavior: core.reduced() ? 'auto' : 'smooth' });
+  });
+
+  // Mouse drag to scroll (touch already swipes natively)
+  let drag = null;
+  let justDragged = false;
+  shelf.addEventListener('pointerdown', e => {
+    if (e.pointerType !== 'mouse' || e.button !== 0) return;
+    justDragged = false;
+    drag = { x: e.clientX, left: shelf.scrollLeft, moved: false };
+  });
+  addEventListener('pointermove', e => {
+    if (!drag) return;
+    const dx = e.clientX - drag.x;
+    if (!drag.moved && Math.abs(dx) > 6) { drag.moved = true; shelf.classList.add('is-dragging'); }
+    if (drag.moved) shelf.scrollLeft = drag.left - dx;
+  });
+  addEventListener('pointerup', () => {
+    if (!drag) return;
+    if (drag.moved) {
+      justDragged = true;
+      shelf.classList.remove('is-dragging');
+      setTimeout(() => { justDragged = false; }, 0); // the click that ends a drag fires before this runs
+    }
+    drag = null;
+  });
+  // A drag should not count as a click on a project (keyboard clicks have detail 0 and always pass)
+  shelf.addEventListener('click', e => {
+    if (justDragged && e.detail !== 0) { e.preventDefault(); e.stopPropagation(); justDragged = false; }
+  }, true);
+  shelf.addEventListener('dragstart', e => e.preventDefault());
+  updateShelf();
+
+  /* ---------- Sliding nav indicator ---------- */
+  const nav = document.getElementById('navigation');
+  const indicator = nav.querySelector('.nav-indicator');
+  function moveIndicator() {
+    if (!indicator) return;
+    const active = nav.querySelector('a.is-active');
+    if (!active || getComputedStyle(indicator).display === 'none') { indicator.style.opacity = '0'; return; }
+    indicator.style.opacity = '1';
+    indicator.style.width = active.offsetWidth + 'px';
+    indicator.style.transform = `translateX(${active.offsetLeft}px)`;
+  }
+  core.on('scroll', moveIndicator);
+  core.on('language', () => requestAnimationFrame(moveIndicator));
+
+  /* ---------- Timeline progress follows the reader ---------- */
+  const timeline = document.querySelector('.timeline');
+  function updateTimeline() {
+    if (!timeline) return;
+    if (core.reduced()) { timeline.style.setProperty('--progress', 1); return; }
+    const r = timeline.getBoundingClientRect();
+    const p = (innerHeight * 0.6 - r.top) / r.height;
+    timeline.style.setProperty('--progress', Math.max(0, Math.min(1, p)).toFixed(3));
+  }
+  core.on('scroll', updateTimeline);
+  core.on('motion', updateTimeline);
+  updateTimeline();
+  moveIndicator();
+})();
+
+/* ===================== 3. Project pages ===================== */
+(() => {
+  'use strict';
+  const core = window.PortfolioCore;
+
+  /* ---------- Image viewer ----------
+     Every zoomable image on the page opens here. Left / Right move between images,
+     Escape closes, and focus returns to the image that opened the viewer.
+     The viewer shows the image currently displayed (desktop, mobile or Chinese version). */
+  const dialog = document.querySelector('.pj-lightbox');
+  const triggers = [...document.querySelectorAll('[data-zoom]')];
+  if (dialog && triggers.length) {
+    const stage = dialog.querySelector('.pj-lb-stage');
+    const caption = dialog.querySelector('.pj-lb-caption');
+    const prev = dialog.querySelector('[data-lb-prev]');
+    const next = dialog.querySelector('[data-lb-next]');
+    const zoom = dialog.querySelector('[data-lb-zoom]');
+    const close = dialog.querySelector('[data-lb-close]');
+    let index = 0;
+    let opener = null;
+    let zoomed = false;
+
+    const captionFor = button => {
+      const fig = button.closest('figure');
+      const title = fig?.querySelector('figcaption h3, figcaption .pj-cap-title, figcaption');
+      return (title?.textContent || button.querySelector('img')?.alt || '').trim().replace(/\s+/g, ' ');
+    };
+
+    function setZoom(on) {
+      zoomed = on;
+      const img = stage.querySelector('img');
+      stage.classList.toggle('is-zoomed', on);
+      if (img) img.style.width = on ? `${Math.round(Math.max(img.naturalWidth || 0, stage.clientWidth * 1.6))}px` : '';
+      zoom.querySelector('.pj-lb-text').textContent = core.t(on ? 'd.pj.zoomFit' : 'd.pj.zoomIn');
+      zoom.setAttribute('aria-pressed', String(on));
+    }
+
+    function show(i) {
+      index = (i + triggers.length) % triggers.length;
+      const source = triggers[index].querySelector('img');
+      const img = new Image();
+      img.src = source.currentSrc || source.src;
+      img.alt = source.alt;
+      img.addEventListener('click', () => setZoom(!zoomed));
+      stage.replaceChildren(img);
+      stage.scrollTo(0, 0);
+      setZoom(false);
+      caption.textContent = '';
+      if (triggers.length > 1) {
+        const count = document.createElement('b');
+        count.textContent = `${index + 1} ${core.t('d.pj.imageCount')} ${triggers.length}`;
+        caption.append(count);
+      }
+      caption.append(captionFor(triggers[index]));
+      prev.disabled = next.disabled = triggers.length < 2;
+    }
+
+    function open(button) {
+      opener = button;
+      show(triggers.indexOf(button));
+      dialog.showModal();
+      document.body.classList.add('lb-open');
+      close.focus();
+    }
+
+    triggers.forEach(button => button.addEventListener('click', () => open(button)));
+    prev.addEventListener('click', () => show(index - 1));
+    next.addEventListener('click', () => show(index + 1));
+    zoom.addEventListener('click', () => setZoom(!zoomed));
+    close.addEventListener('click', () => dialog.close());
+    dialog.addEventListener('click', e => { if (e.target === dialog) dialog.close(); });
+    dialog.addEventListener('keydown', e => {
+      if (e.key === 'ArrowRight' && !zoomed) { e.preventDefault(); show(index + 1); }
+      if (e.key === 'ArrowLeft' && !zoomed) { e.preventDefault(); show(index - 1); }
+    });
     dialog.addEventListener('close', () => {
-      clearTimeout(closeTimer);
-      dialog.classList.remove('is-closing');
-      document.body.classList.remove('dialog-open');
+      document.body.classList.remove('lb-open');
+      stage.replaceChildren();
       opener?.focus();
     });
+    core.on('language', () => { if (dialog.open) show(index); });
+  }
+
+  /* ---------- "On this page" menu follows the reading position ---------- */
+  const tocLinks = [...document.querySelectorAll('.pj-toc a[href^="#"]')];
+  const targets = tocLinks.map(a => document.getElementById(a.getAttribute('href').slice(1))).filter(Boolean);
+  function markCurrent() {
+    const line = innerHeight * 0.35;
+    let current = targets[0];
+    targets.forEach(t => { if (t.getBoundingClientRect().top <= line) current = t; });
+    tocLinks.forEach(a => {
+      const on = current && a.getAttribute('href') === '#' + current.id;
+      a.classList.toggle('is-current', on);
+      if (on) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
+    });
+  }
+  if (tocLinks.length) {
+    core.on('scroll', markCurrent);
+    markCurrent();
   }
 })();
