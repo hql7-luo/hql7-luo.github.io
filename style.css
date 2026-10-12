@@ -251,6 +251,10 @@ main:focus, [tabindex="-1"]:focus { outline: 0; }
 .shelf.can-left { -webkit-mask-image: linear-gradient(to right, transparent, #000 56px); mask-image: linear-gradient(to right, transparent, #000 56px); }
 .shelf.can-left.can-right { -webkit-mask-image: linear-gradient(to right, transparent, #000 56px, #000 calc(100% - 72px), transparent); mask-image: linear-gradient(to right, transparent, #000 56px, #000 calc(100% - 72px), transparent); }
 .shelf.is-dragging { cursor: grabbing; scroll-snap-type: none; }
+/* Elastic edges: past either end the cards are pulled by --shelf-pull (set by app.js).
+   While the spring runs, scroll-snap waits so it never fights the motion. */
+.cards.shelf > .card { translate: var(--shelf-pull, 0px) 0; }
+.shelf.is-animating { scroll-snap-type: none; }
 .shelf.is-dragging .card-shelf { pointer-events: none; }
 .card-shelf { flex: 0 0 calc((100% - 60px) / 3.6); scroll-snap-align: start; gap: 6px; background: none; border: 0; border-radius: 0; user-select: none; -webkit-user-drag: none; }
 .card-shelf:hover { transform: none; box-shadow: none; }
