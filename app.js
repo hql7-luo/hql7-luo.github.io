@@ -321,17 +321,126 @@
   core.on('language', () => { if (current !== 'all') announce(); });
 
   /* ---------- Other builds shelf ----------
-     Moves only when the reader acts: trackpad swipe or Shift+wheel (native),
-     mouse drag, arrow buttons, or arrow keys when the row is focused.
-     The ordinary mouse wheel always scrolls the page up and down. */
+     Moves only when the reader acts: mouse drag, arrow buttons, arrow keys,
+     or a trackpad's sideways swipe. The ordinary mouse wheel always scrolls
+     the page up and down (vertical wheel events are never touched).
+
+     How the drag works:
+     - `pos` is where the row "wants" to be. Inside the row it is simply
+       scrollLeft. Past either end it keeps going, and the extra distance is
+       shown as a small, resisting pull of the cards (like an iPhone list).
+     - When the mouse is released, a spring carries the row on with the
+       release speed and settles on the nearest card; if it was pulled past
+       an end, the same spring brings it back. No empty gap is left behind.
+     - Touch screens keep their own native swipe and bounce. */
   const shelf = document.querySelector('.shelf');
   const prevBtn = document.querySelector('[data-shelf-prev]');
   const nextBtn = document.querySelector('[data-shelf-next]');
   const bar = document.querySelector('.shelf-progress');
   const thumb = bar.querySelector('span');
 
+  const PULL_MAX = 120;         // the furthest the cards can be pulled past an end (px)
+  const PULL_RESIST = 0.55;     // lower = stiffer pull (0.55 is the iOS feel)
+  const STIFFNESS = 210;        // spring strength; with critical damping it settles in about 0.4 s
+  const DAMPING = 2 * Math.sqrt(STIFFNESS);
+  const isSafari = /^((?!chrome|chromium|android|crios|fxios|edg).)*safari/i.test(navigator.userAgent);
+
+  let pos = 0;                  // wanted position (may be past either end)
+  let anim = 0;                 // requestAnimationFrame id of the running spring
+  let drag = null;              // state of a mouse drag
+  let justDragged = false;      // swallow the click that ends a drag
+  let wheelPull = 0;            // sideways trackpad push past an end
+  let wheelTimer = 0;
+
+  const maxScroll = () => Math.max(0, shelf.scrollWidth - shelf.clientWidth);
+  const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
+
+  // Resisting pull: grows quickly at first, then less and less, never past PULL_MAX.
+  function rubber(over) {
+    const sign = Math.sign(over);
+    const x = Math.abs(over);
+    return sign * (1 - 1 / ((x * PULL_RESIST) / PULL_MAX + 1)) * PULL_MAX;
+  }
+
+  // Show `pos`: scroll inside the row, and pull the cards for anything past an end.
+  function render() {
+    const max = maxScroll();
+    const inside = clamp(pos, 0, max);
+    if (Math.abs(shelf.scrollLeft - inside) > 0.5) shelf.scrollLeft = inside;
+    const pull = core.reduced() ? 0 : rubber(pos - inside) + rubber(wheelPull);
+    shelf.style.setProperty('--shelf-pull', `${(-pull).toFixed(2)}px`);
+  }
+
+  // Card start positions (snap points), from the layout without any pull.
+  function snapPoints() {
+    const cards = [...shelf.querySelectorAll('.card:not([hidden])')];
+    if (!cards.length) return [0];
+    const first = cards[0].offsetLeft;
+    const max = maxScroll();
+    const points = cards.map(card => Math.min(card.offsetLeft - first, max));
+    points.push(max);
+    return [...new Set(points.map(p => Math.round(p)))].sort((a, b) => a - b);
+  }
+  const nearest = (points, value) => points.reduce((best, p) => (Math.abs(p - value) < Math.abs(best - value) ? p : best), points[0]);
+
+  function stopAnimation() {
+    cancelAnimationFrame(anim);
+    anim = 0;
+    shelf.classList.remove('is-animating');
+  }
+
+  // Critically damped spring from the current position (and speed) to `target`.
+  function springTo(target, velocity = 0) {
+    stopAnimation();
+    if (core.reduced()) { pos = target; render(); return; }
+    shelf.classList.add('is-animating');   // scroll-snap is paused while the spring runs
+    let v = velocity;                        // px per second
+    let last = performance.now();
+    const step = now => {
+      let dt = Math.min(0.05, (now - last) / 1000);
+      last = now;
+      // small fixed sub-steps keep the spring stable on slow frames
+      while (dt > 0) {
+        const h = Math.min(dt, 1 / 240);
+        const force = -STIFFNESS * (pos - target) - DAMPING * v;
+        v += force * h;
+        pos += v * h;
+        dt -= h;
+      }
+      if (Math.abs(pos - target) < 0.4 && Math.abs(v) < 8) {
+        pos = target;
+        render();
+        stopAnimation();
+        return;
+      }
+      render();
+      anim = requestAnimationFrame(step);
+    };
+    anim = requestAnimationFrame(step);
+  }
+
+  // Release: carry on with the release speed, then rest on the nearest card.
+  // `from` is where the drag started; a deliberate drag of a quarter card or more
+  // always moves on to the next card in that direction instead of snapping back.
+  function settle(velocity = 0, from) {
+    const max = maxScroll();
+    const points = snapPoints();
+    const projected = clamp(pos + velocity * 0.32, 0, max);   // where the glide would end (iOS-like 0.32 s)
+    let target = nearest(points, projected);
+    if (from !== undefined && points.length > 1) {
+      const start = nearest(points, clamp(from, 0, max));
+      const moved = projected - start;
+      const oneCard = points[1] - points[0];
+      if (target === start && Math.abs(moved) > oneCard * 0.25) {
+        const i = points.indexOf(start) + Math.sign(moved);
+        if (i >= 0 && i < points.length) target = points[i];
+      }
+    }
+    springTo(target, velocity);
+  }
+
   function updateShelf() {
-    const max = shelf.scrollWidth - shelf.clientWidth;
+    const max = maxScroll();
     const x = shelf.scrollLeft;
     prevBtn.disabled = x <= 2;
     nextBtn.disabled = x >= max - 2;
@@ -342,18 +451,36 @@
     thumb.style.width = (ratio * 100) + '%';
     thumb.style.transform = `translateX(${max > 0 ? (x / max) * (1 / ratio - 1) * 100 : 0}%)`;
   }
-  function stepSize() {
-    const card = shelf.querySelector('.card:not([hidden])');
-    return card ? card.getBoundingClientRect().width + 20 : shelf.clientWidth * 0.8;
-  }
+
   function resetShelf() {
-    shelf.scrollTo({ left: 0, behavior: 'auto' });
+    stopAnimation();
+    pos = 0;
+    wheelPull = 0;
+    render();
     requestAnimationFrame(updateShelf);
   }
-  prevBtn.addEventListener('click', () => shelf.scrollBy({ left: -stepSize(), behavior: core.reduced() ? 'auto' : 'smooth' }));
-  nextBtn.addEventListener('click', () => shelf.scrollBy({ left: stepSize(), behavior: core.reduced() ? 'auto' : 'smooth' }));
-  shelf.addEventListener('scroll', () => requestAnimationFrame(updateShelf), { passive: true });
-  addEventListener('resize', updateShelf, { passive: true });
+
+  // Move by whole cards (arrow buttons and keys). At an end, give a small bounce.
+  function moveByCards(dir) {
+    const points = snapPoints();
+    const current = nearest(points, shelf.scrollLeft);
+    const index = points.indexOf(current) + dir;
+    if (index < 0 || index >= points.length) {
+      if (!core.reduced()) { pos = shelf.scrollLeft; springTo(pos, dir * 900); }   // edge bounce
+      return;
+    }
+    pos = shelf.scrollLeft;
+    springTo(points[index]);
+  }
+  prevBtn.addEventListener('click', () => moveByCards(-1));
+  nextBtn.addEventListener('click', () => moveByCards(1));
+
+  // Native scrolling (trackpad, touch, focus) keeps `pos` in step when no spring or drag is running.
+  shelf.addEventListener('scroll', () => {
+    if (!anim && !drag) pos = shelf.scrollLeft;
+    requestAnimationFrame(updateShelf);
+  }, { passive: true });
+  addEventListener('resize', () => { if (!anim && !drag) { pos = clamp(pos, 0, maxScroll()); render(); } updateShelf(); }, { passive: true });
   core.on('language', () => requestAnimationFrame(updateShelf));
 
   // Keyboard: with the row or one of its cards focused, Left / Right move one card.
@@ -364,37 +491,113 @@
     const shelfCards = [...shelf.querySelectorAll('.card:not([hidden])')];
     const i = shelfCards.indexOf(document.activeElement);
     if (i !== -1 && shelfCards[i + dir]) shelfCards[i + dir].focus({ preventScroll: true });
-    shelf.scrollBy({ left: dir * stepSize(), behavior: core.reduced() ? 'auto' : 'smooth' });
+    moveByCards(dir);
   });
 
-  // Mouse drag to scroll (touch already swipes natively)
-  let drag = null;
-  let justDragged = false;
+  /* Mouse drag. Touch and pen keep the browser's own swipe and bounce. */
   shelf.addEventListener('pointerdown', e => {
     if (e.pointerType !== 'mouse' || e.button !== 0) return;
+    stopAnimation();
+    pos = shelf.scrollLeft + (pos - clamp(pos, 0, maxScroll()));   // keep any pull still showing
     justDragged = false;
-    drag = { x: e.clientX, left: shelf.scrollLeft, moved: false };
+    drag = { id: e.pointerId, startX: e.clientX, startPos: pos, moved: false, samples: [[e.timeStamp, e.clientX]], frame: 0 };
   });
-  addEventListener('pointermove', e => {
-    if (!drag) return;
-    const dx = e.clientX - drag.x;
-    if (!drag.moved && Math.abs(dx) > 6) { drag.moved = true; shelf.classList.add('is-dragging'); }
-    if (drag.moved) shelf.scrollLeft = drag.left - dx;
-  });
-  addEventListener('pointerup', () => {
-    if (!drag) return;
-    if (drag.moved) {
-      justDragged = true;
-      shelf.classList.remove('is-dragging');
-      setTimeout(() => { justDragged = false; }, 0); // the click that ends a drag fires before this runs
+
+  shelf.addEventListener('pointermove', e => {
+    if (!drag || e.pointerId !== drag.id) return;
+    const dx = e.clientX - drag.startX;
+    if (!drag.moved) {
+      if (Math.abs(dx) < 6) return;                     // a small wobble is still a click
+      drag.moved = true;
+      shelf.classList.add('is-dragging');
+      try { shelf.setPointerCapture(e.pointerId); } catch { /* pointer already gone */ }
     }
-    drag = null;
+    pos = drag.startPos - dx;
+    drag.samples.push([e.timeStamp, e.clientX]);
+    if (drag.samples.length > 8) drag.samples.shift();
+    if (!drag.frame) drag.frame = requestAnimationFrame(() => { if (drag) { drag.frame = 0; render(); } });
   });
-  // A drag should not count as a click on a project (keyboard clicks have detail 0 and always pass)
+
+  // Speed of the last ~90 ms of movement, in px per second (content moves opposite to the mouse).
+  function releaseSpeed(samples, now) {
+    const recent = samples.filter(([t]) => now - t < 90);
+    if (recent.length < 2) return 0;
+    const [t0, x0] = recent[0];
+    const [t1, x1] = recent[recent.length - 1];
+    if (t1 - t0 < 8) return 0;
+    return -((x1 - x0) / (t1 - t0)) * 1000;
+  }
+
+  // End a drag. `keepSpeed` is false when the drag was interrupted (cancel, window blur).
+  function endDrag(e, keepSpeed) {
+    if (!drag) return;
+    const { moved, startPos } = drag;
+    const speed = keepSpeed && moved ? releaseSpeed(drag.samples, e ? e.timeStamp : performance.now()) : 0;
+    cancelAnimationFrame(drag.frame);
+    try { if (shelf.hasPointerCapture(drag.id)) shelf.releasePointerCapture(drag.id); } catch { /* ignore */ }
+    drag = null;
+    shelf.classList.remove('is-dragging');
+    if (!moved) return;
+    justDragged = true;
+    // A normal release: the click that ends the drag fires before this timer runs.
+    // An interrupted drag (cancel, window blur): the mouse button may still be down,
+    // so the click that eventually follows is swallowed too (reset on the next press).
+    if (keepSpeed) setTimeout(() => { justDragged = false; }, 0);
+    else setTimeout(() => { justDragged = false; }, 1500);
+    settle(clamp(speed, -6000, 6000), startPos);
+  }
+  shelf.addEventListener('pointerup', e => { if (drag && e.pointerId === drag.id) endDrag(e, true); });
+  shelf.addEventListener('pointercancel', e => { if (drag && e.pointerId === drag.id) endDrag(e, false); });
+  shelf.addEventListener('lostpointercapture', e => { if (drag && drag.moved && e.pointerId === drag.id) endDrag(e, false); });
+  addEventListener('blur', () => endDrag(null, false));
+  document.addEventListener('visibilitychange', () => { if (document.hidden) endDrag(null, false); });
+
+  // A drag should not count as a click on a project (keyboard clicks have detail 0 and always pass).
   shelf.addEventListener('click', e => {
     if (justDragged && e.detail !== 0) { e.preventDefault(); e.stopPropagation(); justDragged = false; }
   }, true);
   shelf.addEventListener('dragstart', e => e.preventDefault());
+  shelf.addEventListener('touchstart', () => { if (anim) { stopAnimation(); pos = shelf.scrollLeft; } }, { passive: true });
+
+  /* Trackpad: sideways swipes scroll natively. Pushing past an end gives the same
+     small pull, which springs back when the swipe stops. Only sideways (deltaX)
+     motion is read, the event is never cancelled, and vertical wheel scrolling is untouched.
+     Safari already bounces natively, so it is left alone there. */
+  shelf.addEventListener('wheel', e => {
+    if (drag || Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;          // vertical wheel: leave it to the page
+    const max = maxScroll();
+    const elastic = !isSafari && !core.reduced();
+    if (anim) {                                                            // the reader took over from the spring
+      stopAnimation();
+      const inside = clamp(pos, 0, max);
+      if (elastic) wheelPull += pos - inside;                              // keep any pull that is showing
+      pos = inside;
+      render();
+    }
+    if (!elastic) return;
+    const scheduleRelease = () => { clearTimeout(wheelTimer); wheelTimer = setTimeout(releaseWheelPull, 120); };
+    if (wheelPull && Math.sign(e.deltaX) !== Math.sign(wheelPull)) {       // swiping back: undo the pull first
+      const next = wheelPull + e.deltaX;
+      wheelPull = Math.sign(next) === Math.sign(wheelPull) ? next : 0;
+      render();
+      scheduleRelease();
+      return;
+    }
+    const atStart = shelf.scrollLeft <= 0.5 && e.deltaX < 0;
+    const atEnd = shelf.scrollLeft >= max - 0.5 && e.deltaX > 0;
+    if (!atStart && !atEnd) return;
+    wheelPull = clamp(wheelPull + e.deltaX, -PULL_MAX * 4, PULL_MAX * 4);
+    render();
+    scheduleRelease();
+  }, { passive: true });
+
+  function releaseWheelPull() {
+    // Hand the trackpad pull over to the spring: it becomes part of `pos` and settles back.
+    pos = clamp(shelf.scrollLeft, 0, maxScroll()) + wheelPull;
+    wheelPull = 0;
+    springTo(clamp(pos, 0, maxScroll()));
+  }
+
   updateShelf();
 
   /* ---------- Sliding nav indicator ---------- */
