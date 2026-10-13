@@ -128,7 +128,9 @@
     if (!menu) return;
     const open = menu.getAttribute('aria-expanded') === 'true';
     const label = menu.querySelector('.menu-label');
-    if (label) label.textContent = dict[lang][open ? 'nav.close' : 'nav.menu'];
+    const text = dict[lang][open ? 'nav.close' : 'nav.menu'];
+    if (label) label.textContent = text;
+    menu.setAttribute('aria-label', text);
   }
   function setMenu(open) {
     if (!menu || !nav) return;
@@ -141,6 +143,10 @@
   menu?.addEventListener('click', () => setMenu(menu.getAttribute('aria-expanded') !== 'true'));
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && menu?.getAttribute('aria-expanded') === 'true') { setMenu(false); menu.focus(); }
+  });
+  // Close the overlay before keyboard focus continues into the page behind it.
+  document.addEventListener('focusin', e => {
+    if (menu?.getAttribute('aria-expanded') === 'true' && !e.target.closest('.site-header')) setMenu(false);
   });
   matchMedia('(min-width: 901px)').addEventListener('change', e => { if (e.matches) setMenu(false); });
 
@@ -662,7 +668,9 @@
       const img = stage.querySelector('img');
       stage.classList.toggle('is-zoomed', on);
       if (img) img.style.width = on ? `${Math.round(Math.max(img.naturalWidth || 0, stage.clientWidth * 1.6))}px` : '';
-      zoom.querySelector('.pj-lb-text').textContent = core.t(on ? 'd.pj.zoomFit' : 'd.pj.zoomIn');
+      const label = core.t(on ? 'd.pj.zoomFit' : 'd.pj.zoomIn');
+      zoom.querySelector('.pj-lb-text').textContent = label;
+      zoom.setAttribute('aria-label', label);
       zoom.setAttribute('aria-pressed', String(on));
     }
 
