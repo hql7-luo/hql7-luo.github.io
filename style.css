@@ -654,7 +654,7 @@ a.pj-stat:hover { border-color: var(--accent); transform: translateY(-1px); }
 .pj-lb-caption { min-width: 0; overflow: hidden; font-size: 14px; color: var(--muted); white-space: nowrap; text-overflow: ellipsis; }
 .pj-lb-caption b { margin-right: 10px; font-family: var(--mono); font-size: 12px; font-weight: 500; color: var(--ink); }
 .pj-lb-tools { display: flex; flex-shrink: 0; gap: 6px; }
-.pj-lb-btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-width: 40px; min-height: 40px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--control-line); font-size: 13px; transition: background var(--dur-fast), border-color var(--dur-fast); }
+.pj-lb-btn { display: inline-flex; white-space: nowrap; align-items: center; justify-content: center; gap: 6px; min-width: 40px; min-height: 40px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--control-line); font-size: 13px; transition: background var(--dur-fast), border-color var(--dur-fast); }
 .pj-lb-btn:hover:not(:disabled) { background: var(--bg); border-color: #c9ccd3; }
 .pj-lb-btn:disabled { opacity: .35; cursor: default; }
 .pj-lb-close { background: var(--ink); border-color: var(--ink); color: var(--surface); }
