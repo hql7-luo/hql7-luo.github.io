@@ -2,10 +2,10 @@
 
 Source repository: https://github.com/hql7-luo/foreign-trade-enterprise-rag
 
-Reviewed source revision: `4f19c75b06537eddbaa4b33bb06821eddf8b887b`.
+Reviewed source revision: `1d36895c73d0beff4dab4a9eb61357275bdd7fc9`.
 Public release: https://github.com/hql7-luo/foreign-trade-enterprise-rag/releases/tag/v1.0.0
 
-Governance visual reviewed against `757c874316f56701cdeb529054dce149049c688c`.
+Governance visual reviewed against `fb9eafaff74995563c81b3215e1ed730ef50bb71`.
 That revision changes dependencies and runtime support; the recorded UI source and
 governance behavior remain unchanged. No application screenshot was reconstructed.
 
@@ -37,7 +37,7 @@ portfolio under the owner's instruction; public visibility is not a general redi
 
 ## Four business-example stages added October 8, 2026
 
-Reviewed presentation source commit: `1303efbe56b6adefe39ed6ba4d23c07fec0f75dd`.
+Reviewed presentation source commit: `0356a5cd272bdae0b1a15d407f7fcc58a7fd946e`.
 
 `governance-stage-01.png` through `governance-stage-04.png` and their `-480.png`
 variants are byte-identical source-repository outputs. Stages 1–3 crop

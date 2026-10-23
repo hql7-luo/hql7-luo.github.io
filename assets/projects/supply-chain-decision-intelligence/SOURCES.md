@@ -24,7 +24,7 @@ The PNG files are copied byte-for-byte from the analysis repository's `docs/asse
 
 ## Business overview added October 8, 2026
 
-Reviewed presentation source commit: `8baa6508d493c90513e2e6be77d2706a441e3a82`.
+Reviewed presentation source commit: `a29b315174f01c8b284fd7e48f9751f092fd15f8`.
 
 `management-action-overview.svg` and `.png` are the same single overview figure,
 copied byte-for-byte from `docs/assets/`. It summarizes saved full-data evidence,

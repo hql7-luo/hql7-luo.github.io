@@ -27,7 +27,7 @@ Edit these root files directly. There is no package manager, framework bundle, r
 
 ### Design (Interactive Business, October 2026)
 
-The whole site uses one design system defined at the top of `style.css`: colors, IBM Plex Sans / IBM Plex Mono (Google Fonts, with system fallbacks), type scale, spacing, card radius, motion durations and breakpoints (1180 / 1000 / 900 / 760 / 640 px).
+The whole site uses one design system defined at the top of `style.css`: colors, native system fonts (SF Pro / PingFang on Apple, Segoe UI / Microsoft YaHei on Windows, a system monospace for labels; no web-font request), type scale, spacing, card radius, motion durations and breakpoints (1180 / 1000 / 900 / 760 / 640 px).
 
 - Homepage: an interactive results board for the three featured projects, project filters, featured cards with Problem / What I did / Takeaway, team coursework rows, and an "Other builds" shelf. The shelf moves with drag, the arrow buttons, a trackpad's horizontal swipe or the keyboard arrows; the ordinary mouse wheel always scrolls the page.
 - Project pages: back link and position (n / 14), a business-first hero, an "On this page" menu, an image viewer (previous / next, zoom, Escape, focus return), and next / previous project links in homepage order. Analytics, AI-system and product cases use section orders suited to their content.
