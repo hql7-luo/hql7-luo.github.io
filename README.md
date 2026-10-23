@@ -30,21 +30,22 @@ Edit these root files directly. There is no package manager, framework bundle, r
 The whole site uses one design system defined at the top of `style.css`: colors, IBM Plex Sans / IBM Plex Mono (Google Fonts, with system fallbacks), type scale, spacing, card radius, motion durations and breakpoints (1180 / 1000 / 900 / 760 / 640 px).
 
 - Homepage: an interactive results board for the three featured projects, project filters, featured cards with Problem / What I did / Takeaway, team coursework rows, and an "Other builds" shelf. The shelf moves with drag, the arrow buttons, a trackpad's horizontal swipe or the keyboard arrows; the ordinary mouse wheel always scrolls the page.
-- Project pages: back link and position (n / 11), a business-first hero, an "On this page" menu, an image viewer (previous / next, zoom, Escape, focus return), and next / previous project links in homepage order. Analytics, AI-system and product cases use section orders suited to their content.
+- Project pages: back link and position (n / 12), a business-first hero, an "On this page" menu, an image viewer (previous / next, zoom, Escape, focus return), and next / previous project links in homepage order. Analytics, AI-system and product cases use section orders suited to their content.
 - `app.js` has three parts: shared behaviour, homepage interactions and project-page interactions. Language priority: a link's `?lang=` value, except after Back / Forward, where the visitor's latest choice wins; otherwise the stored choice, then the browser language.
 
 The ignored `portfolio-v2-demo/`, its generator and local staging/backups are historical files. They contain older content and assets and must not be used to regenerate or overwrite the current production files.
 
 ## Content
 
-Personal facts were updated against the supplied English Resume in October 2026. The homepage prioritizes six projects:
+Personal facts were updated against the supplied English Resume in October 2026. The homepage prioritizes seven projects:
 
 1. Supply Chain Decision Intelligence — independent project, Oct 2026
 2. Marketing Experimentation & Growth Strategy — independent project, Oct 2026
-3. Foreign Trade Enterprise Knowledge Assistant — independent project, Sep 2026
-4. LLM Price-Performance Analytics — UW IS 451 team project, Apr–Jun 2026
-5. AutoZone Workforce Optimization & Demand Forecasting — UW supply chain team project, Sep–Dec 2025
-6. Gen Z Consumer Spending Analytics — UW IS 445 team project, Mar–Jun 2025
+3. AI Infrastructure Value Chain — independent project, Oct 2026
+4. Foreign Trade Enterprise Knowledge Assistant — independent project, Sep 2026
+5. LLM Price-Performance Analytics — UW IS 451 team project, Apr–Jun 2026
+6. AutoZone Workforce Optimization & Demand Forecasting — UW supply chain team project, Sep–Dec 2025
+7. Gen Z Consumer Spending Analytics — UW IS 445 team project, Mar–Jun 2025
 
 Five independent builds remain in a secondary section, with their selected visuals, technical explanations and verified demo links where available. Detailed project descriptions preserve accurate information beyond the Resume.
 
@@ -74,7 +75,7 @@ From the repository root:
 python3 -m http.server 8000
 ```
 
-Open [http://localhost:8000/](http://localhost:8000/). Use `?lang=en` or `?lang=zh` to check either language. Verify the homepage and all eleven project pages at desktop, tablet and mobile widths; test navigation, language switching, reduced motion, image dialogs, local assets, links and both Resume PDF downloads. Switch English → Chinese → English and confirm each Resume button's destination, download filename and label. Check key dates and statistics against the latest Resume before future updates.
+Open [http://localhost:8000/](http://localhost:8000/). Use `?lang=en` or `?lang=zh` to check either language. Verify the homepage and all twelve project pages at desktop, tablet and mobile widths; test navigation, language switching, reduced motion, image dialogs, local assets, links and both Resume PDF downloads. Switch English → Chinese → English and confirm each Resume button's destination, download filename and label. Check key dates and statistics against the latest Resume before future updates.
 
 Changes to these local files do not update the public site until they are committed and pushed to the configured GitHub Pages branch.
 
@@ -85,6 +86,8 @@ Supply-chain publication checks run in CI: `node --check demos/supply-chain/demo
 Marketing Experimentation & Growth Strategy adds a [bilingual decision case](https://hql7-luo.github.io/projects/marketing-experimentation-growth-strategy.html) based on Kevin Hillstrom’s 2008 randomized email challenge: 64,000 customers and two-week outcomes. The bilingual story first explains the business problem, my approach, findings, recommendation and skills in plain language. A purchase-rate overview compares the three apparel email options; the original six charts and full statistical evidence remain in the lower analysis section. The men’s apparel email had the highest purchase rate. A more complex recipient strategy did not prove a reliable advantage over random selection sending the same number of emails, so the simple campaign is the benchmark for a new experiment. Campaign names describe apparel, not customer gender. Financial contribution uses explicit assumptions and is not actual profit or realized growth. No raw or customer-level derived source records are redistributed. Aggregate evidence and chart checksums are preserved under `assets/projects/marketing-experimentation-growth-strategy/`; the reproducible source is [hql7-luo/marketing-experimentation-growth-strategy](https://github.com/hql7-luo/marketing-experimentation-growth-strategy).
 
 Marketing publication checks run with `node scripts/check-marketing-experiment.mjs`: the six frozen analysis PNG/SVG pairs, a separate source-derived overview pair and its rates, aggregate campaign/policy arithmetic, retained numerical evidence, bilingual story order, historical/financial/data-rights limits and protected Resume hashes. The original analysis manifest remains pinned to its source commit; the new overview has a separate manifest and provenance. Existing all-page checks discover the new case automatically.
+
+AI Infrastructure Value Chain is a bilingual industry-analysis case: where the operating profit from AI data-center spending lands across servers, AI chips, foundry, memory, networking, optical and power. It compares 21 companies from CY2022 to the 12 months ending Q2 2026 using SEC EDGAR filings plus TSMC, Innolight and Eoptolink reports. Charts are copied unchanged from the source repository; provenance and hashes are in `assets/projects/ai-infra-value-chain/SOURCES.md`. It is industry analysis, not investment advice. The reproducible source is [hql7-luo/ai-infra-value-chain](https://github.com/hql7-luo/ai-infra-value-chain).
 
 ## Business-first presentation and contribution scope
 
