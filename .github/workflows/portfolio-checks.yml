@@ -21,5 +21,7 @@ jobs:
         run: node scripts/check-supply-chain.mjs
       - name: Verify bilingual project pages and visual references
         run: node scripts/check-portfolio-pages.mjs
+      - name: Verify navigation and search discovery
+        run: node scripts/check-site-navigation.mjs
       - name: Verify marketing experiment evidence and chart provenance
         run: node scripts/check-marketing-experiment.mjs

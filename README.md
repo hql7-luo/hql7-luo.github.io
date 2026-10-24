@@ -58,6 +58,7 @@ Six independent builds remain in a secondary section, with their selected visual
 - The English Resume is the owner's October 2026 PDF, copied byte for byte; the Chinese Resume is a one-page translation of the same facts. Their SHA-256 values are pinned in `assets/projects/marketing-experimentation-growth-strategy/manifest.json` (`protected_resume_sha256`), so any future replacement must update those values deliberately.
 - GitHub and email contact links; LinkedIn is omitted until a verified profile URL is supplied
 - Responsive layouts, keyboard focus styles, reduced-motion support and mobile navigation
+- Shared navigation labels include the visible wordmark and localized name, and Resume download labels include the visible PDF wording in both languages
 - Canonical URLs, hreflang, page metadata, Open Graph fields and a local favicon
 
 The knowledge assistant is a synthetic public demo. Its 92.5% figure is average relevant-source coverage in Top-5 results over 20 synthetic questions in the internal frozen holdback; it is not a production performance claim or independent external validation. The homepage emphasizes human approval before product facts change; four genuine screenshot stages explain the synthetic 144-to-180 example. This is a local extractive prototype, not a generative LLM deployment. Existing architecture, screenshots and evaluation context remain documented in `assets/projects/foreign-trade-enterprise-rag/SOURCES.md`.
@@ -81,6 +82,8 @@ python3 -m http.server 8000
 Open [http://localhost:8000/](http://localhost:8000/). Use `?lang=en` or `?lang=zh` to check either language. Verify the homepage and all sixteen project pages at desktop, tablet and mobile widths; test navigation, language switching, reduced motion, image dialogs, local assets, links and both Resume PDF downloads. Switch English → Chinese → English and confirm each Resume button's destination, download filename and label. Check key dates and statistics against the latest Resume before future updates.
 
 Changes to these local files do not update the public site until they are committed and pushed to the configured GitHub Pages branch.
+
+Search discovery uses `robots.txt` and `sitemap.xml`. Run `node scripts/check-site-navigation.mjs` after adding or renaming a page; CI checks canonical routes, every local link and fragment, and complete sitemap coverage (including the supply-chain explorer).
 
 Bilingual HTML, local and responsive image references, selected visual hashes and image-size limits are checked with `node scripts/check-portfolio-pages.mjs`. B2B, meal-decision and knowledge-governance cases reuse their actual source-project visuals, with provenance in each assets folder. Image dialogs preserve the currently selected mobile image and allow detail inspection.
 
