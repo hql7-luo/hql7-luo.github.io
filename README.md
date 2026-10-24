@@ -30,24 +30,25 @@ Edit these root files directly. There is no package manager, framework bundle, r
 The whole site uses one design system defined at the top of `style.css`: colors, native system fonts (SF Pro / PingFang on Apple, Segoe UI / Microsoft YaHei on Windows, a system monospace for labels; no web-font request), type scale, spacing, card radius, motion durations and breakpoints (1180 / 1000 / 900 / 760 / 640 px).
 
 - Homepage: an interactive results board for the three featured projects, project filters, featured cards with Problem / What I did / Takeaway, team coursework rows, and an "Other builds" shelf. The shelf moves with drag, the arrow buttons, a trackpad's horizontal swipe or the keyboard arrows; the ordinary mouse wheel always scrolls the page.
-- Project pages: back link and position (n / 15), a business-first hero, an "On this page" menu, an image viewer (previous / next, zoom, Escape, focus return), and next / previous project links in homepage order. Analytics, AI-system and product cases use section orders suited to their content.
+- Project pages: back link and position (n / 16), a business-first hero, an "On this page" menu, an image viewer (previous / next, zoom, Escape, focus return), and next / previous project links in homepage order. Analytics, AI-system and product cases use section orders suited to their content.
 - `app.js` has three parts: shared behaviour, homepage interactions and project-page interactions. Language priority: a link's `?lang=` value, except after Back / Forward, where the visitor's latest choice wins; otherwise the stored choice, then the browser language.
 
 The ignored `portfolio-v2-demo/`, its generator and local staging/backups are historical files. They contain older content and assets and must not be used to regenerate or overwrite the current production files.
 
 ## Content
 
-Personal facts were updated against the supplied English Resume in October 2026. The homepage prioritizes nine projects:
+Personal facts were updated against the supplied English Resume in October 2026. The homepage prioritizes ten projects:
 
 1. Supply Chain Decision Intelligence — independent project, Oct 2026
 2. Marketing Experimentation & Growth Strategy — independent project, Oct 2026
 3. AI Infrastructure Value Chain — independent project, Oct 2026
 4. Tariff-Era Sourcing Decision — independent project, Oct 2026
 5. Chinese Consumer Brands Going Global — independent project, Oct 2026
-6. Foreign Trade Enterprise Knowledge Assistant — independent project, Sep 2026
-7. LLM Price-Performance Analytics — UW IS 451 team project, Apr–Jun 2026
-8. AutoZone Workforce Optimization & Demand Forecasting — UW supply chain team project, Sep–Dec 2025
-9. Gen Z Consumer Spending Analytics — UW IS 445 team project, Mar–Jun 2025
+6. NYC Rideshare Economics: Uber vs Lyft — independent project, Oct 2026
+7. Foreign Trade Enterprise Knowledge Assistant — independent project, Sep 2026
+8. LLM Price-Performance Analytics — UW IS 451 team project, Apr–Jun 2026
+9. AutoZone Workforce Optimization & Demand Forecasting — UW supply chain team project, Sep–Dec 2025
+10. Gen Z Consumer Spending Analytics — UW IS 445 team project, Mar–Jun 2025
 
 Six independent builds remain in a secondary section, with their selected visuals, technical explanations and verified demo links where available. The first is the LLM Selection & ROI decision case. Detailed project descriptions preserve accurate information beyond the Resume.
 
@@ -77,7 +78,7 @@ From the repository root:
 python3 -m http.server 8000
 ```
 
-Open [http://localhost:8000/](http://localhost:8000/). Use `?lang=en` or `?lang=zh` to check either language. Verify the homepage and all fifteen project pages at desktop, tablet and mobile widths; test navigation, language switching, reduced motion, image dialogs, local assets, links and both Resume PDF downloads. Switch English → Chinese → English and confirm each Resume button's destination, download filename and label. Check key dates and statistics against the latest Resume before future updates.
+Open [http://localhost:8000/](http://localhost:8000/). Use `?lang=en` or `?lang=zh` to check either language. Verify the homepage and all sixteen project pages at desktop, tablet and mobile widths; test navigation, language switching, reduced motion, image dialogs, local assets, links and both Resume PDF downloads. Switch English → Chinese → English and confirm each Resume button's destination, download filename and label. Check key dates and statistics against the latest Resume before future updates.
 
 Changes to these local files do not update the public site until they are committed and pushed to the configured GitHub Pages branch.
 
@@ -94,6 +95,8 @@ AI Infrastructure Value Chain is a bilingual industry-analysis case: where the o
 Tariff-Era Sourcing Decision is a bilingual strategy case: should a fictional Zhejiang folding-carton maker keep serving a US customer from China, or move production to Vietnam or Mexico under October 2026 US tariffs (37.5% on Chinese cartons, 12.5% on Vietnamese, 0% on USMCA-qualifying Mexican)? A landed-cost model compares four strategies over five years with four tariff scenarios and a 10,000-run simulation. Tariffs, freight, exchange rates, paperboard prices and wages come from public sources; plant-level costs are labeled assumptions. Charts are copied unchanged from the source repository; provenance and hashes are in `assets/projects/tariff-sourcing-decision/SOURCES.md`. The interactive explorer is served from the project's own GitHub Pages site. It is a cost-only view, not trade, legal or investment advice. The reproducible source is [hql7-luo/tariff-sourcing-decision](https://github.com/hql7-luo/tariff-sourcing-decision).
 
 Chinese Consumer Brands Going Global is a bilingual strategy case: of Pop Mart, MINISO and Mixue, whose overseas model is more replicable? It compares overseas revenue, store counts, store models and margins from FY2023 to 1H2026 using HKEX announcements, company press releases and Mixue's prospectus, keeping each company's own definition of "overseas" (Mixue does not disclose overseas revenue, so its view relies on store counts). A six-dimension scorecard records the evidence for every score and is tested with 10,000 random weightings; the scorecard is an analyst judgment. Charts are copied unchanged from the source repository; provenance and hashes are in `assets/projects/china-brands-going-global/SOURCES.md`. The interactive scorecard is served from the project's own GitHub Pages site. It is industry analysis, not investment advice. The reproducible source is [hql7-luo/china-brands-going-global](https://github.com/hql7-luo/china-brands-going-global).
+
+NYC Rideshare Economics: Uber vs Lyft is a bilingual analytics case: how much of each New York Uber and Lyft base fare stays with the platform after driver pay? It summarizes all 91 monthly NYC TLC High Volume FHV trip files from February 2019 to August 2026 (1.62 billion cleaned Uber and Lyft trips) with DuckDB SQL, then compares gross take by company, trip length, hour, airport trips and a data-inferred congestion zone. Gross take is base fare minus driver pay, not profit; the congestion-zone comparison is descriptive, not a causal estimate. The December 2025 raw trip count matches TLC's published figure, and pooled take rates are close to the UCLA Labor Center's 2019 and 2022 estimates. Charts are copied unchanged from the source repository; provenance and hashes are in `assets/projects/rideshare-platform-economics/SOURCES.md`. The interactive explorer is served from the project's own GitHub Pages site. The reproducible source is [hql7-luo/rideshare-platform-economics](https://github.com/hql7-luo/rideshare-platform-economics).
 
 LLM Selection & ROI for Export Inquiries is a bilingual decision case in the secondary builds section: which LLM should a small exporter use to draft tracker entries for about 500 inquiries a month, and is it worth paying for? Eight models (Claude, GPT, DeepSeek and Kimi) and a no-AI rules baseline answered 80 labeled test inquiries twice, inside agent tools rather than an API, and a break-even ROI model turns critical error rates into monthly net benefit. The inquiries are synthetic and the company is fictional; costs are list-price estimates and labor and error costs are labeled assumptions. Charts are copied unchanged from the source repository and the card image is a screenshot of its calculator; provenance and hashes are in `assets/projects/llm-selection-roi/SOURCES.md`. The calculator is served from the project's own GitHub Pages site. Not financial advice. The reproducible source is [hql7-luo/llm-selection-roi](https://github.com/hql7-luo/llm-selection-roi).
 
