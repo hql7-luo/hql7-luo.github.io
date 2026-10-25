@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://hql7-luo.github.io/sitemap.xml
