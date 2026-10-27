@@ -1,0 +1,49 @@
+check,status
+Panel is nonempty,passed
+Company sample has one share class per issuer,passed
+Panel has one row per issuer and fiscal period end,passed
+Every panel issuer belongs to the selected sample,passed
+Fiscal-year floor is applied after fiscal label extraction,passed
+Fiscal labels stay close to their actual fiscal period ends,passed
+December fiscal labels agree with the verified calendar-year period ends,passed
+Verified cover corrections override missing or erroneous source tags,passed
+No filings occur after the study cutoff,passed
+Fiscal periods end before their annual filings,passed
+"Every parsed report contains at least 1,000 words",passed
+"AI intensity has the requested per-10,000-word units",passed
+Post indicator uses actual ChatGPT release date,passed
+All panel reports have dictionary-level count records,passed
+Report AI totals reconcile to dictionary counts,passed
+The dictionary counting function can be inspected independently,passed
+"AI case sensitivity, whole-word boundaries, plurals, and phrase overlaps behave as documented",passed
+Current growth has positive prior-revenue denominators,passed
+Current revenue growth reconciles to source amounts,passed
+Next revenue outcomes use an adjacent fiscal year,passed
+Next growth's prior period matches the report's fiscal period,passed
+Next-year growth reconciles to the following original filing's annual comparison,passed
+At least one complete 12-month return exists,passed
+Return entry occurs strictly after filing,passed
+Return entry has a nearby common trading day,passed
+Return exit reaches the calendar anniversary,passed
+Return exits are observed and near the anniversary,passed
+Stock returns reconcile to adjusted endpoints,passed
+SPY returns reconcile to adjusted endpoints,passed
+Excess return is the arithmetic percentage-point difference,passed
+Incomplete or unavailable windows do not acquire return values,passed
+Every panel return has a valid complete-window status,passed
+Daily prices have unique ticker-date keys,passed
+Stock start endpoints match actual daily price inputs,passed
+SPY start endpoints match actual daily price inputs,passed
+Stock end endpoints match actual daily price inputs,passed
+SPY end endpoints match actual daily price inputs,passed
+All four requested main regressions estimated successfully,passed
+next_revenue_growth uses its separate complete-case sample,passed
+next_revenue_growth does not add observations during estimation,passed
+excess_return_12m uses its separate complete-case sample,passed
+excess_return_12m does not add observations during estimation,passed
+Regression p-values lie between zero and one,passed
+Regression confidence intervals contain their estimates,passed
+next_revenue_growth has an identifiable AI interaction,passed
+next_revenue_growth post slope includes coefficient covariance,passed
+excess_return_12m has an identifiable AI interaction,passed
+excess_return_12m post slope includes coefficient covariance,passed

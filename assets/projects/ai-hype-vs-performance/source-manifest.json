@@ -1,0 +1,25 @@
+{
+  "source_repository": "https://github.com/hql7-luo/ai-hype-vs-performance",
+  "source_commit": "1b3886ddaae74657ceecdc33a52980e90bb83480",
+  "as_of": "2026-10-26",
+  "sha256": {
+    "assets/projects/ai-hype-vs-performance/ai_trend.png": "e8212efe34c7c7e533cee3cc537431191e950cb9017c8f32ec29b22b739bc66d",
+    "assets/projects/ai-hype-vs-performance/quintile_outcomes.png": "0189487c6642ec4e48782f0b434551b31e589553ce742ac70e8f92289349bed5",
+    "assets/projects/ai-hype-vs-performance/regression_coefficients.png": "953abe16c5c53a9c2f11ff46cf66115c9cebc4c649928c340e2893070e54f94c",
+    "reports/ai-hype-vs-performance/report.html": "57637b8db6dd0f54c23a27970a147a9954d471ab043a9a2cd5da4d63f46b24b1",
+    "reports/ai-hype-vs-performance/config/ai_dictionary.csv": "5e29b3a0b4ec81d2bff47807c567ee949e470f4fcc00c51fd543d787d0c3b655",
+    "reports/ai-hype-vs-performance/config/issuer_history_notes.csv": "f42cdd5e61a86ca9f3092b7a973e1c0a89d1889e147e22db49bed194ed5cc21e",
+    "reports/ai-hype-vs-performance/output/tables/panel_exclusions.csv": "89b08ac6d6d7201a201a6fd7bf2d727e0886d13d961813fab450931682d7b370",
+    "reports/ai-hype-vs-performance/output/tables/return_exclusions.csv": "b5f161546c2ab2879385bfe8b980f34c166071dff75eeed12ef000124e605e4f",
+    "reports/ai-hype-vs-performance/output/tables/membership_reconciliation.md": "19e933c0c49588dff29318d1aaac648848a1528079b7a84859a3dae805f20b16",
+    "reports/ai-hype-vs-performance/output/tables/source_spot_checks.csv": "6f95870a98dcb5a810ab4adabcab4743576363769de8a1b5e5d353c0e6c9ba8e",
+    "reports/ai-hype-vs-performance/output/tables/effect_slopes.csv": "98612c4a5cb3861e240c264f7b1f4d038de094cb1a3620c392e1095a0e57da00",
+    "reports/ai-hype-vs-performance/output/tables/validation_checks.csv": "c6b74c0eac366400efce4305dddd6249d0ca52cb0e5e3afd4bb4da4b4f46326e",
+    "reports/ai-hype-vs-performance/output/tables/revenue_concept_review.csv": "37ab27b5b98e8fd0f6481be9265d5504d81db206c32ab59f414ab5f8286864fe",
+    "reports/ai-hype-vs-performance/output/tables/data_issues.csv": "b7fd340b5b691ff2c7458a4852105297b5deacb14643cbe3c197b49eac771746",
+    "reports/ai-hype-vs-performance/output/tables/fiscal_year_crosscheck.csv": "a600d7bb7412f27cea2485103c9c587245ba9954174c6ee479f7ce174cd579bf",
+    "reports/ai-hype-vs-performance/output/tables/regression_coefficients.csv": "ea51c19c51b22d87c67b86824b102f38340244902a3fa43be19e9585bdcfda49",
+    "reports/ai-hype-vs-performance/output/tables/model_status.csv": "3d329c31838e799e5a46e3108a7e07627eec691dcdd7cff09fc776ac16d367ff",
+    "reports/ai-hype-vs-performance/output/tables/share_class_exclusions.csv": "71789a6de6f01c518d6fdeef700e64c41fbf1c5b02395abd56f52dfa6d32726b"
+  }
+}

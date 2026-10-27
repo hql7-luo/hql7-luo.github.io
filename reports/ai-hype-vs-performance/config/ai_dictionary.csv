@@ -1,0 +1,7 @@
+term,pattern,case_sensitive
+generative AI,\bgenerative\s+AI\b,FALSE
+artificial intelligence,\bartificial\s+intelligence\b,FALSE
+machine learning,\bmachine\s+learning\b,FALSE
+large language model,\blarge\s+language\s+models?\b,FALSE
+LLM,\bLLMs?\b,FALSE
+AI,\bAI\b,TRUE

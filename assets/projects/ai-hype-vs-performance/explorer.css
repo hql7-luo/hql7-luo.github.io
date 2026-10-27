@@ -1,0 +1,37 @@
+/* The explorer uses the portfolio's existing type, color, and focus tokens. */
+#explore { scroll-margin-top: 90px; }
+#explore .ai-controls { display: grid; grid-template-columns: 1fr 1.2fr 1.15fr; gap: 16px; margin: 24px 0 18px; }
+#explore .ai-controls label { display: grid; align-content: start; gap: 8px; color: var(--ink); font-size: 13px; font-weight: 600; }
+#explore select { width: 100%; max-width: 100%; min-height: 44px; padding: 10px 34px 10px 12px; border: 1px solid var(--control-line); border-radius: 8px; background: var(--surface); color: var(--ink); font: 400 14px var(--sans); text-overflow: ellipsis; }
+#explore select:disabled { color: var(--muted); cursor: wait; }
+#explore .ai-charts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin: 24px 0; }
+#explore .ai-charts > * { min-width: 0; margin: 0; padding: 18px 12px 8px; border: 1px solid var(--line-soft); border-radius: 12px; background: var(--surface); }
+#explore .ai-charts h3 { margin: 0 8px 8px; font-size: 15px; letter-spacing: var(--track-tight); }
+#ai-trend-chart, #ai-performance-chart { width: 100%; min-height: 300px; overflow: hidden; }
+#explore svg { display: block; width: 100%; height: 300px; overflow: visible; }
+#explore .ai-grid-line { stroke: var(--line-soft); stroke-width: 1; }
+#explore .ai-zero-line { stroke: #b5b8c2; stroke-width: 1; }
+#explore .ai-chart-line { fill: none; stroke: #5b55cf; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+#explore .ai-chart-dot { fill: #5b55cf; stroke: var(--surface); stroke-width: 1; }
+#explore .ai-axis-label { fill: var(--muted); font: 11px var(--sans); }
+#explore .ai-axis-title { fill: var(--muted); font: 11px var(--sans); }
+#ai-selection { font-size: 14px; font-weight: 600; line-height: 1.7; }
+#ai-status { color: var(--muted); font-size: 13px; line-height: 1.7; }
+#explore .ai-empty { display: grid; place-items: center; min-height: 260px; padding: 24px; color: var(--muted); text-align: center; }
+#explore .ai-table-wrap { width: 100%; max-width: 100%; overflow-x: auto; overscroll-behavior-inline: contain; border: 1px solid var(--line-soft); border-radius: 10px; }
+#explore table { width: 100%; min-width: 620px; border-collapse: collapse; background: var(--surface); font-size: 12px; }
+#explore th, #explore td { padding: 12px; border-bottom: 1px solid var(--line-soft); text-align: right; vertical-align: top; font-variant-numeric: tabular-nums; }
+#explore th { color: var(--muted); font-weight: 600; }
+#explore th:first-child, #explore td:first-child { width: 30%; min-width: 155px; text-align: left; overflow-wrap: anywhere; }
+#explore tbody tr:last-child td { border-bottom: 0; }
+#explore td:last-child a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; }
+#ai-retry { margin: 10px 0; }
+#ai-retry[hidden] { display: none; }
+@media (max-width: 1000px) {
+  #explore .ai-controls { grid-template-columns: 1fr; gap: 14px; }
+  #explore .ai-charts { grid-template-columns: 1fr; }
+}
+@media (max-width: 480px) {
+  #explore .ai-charts > * { padding-inline: 6px; }
+  #explore select { font-size: 16px; }
+}

@@ -17,6 +17,7 @@ jobs:
         run: |
           node --check app.js
           node --check demos/supply-chain/demo.js
+          node --check assets/projects/ai-hype-vs-performance/explorer.js
       - name: Verify published analytics and bilingual assets
         run: node scripts/check-supply-chain.mjs
       - name: Verify bilingual project pages and visual references
@@ -25,3 +26,5 @@ jobs:
         run: node scripts/check-site-navigation.mjs
       - name: Verify marketing experiment evidence and chart provenance
         run: node scripts/check-marketing-experiment.mjs
+      - name: Verify AI disclosure snapshot and source artifacts
+        run: node scripts/check-ai-talk.mjs

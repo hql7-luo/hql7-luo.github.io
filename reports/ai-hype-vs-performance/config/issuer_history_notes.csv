@@ -1,0 +1,3 @@
+ticker,current_cik,decision,explanation,source_url
+HONA,0002089271,No predecessor stitching,June 2026 aerospace spin-off; the selected registrant has no 10-K by the evidence cutoff; parent consolidated filings are not the same issuer,https://www.sec.gov/Archives/edgar/data/773840/000077384026000084/hon-20260625.htm
+VYLR,0002128626,No predecessor stitching,October 2026 Corteva separation; Vylor is an accounting successor but a distinct legal spinnee without a 10-K by the cutoff; former consolidated 10-Ks are not duplicated across both current issuers,https://www.sec.gov/Archives/edgar/data/2128626/000119312526417083/d332956d8k.htm
