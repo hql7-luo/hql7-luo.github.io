@@ -746,3 +746,10 @@ body.lb-open { overflow: hidden; }
 /* 8. Fewer template details: no name dot, plain section labels, no motion button */
 .name-dot, .motion-toggle { display: none !important; }
 .section-label { font-family: var(--sans); font-size: 13px; letter-spacing: 0; text-transform: none; }
+
+/* ---------- More projects shelf: landscape covers, whole charts, one tint per group ---------- */
+.s-cover { aspect-ratio: 4 / 3; }
+.s-cover img.whole { inset: 16% 0 6%; margin: auto; width: auto; height: auto; max-width: 86%; max-height: 76%; border-radius: var(--radius-screen-sm); }
+.card-shelf:hover .s-cover img.whole { transform: translateY(-2%); }
+.s-cover img:not(.whole) { left: 8%; top: 12%; width: 125%; }
+.s-kind { font-size: 12px; }
