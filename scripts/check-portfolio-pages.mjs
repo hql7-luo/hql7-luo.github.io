@@ -23,7 +23,7 @@ for (const file of pages) {
  const en = Object.keys(dictionary.en).sort();
  const zh = Object.keys(dictionary.zh).sort();
  assert(JSON.stringify(en) === JSON.stringify(zh), `${file}: bilingual key mismatch`);
- for (const [, attr, value] of html.matchAll(/\b(src|href|data-src-en|data-src-zh)="([^"]+)"/g)) {
+ for (const [, attr, value] of html.matchAll(/\b(src|href|data-src-en|data-src-zh|data-bg-en|data-bg-zh)="([^"]+)"/g)) {
   if (/^(https?:|mailto:|data:|#)/.test(value)) continue;
   const clean = decodeURIComponent(value.split(/[?#]/)[0]);
   const target = resolve(dirname(join(root, file)), clean);

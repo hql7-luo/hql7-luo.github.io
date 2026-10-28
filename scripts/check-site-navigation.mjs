@@ -42,4 +42,20 @@ assert(new Set(locations).size === locations.length, 'Sitemap contains duplicate
 const expected = pages.map(file => origin + route(file)).sort();
 assert(JSON.stringify([...locations].sort()) === JSON.stringify(expected), 'Sitemap must contain every published page exactly once');
 assert(read('robots.txt').includes(`Sitemap: ${origin}/sitemap.xml`), 'robots.txt must advertise the sitemap');
+
+// Case numbering and previous/next cards must follow the homepage project order.
+const homepage = read('index.html');
+const work = homepage.slice(homepage.indexOf('<section id="work"'), homepage.indexOf('<section id="about"'));
+const caseOrder = [...new Set([...work.matchAll(/data-case="([^"]+)"/g)].map(match => match[1]))];
+const caseFiles = pages.filter(file => file.startsWith('projects/'));
+assert(caseOrder.length === caseFiles.length, 'Homepage must list every project case');
+for (const [index, slug] of caseOrder.entries()) {
+  const html = read(`projects/${slug}.html`);
+  const counter = html.match(/<span class="pj-count">([^<]+)<\/span>/)?.[1];
+  assert(counter === `${index + 1} / ${caseOrder.length}`, `${slug}: stale case position or total`);
+  const next = html.match(/<a class="pj-next-card" href="([^"]+)"/)?.[1];
+  const previous = html.match(/<div class="pj-next-row"><a href="([^"]+)"/)?.[1];
+  assert(next === `${caseOrder[(index + 1) % caseOrder.length]}.html`, `${slug}: next card skips the homepage order`);
+  assert(previous === `${caseOrder[(index + caseOrder.length - 1) % caseOrder.length]}.html`, `${slug}: previous link skips the homepage order`);
+}
 console.log(`Verified ${pages.length} canonical routes, ${links} internal links and complete sitemap coverage.`);
