@@ -105,6 +105,6 @@ LLM Selection & ROI for Export Inquiries is a bilingual decision case in the sec
 
 ## Business-first presentation and contribution scope
 
-The Supply Chain and RAG case pages use concise business questions, findings, actions and skills before detailed methods. Their personal-role lines reflect the owner’s confirmed contribution: business direction, requirements, iteration and result review. Codex and Claude substantially assisted implementation, analysis, tests, visuals and documentation; methods used by the artifact do not establish independent hand-coding or personal technical mastery.
+The Supply Chain and RAG case pages use concise business questions, findings, actions and skills before detailed methods. AI tool use is stated once, in the homepage About section: Codex and Claude helped with much of the coding, research and writing, while the owner chose the questions, checked the numbers and decided what the results mean. Individual case pages no longer repeat this note.
 
-The linked Resume PDFs were replaced with the owner's October 2026 versions (English as supplied, Chinese translated from it); website case pages keep their own scoped role and evaluation wording, and private internship work is not inferred from the public synthetic demo. No full-data risk rule, forecast, frozen RAG benchmark, formal demo behavior or realized financial outcome changed.
+The linked Resume PDFs were replaced with the owner's October 2026 versions (English as supplied, Chinese translated from it); website case pages keep their own evaluation wording, and private internship work is not inferred from the public synthetic demo. No full-data risk rule, forecast, frozen RAG benchmark, formal demo behavior or realized financial outcome changed.

@@ -43,5 +43,4 @@ the overview manifest identifies the evidence baseline, not a fresh data run.
 
 The English overview is accompanied by bilingual page explanations and image
 alternatives. It records no new operating result, financial metric or forecast.
-Project implementation was substantially AI-assisted; the page separately
-states the owner's confirmed business requirements and output-review role.
+AI tool use across projects is stated once in the homepage About section.

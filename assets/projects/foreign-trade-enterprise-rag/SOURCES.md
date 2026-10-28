@@ -63,5 +63,5 @@ historical 144 preserved → controlled reindex → cited 180 answer. Approval a
 index refresh remain distinct operations. The public answer composer remains
 extractive. Reported metrics remain deterministic hash + BM25/RRF results from
 small internal synthetic evaluations; they are not neural quality, enterprise
-answer accuracy or measured ROI. Confirmed personal contribution and substantial
-Codex/Claude assistance are stated separately from artifact capabilities.
+answer accuracy or measured ROI. AI tool use across projects is stated once in
+the homepage About section.
