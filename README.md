@@ -29,7 +29,7 @@ Edit these root files directly. There is no package manager, framework bundle, r
 
 The whole site uses one design system defined at the top of `style.css`: colors, native system fonts (SF Pro / PingFang on Apple, Segoe UI / Microsoft YaHei on Windows, a system monospace for labels; no web-font request), type scale, spacing, card radius, motion durations and breakpoints (1180 / 1000 / 900 / 760 / 640 px).
 
-- Homepage: an interactive results board for the three featured projects, project filters, featured cards with Problem / What I did / Takeaway, team coursework rows, and an "Other builds" shelf. The shelf moves with drag, the arrow buttons, a trackpad's horizontal swipe or the keyboard arrows; the ordinary mouse wheel always scrolls the page.
+- Homepage: a results board with three tabs (supply chain, LLM pricing analysis, knowledge assistant), three featured cards with Problem / What I did / Takeaway, team coursework rows with a slide thumbnail, and a "More projects" shelf. The shelf moves with drag, the arrow buttons, a trackpad's horizontal swipe or the keyboard arrows; the ordinary mouse wheel always scrolls the page.
 - Project pages: back link and position (n / 16), a business-first hero, an "On this page" menu, an image viewer (previous / next, zoom, Escape, focus return), and next / previous project links in homepage order. Analytics, AI-system and product cases use section orders suited to their content.
 - `app.js` has three parts: shared behaviour, homepage interactions and project-page interactions. Language priority: a link's `?lang=` value, except after Back / Forward, where the visitor's latest choice wins; otherwise the stored choice, then the browser language.
 
@@ -37,20 +37,16 @@ The ignored `portfolio-v2-demo/`, its generator and local staging/backups are hi
 
 ## Content
 
-Personal facts were updated against the supplied English Resume in October 2026. The homepage prioritizes ten projects:
+Personal facts were updated against the supplied English Resume in October 2026. The homepage features three independent projects and three UW team projects:
 
 1. Supply Chain Decision Intelligence — independent project, Oct 2026
 2. Marketing Experimentation & Growth Strategy — independent project, Oct 2026
-3. AI Infrastructure Value Chain — independent project, Oct 2026
-4. Tariff-Era Sourcing Decision — independent project, Oct 2026
-5. Chinese Consumer Brands Going Global — independent project, Oct 2026
-6. NYC Rideshare Economics: Uber vs Lyft — independent project, Oct 2026
-7. Foreign Trade Enterprise Knowledge Assistant — independent project, Sep 2026
-8. LLM Price-Performance Analytics — UW IS 451 team project, Apr–Jun 2026
-9. AutoZone Workforce Optimization & Demand Forecasting — UW supply chain team project, Sep–Dec 2025
-10. Gen Z Consumer Spending Analytics — UW IS 445 team project, Mar–Jun 2025
+3. Foreign Trade Enterprise Knowledge Assistant — independent project, Sep 2026
+4. LLM Price-Performance Analytics — UW IS 451 team project, Apr–Jun 2026
+5. AutoZone Workforce Optimization & Demand Forecasting — UW supply chain team project, Sep–Dec 2025
+6. Gen Z Consumer Spending Analytics — UW IS 445 team project, Mar–Jun 2025
 
-Six independent builds remain in a secondary section, with their selected visuals, technical explanations and verified demo links where available. The first is the LLM Selection & ROI decision case. Detailed project descriptions preserve accurate information beyond the Resume.
+Ten more projects sit in the "More projects" shelf, in this order: AI Talk vs. AI Results, AI Infrastructure Value Chain, Tariff-Era Sourcing Decision, Chinese Consumer Brands Going Global, NYC Rideshare Economics, LLM Selection & ROI, Customer Investigation Skill, Export Sales Intelligence, FengShui Layout Planner and What to Eat Today. ColorBox AI was removed from the site in October 2026; its source stays in its own repository. Detailed project descriptions preserve accurate information beyond the Resume.
 
 - English and Chinese pages with persisted language preference
 - Experience, education, skills and contact sections

@@ -714,3 +714,35 @@ body.lb-open { overflow: hidden; }
   .pj-zoom-hint { right: 8px; bottom: 8px; padding: 8px; }
   .pj-zoom-hint > span { display: none; }
 }
+
+/* ---------- Coursework rows: slide thumbnail beside each team project ---------- */
+.row { grid-template-columns: 220px minmax(0, 1fr) 240px 44px; }
+.row-thumb { display: block; aspect-ratio: 16 / 9; overflow: hidden; border-radius: var(--radius-screen); border: 1px solid var(--line); background: var(--surface); }
+.row-thumb img { width: 100%; height: 100%; object-fit: cover; }
+@media (max-width: 900px) {
+  .row { grid-template-columns: 150px minmax(0, 1fr) 44px; }
+  .row-thumb { grid-column: 1; grid-row: 1 / span 2; align-self: start; }
+  .row-title { grid-column: 2; grid-row: 1; }
+  .row-stat { grid-column: 2; grid-row: 2; }
+  .row .round-arrow { grid-column: 3; grid-row: 1 / span 2; }
+}
+@media (max-width: 640px) {
+  .row { grid-template-columns: minmax(0, 1fr) 44px; }
+  .row-thumb { grid-column: 1 / -1; grid-row: 1; }
+  .row-title { grid-column: 1; grid-row: 2; }
+  .row-stat { grid-column: 1; grid-row: 3; }
+  .row .round-arrow { grid-column: 2; grid-row: 2 / span 2; }
+}
+
+/* Hero board: two plain columns for what goes with higher and lower prices */
+.drivers { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.drivers > div { padding: 12px 14px; border-radius: 12px; background: var(--board-raise); }
+.drivers dt { font-size: 13px; font-weight: 500; color: var(--board-text); margin-bottom: 4px; }
+.drivers dd { margin: 0; font-size: 14px; color: var(--board-muted); }
+@media (max-width: 640px) { .drivers { grid-template-columns: 1fr; } }
+
+/* About: one column now that the score tiles are gone */
+.about-grid { grid-template-columns: minmax(0, 1fr); }
+/* 8. Fewer template details: no name dot, plain section labels, no motion button */
+.name-dot, .motion-toggle { display: none !important; }
+.section-label { font-family: var(--sans); font-size: 13px; letter-spacing: 0; text-transform: none; }
