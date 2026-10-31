@@ -738,3 +738,41 @@
     markCurrent();
   }
 })();
+
+/* ===================== 4. Video intro: captions button and page language ===================== */
+(() => {
+  'use strict';
+  const video = document.getElementById('intro-video');
+  const core = window.PortfolioCore;
+  if (!video || !core) return;
+  const button = document.querySelector('[data-captions-toggle]');
+  const KEY = 'portfolio-video-captions';
+  // Captions start on; a visitor who turns them off keeps that choice on this browser.
+  let on = true;
+  try { on = localStorage.getItem(KEY) !== 'off'; } catch { /* keep the default */ }
+
+  function paintButton() {
+    if (!button) return;
+    button.setAttribute('aria-pressed', String(on));
+    button.classList.toggle('is-on', on);
+  }
+  // Show only the captions that match the page language.
+  function sync() {
+    const want = core.lang === 'zh' ? 'zh' : 'en';
+    [...video.textTracks].forEach(track => { track.mode = on && track.language === want ? 'showing' : 'hidden'; });
+    paintButton();
+  }
+
+  button?.addEventListener('click', () => {
+    on = !on;
+    try { localStorage.setItem(KEY, on ? 'on' : 'off'); } catch { /* this visit only */ }
+    sync();
+  });
+  // If the player's own captions menu is used, keep the button in step.
+  video.textTracks.addEventListener?.('change', () => {
+    const showing = [...video.textTracks].some(track => track.mode === 'showing');
+    if (showing !== on) { on = showing; paintButton(); }
+  });
+  core.on('language', sync);
+  sync();
+})();

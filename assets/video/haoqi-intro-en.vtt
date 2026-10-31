@@ -1,0 +1,103 @@
+WEBVTT
+
+1
+00:00:00.520 --> 00:00:03.490 line:88%
+Hello, I'm Haoqi Luo, a senior at UW Foster,
+
+2
+00:00:03.510 --> 00:00:07.791 line:88%
+studying Information Systems and
+Operations and Supply Chain Management.
+
+3
+00:00:08.061 --> 00:00:10.131 line:88%
+I have a 3.85 GPA,
+
+4
+00:00:10.151 --> 00:00:12.527 line:88%
+and I've made the Dean's List every quarter.
+
+5
+00:00:12.797 --> 00:00:18.167 line:88%
+In 2026, I worked at a trading company and
+a printing company back home in Zhejiang,
+
+6
+00:00:18.187 --> 00:00:21.788 line:88%
+and I kept running into the same problem:
+information was scattered.
+
+7
+00:00:22.058 --> 00:00:25.788 line:88%
+At Challenger Trading, one accurate quote
+could take me over ten minutes,
+
+8
+00:00:25.808 --> 00:00:28.368 line:88%
+because prices were split across old quotations,
+
+9
+00:00:28.388 --> 00:00:30.973 line:88%
+our website, and Alibaba product pages.
+
+10
+00:00:31.243 --> 00:00:34.338 line:88%
+So I taught myself to build an AI knowledge assistant.
+
+11
+00:00:34.308 --> 00:00:36.407 line:88%
+At first, its answers were often wrong.
+
+12
+00:00:36.377 --> 00:00:38.267 line:88%
+After testing different search methods,
+
+13
+00:00:38.287 --> 00:00:42.643 line:88%
+the right source showed up in its
+top three results 84% of the time.
+
+14
+00:00:42.613 --> 00:00:45.123 line:88%
+And when it isn't sure, it says so and shows the source,
+
+15
+00:00:45.143 --> 00:00:46.769 line:88%
+instead of guessing a price.
+
+16
+00:00:47.039 --> 00:00:50.089 line:88%
+I also wanted to practice on real supply chain data,
+
+17
+00:00:50.109 --> 00:00:54.299 line:88%
+so I analyzed 4.85 million public retail records.
+
+18
+00:00:54.269 --> 00:00:56.679 line:88%
+Stockouts showed up in 44% of them,
+
+19
+00:00:56.699 --> 00:00:59.539 line:88%
+and a simple forecast beat my more complex approach,
+
+20
+00:00:59.559 --> 00:01:01.221 line:88%
+so I kept the simple one.
+
+21
+00:01:01.491 --> 00:01:03.072 line:88%
+I build with AI tools.
+
+22
+00:01:03.042 --> 00:01:04.792 line:88%
+My part is choosing the right question,
+
+23
+00:01:04.812 --> 00:01:08.245 line:88%
+checking the numbers, and explaining
+what they mean for the business.
+
+24
+00:01:08.515 --> 00:01:11.051 line:88%
+I'm Haoqi Luo. Thanks for watching.
