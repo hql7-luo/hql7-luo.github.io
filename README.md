@@ -46,12 +46,12 @@ Personal facts were updated against the supplied English Resume in October 2026.
 5. AutoZone Workforce Optimization & Demand Forecasting: UW QMETH 450 team project, Sep–Dec 2025
 6. Gen Z Consumer Spending Analytics: UW IS 445 team project, Mar–Jun 2025
 
-Ten more projects sit in the "More projects" shelf, in this order: AI Talk vs. AI Results, AI Infrastructure Value Chain, Tariff-Era Sourcing Decision, Chinese Consumer Brands Going Global, NYC Rideshare Economics, LLM Selection & ROI, Customer Investigation Skill, Export Sales Intelligence, FengShui Layout Planner and What to Eat Today. ColorBox AI was removed from the site in October 2026; its source stays in its own repository. Detailed project descriptions preserve accurate information beyond the Resume.
+Ten more projects sit in the "More projects" shelf, in this order: Marketing Experimentation & Growth Strategy, AI Talk vs. AI Results, AI Infrastructure Value Chain, Chinese Consumer Brands Going Global, NYC Rideshare Economics, LLM Selection & ROI, Customer Investigation Skill, Export Sales Intelligence, FengShui Layout Planner and What to Eat Today. ColorBox AI was removed from the site in October 2026; its source stays in its own repository. Detailed project descriptions preserve accurate information beyond the Resume.
 
 - English and Chinese pages with persisted language preference
 - Experience, education, skills and contact sections
 - Both Resume download buttons follow the page language: English downloads `Haoqi_Luo_Resume_EN.pdf`, and Chinese downloads `Haoqi_Luo_Resume_ZH.pdf`. Switching languages updates the link, filename, label and accessible description immediately.
-- The English Resume is the owner's October 2026 PDF, copied byte for byte; the Chinese Resume is a one-page translation of the same facts. Their SHA-256 values are pinned in `assets/projects/marketing-experimentation-growth-strategy/manifest.json` (`protected_resume_sha256`), so any future replacement must update those values deliberately.
+- Both Resumes are the owner's November 2026 PDFs, copied byte for byte. Their SHA-256 values are pinned in `assets/projects/marketing-experimentation-growth-strategy/manifest.json` (`protected_resume_sha256`), so any future replacement must update those values deliberately.
 - GitHub and email contact links; LinkedIn is omitted until a verified profile URL is supplied
 - Responsive layouts, keyboard focus styles, reduced-motion support and mobile navigation
 - Shared navigation labels include the visible wordmark and localized name, and Resume download labels include the visible PDF wording in both languages
@@ -103,4 +103,4 @@ LLM Selection & ROI for Export Inquiries is a bilingual decision case in the sec
 
 The Supply Chain and RAG case pages use concise business questions, findings, actions and skills before detailed methods. AI tool use is stated once, in the homepage About section: Codex and Claude helped with much of the coding, research and writing, while the owner chose the questions, checked the numbers and decided what the results mean. Individual case pages no longer repeat this note.
 
-The linked Resume PDFs were replaced with the owner's October 2026 versions (English as supplied, Chinese translated from it); website case pages keep their own evaluation wording, and private internship work is not inferred from the public synthetic demo. No full-data risk rule, forecast, frozen RAG benchmark, formal demo behavior or realized financial outcome changed.
+The linked Resume PDFs are the owner's November 2026 versions, as supplied; website case pages keep their own evaluation wording, and private internship work is not inferred from the public synthetic demo. No full-data risk rule, forecast, frozen RAG benchmark, formal demo behavior or realized financial outcome changed.

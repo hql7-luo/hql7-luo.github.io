@@ -90,8 +90,8 @@
   "evidence_sha256": "b369a38c869213d06f20a1e8418e8ed3325dc0d430497f63e4623a4684abf471",
   "source_results_sha256": "e52c964d452471036c2e681daea277194652cb740e1573332f49429e139667d4",
   "protected_resume_sha256": {
-    "Haoqi_Luo_Resume_EN.pdf": "33deded8c67f1a6c7c2c90d705174759d6f51bce90d244b8a182018f9403bb41",
-    "Haoqi_Luo_Resume_ZH.pdf": "326532f1148e791faa883082e961b9eaffd0fe27a8389d7d2a679f0242373817"
+    "Haoqi_Luo_Resume_EN.pdf": "0298d8363729ec83ae0cad2b26ec5d8d96cf6d6418b81038c0c89be480a17433",
+    "Haoqi_Luo_Resume_ZH.pdf": "ef45217d01f38f0de09a788d69b84c24209a504daea3ba3e9fd039b6f7020581"
   },
   "source_commit": "4ee54130564414a15f85316b5807a16508492272"
 }
