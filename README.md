@@ -1,6 +1,6 @@
 # Haoqi Luo Portfolio
 
-Bilingual portfolio for a University of Washington Foster School of Business student, focused on business, data, AI and operations.
+Bilingual portfolio for a University of Washington Foster School of Business student, focused on business analytics, operations and applied AI.
 
 **Live site:** [https://hql7-luo.github.io/](https://hql7-luo.github.io/)
 
