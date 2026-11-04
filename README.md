@@ -52,7 +52,7 @@ Ten more projects sit in the "More projects" shelf, in this order: Marketing Exp
 - Experience, education, skills and contact sections
 - Both Resume download buttons follow the page language: English downloads `Haoqi_Luo_Resume_EN.pdf`, and Chinese downloads `Haoqi_Luo_Resume_ZH.pdf`. Switching languages updates the link, filename, label and accessible description immediately.
 - Both Resumes are the owner's November 2026 PDFs, copied byte for byte. Their SHA-256 values are pinned in `assets/projects/marketing-experimentation-growth-strategy/manifest.json` (`protected_resume_sha256`), so any future replacement must update those values deliberately.
-- GitHub and email contact links; LinkedIn is omitted until a verified profile URL is supplied
+- GitHub, LinkedIn (https://www.linkedin.com/in/haoqi-luo-40a6b2363/, supplied by the owner in November 2026) and email contact links
 - Responsive layouts, keyboard focus styles, reduced-motion support and mobile navigation
 - Shared navigation labels include the visible wordmark and localized name, and Resume download labels include the visible PDF wording in both languages
 - Canonical URLs, hreflang, page metadata, Open Graph fields and a local favicon
