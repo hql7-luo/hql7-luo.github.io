@@ -30,7 +30,7 @@ Edit these root files directly. There is no package manager, framework bundle, r
 The whole site uses one design system defined at the top of `style.css`: colors, native system fonts (SF Pro / PingFang on Apple, Segoe UI / Microsoft YaHei on Windows, a system monospace for labels; no web-font request), type scale, spacing, card radius, motion durations and breakpoints (1180 / 1000 / 900 / 760 / 640 px).
 
 - Homepage: a results board with three tabs (supply chain, LLM pricing analysis, knowledge assistant), three featured cards with Problem / What I did / Takeaway, team coursework rows with a slide thumbnail, and a "More projects" shelf. The shelf moves with drag, the arrow buttons, a trackpad's horizontal swipe or the keyboard arrows; the ordinary mouse wheel always scrolls the page.
-- Project pages: back link and position (n / 16), a business-first hero, an "On this page" menu, an image viewer (previous / next, zoom, Escape, focus return), and next / previous project links in homepage order. Analytics, AI-system and product cases use section orders suited to their content.
+- Project pages: back link and position (n / 17), a business-first hero, an "On this page" menu, an image viewer (previous / next, zoom, Escape, focus return), and next / previous project links in homepage order. Analytics, AI-system and product cases use section orders suited to their content.
 - `app.js` has three parts: shared behaviour, homepage interactions and project-page interactions. Language priority: a link's `?lang=` value, except after Back / Forward, where the visitor's latest choice wins; otherwise the stored choice, then the browser language.
 
 The ignored `portfolio-v2-demo/`, its generator and local staging/backups are historical files. They contain older content and assets and must not be used to regenerate or overwrite the current production files.
@@ -46,7 +46,7 @@ Personal facts were updated against the supplied English Resume in October 2026.
 5. AutoZone Workforce Optimization & Demand Forecasting: UW QMETH 450 team project, Sep–Dec 2025
 6. Gen Z Consumer Spending Analytics: UW IS 445 team project, Mar–Jun 2025
 
-Ten more projects sit in the "More projects" shelf, in this order: Marketing Experimentation & Growth Strategy, AI Talk vs. AI Results, AI Infrastructure Value Chain, Chinese Consumer Brands Going Global, NYC Rideshare Economics, LLM Selection & ROI, Customer Investigation Skill, Export Sales Intelligence, FengShui Layout Planner and What to Eat Today. ColorBox AI was removed from the site in October 2026; its source stays in its own repository. Detailed project descriptions preserve accurate information beyond the Resume.
+Eleven more projects sit in the "More projects" shelf, in this order: Demand Forecast + Replenishment LP, Marketing Experimentation & Growth Strategy, AI Talk vs. AI Results, AI Infrastructure Value Chain, Chinese Consumer Brands Going Global, NYC Rideshare Economics, LLM Selection & ROI, Customer Investigation Skill, Export Sales Intelligence, FengShui Layout Planner and What to Eat Today. ColorBox AI was removed from the site in October 2026; its source stays in its own repository. Detailed project descriptions preserve accurate information beyond the Resume.
 
 - English and Chinese pages with persisted language preference
 - Experience, education, skills and contact sections
@@ -67,6 +67,8 @@ Supply Chain Decision Intelligence uses the public FreshRetailNet-50K dataset fr
 
 The public [200-series interactive explorer](https://hql7-luo.github.io/demos/supply-chain/) is a separate, nonrepresentative real-data subset: 19,400 observations across 97 days. Its own KPIs are explicitly scoped to that cohort. Static Plotly charts, Top 20/50 queues, forecast inspection and CSV/PNG downloads require no visitor login or Python. The complete six-tab Streamlit app, including planning scenarios, retains local launch instructions in the analytics repository. Rebuild with `scripts/build_web_demo.py` in that repository; the Plotly runtime is served locally under MIT and the source-data adaptation retains CC BY 4.0.
 
+Demand Forecast + Replenishment LP (independent project, Nov 2026) uses real M5 competition data (Walmart store CA_1, 50 FOODS_3 items, May 2014 to May 2016). It compares six daily forecasts and three ordering policies on the last 84 days under shared delivery and storage limits; costs and limits are labeled assumptions, and the order-up-to rules' service targets were picked with hindsight. The case states where the LP did not win. Figures are copied unchanged from [hql7-luo/demand-forecast-inventory-optimization](https://github.com/hql7-luo/demand-forecast-inventory-optimization); provenance and hashes are in `assets/projects/demand-forecast-inventory-optimization/SOURCES.md`.
+
 Customer Investigation Skill now has a bilingual case study in the secondary builds section. Its two visual concepts show the implemented investigation workflow and a source-derived fictional Aurora report summary with actual score dimensions. No public web demo or real customer result is claimed. Both language pairs are copied unchanged from the MIT-licensed skill repository; hashes and sources are retained under `assets/projects/foreign-customer-investigation/`.
 
 ## Local preview and validation
@@ -77,7 +79,7 @@ From the repository root:
 python3 -m http.server 8000
 ```
 
-Open [http://localhost:8000/](http://localhost:8000/). Use `?lang=en` or `?lang=zh` to check either language. Verify the homepage and all sixteen project pages at desktop, tablet and mobile widths; test navigation, language switching, reduced motion, image dialogs, local assets, links and both Resume PDF downloads. Switch English → Chinese → English and confirm each Resume button's destination, download filename and label. Check key dates and statistics against the latest Resume before future updates.
+Open [http://localhost:8000/](http://localhost:8000/). Use `?lang=en` or `?lang=zh` to check either language. Verify the homepage and all seventeen project pages at desktop, tablet and mobile widths; test navigation, language switching, reduced motion, image dialogs, local assets, links and both Resume PDF downloads. Switch English → Chinese → English and confirm each Resume button's destination, download filename and label. Check key dates and statistics against the latest Resume before future updates.
 
 Changes to these local files do not update the public site until they are committed and pushed to the configured GitHub Pages branch.
 
