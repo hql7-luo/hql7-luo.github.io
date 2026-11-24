@@ -57,7 +57,7 @@ for (const [name, expected] of Object.entries(manifest.visual_sha256)) {
 const total = Object.values(manifest.dimensions).reduce((sum, d) => sum + d.score, 0) + manifest.risk_deduction;
 assert(total === manifest.total_score && total === 97 && manifest.grade === 'A', 'Fictional Aurora fixture does not reconcile');
 assert(manifest.fictional_notice.includes('FICTIONAL'), 'Missing fictional notice');
-for (const folder of ['b2b-export-sales', 'foreign-trade-enterprise-rag', 'what-to-eat-today']) {
+for (const folder of ['b2b-export-sales', 'foreign-trade-enterprise-rag', 'what-to-eat-today', 'cut-log']) {
  const directory = join(root, 'assets/projects', folder);
  const hashes = JSON.parse(readFileSync(join(directory, 'visual-hashes.json')));
  for (const [name, record] of Object.entries(hashes)) {

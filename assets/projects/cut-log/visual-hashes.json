@@ -1,0 +1,92 @@
+{
+  "overview-en.webp": {
+    "source": "capture of https://hql7-luo.github.io/demos/cut-log/?lang=en: Today view, 1440 x 960 viewport at 2x, saved at 2160 x 1440",
+    "size": [
+      2160,
+      1440
+    ],
+    "sha256": "67ec57ea6f949a7c83cf661565583db7410708c2dec54020dbcad3bc1710f894",
+    "bytes": 111994
+  },
+  "overview-zh.webp": {
+    "source": "capture of https://hql7-luo.github.io/demos/cut-log/?lang=zh: Today view, 1440 x 960 viewport at 2x, saved at 2160 x 1440",
+    "size": [
+      2160,
+      1440
+    ],
+    "sha256": "60d91d09e0c7877cbbd21c8833c3509a13e5d5a2c2383a08be07e2aa4e437f41",
+    "bytes": 94066
+  },
+  "card-en.webp": {
+    "source": "capture of https://hql7-luo.github.io/demos/cut-log/?lang=en: the overview capture at 1440 x 960",
+    "size": [
+      1440,
+      960
+    ],
+    "sha256": "a58d6d02a710ccac50d62c01277b01dce813e1bd540aac5ae578320b4119754c",
+    "bytes": 65618
+  },
+  "card-zh.webp": {
+    "source": "capture of https://hql7-luo.github.io/demos/cut-log/?lang=zh: the overview capture at 1440 x 960",
+    "size": [
+      1440,
+      960
+    ],
+    "sha256": "b56ba72e536a246caa7afcdf491b10642e8eca645d57256634841f8fac455ab2",
+    "bytes": 54688
+  },
+  "phone-en.webp": {
+    "source": "capture of https://hql7-luo.github.io/demos/cut-log/?lang=en: Today view, 390 x 844 viewport at 2x",
+    "size": [
+      780,
+      1688
+    ],
+    "sha256": "474ad73504754e78d370bd8184ee8cd99d8026c8aa215cda2490e2054761de47",
+    "bytes": 65720
+  },
+  "phone-zh.webp": {
+    "source": "capture of https://hql7-luo.github.io/demos/cut-log/?lang=zh: Today view, 390 x 844 viewport at 2x",
+    "size": [
+      780,
+      1688
+    ],
+    "sha256": "7e7b519c8fab8c491bec23f8c0e1c50fdfaabb8b4c957e8c3b1cb96577fdcd48",
+    "bytes": 57440
+  },
+  "log-en.webp": {
+    "source": "capture of https://hql7-luo.github.io/demos/cut-log/?lang=en: Log Food dialog after Parse and preview; nothing saved",
+    "size": [
+      1320,
+      1384
+    ],
+    "sha256": "171f8f3615cea6b7829c89fe746d6f7f2cc9b2de0850982cfa7ce215539a1835",
+    "bytes": 57142
+  },
+  "log-zh.webp": {
+    "source": "capture of https://hql7-luo.github.io/demos/cut-log/?lang=zh: Log Food dialog after Parse and preview; nothing saved",
+    "size": [
+      1320,
+      1388
+    ],
+    "sha256": "eebc529d90b8b52bcef542350e07e58538da86f3ee8f9d89d1eab2467322d020",
+    "bytes": 51138
+  },
+  "progress-en.webp": {
+    "source": "capture of https://hql7-luo.github.io/demos/cut-log/?lang=en: Weight Change card in Progress, 30-day range",
+    "size": [
+      2304,
+      1092
+    ],
+    "sha256": "3faf8aa303de1f068396e928656b78116f1b53e4f1d884d409308d8494b49346",
+    "bytes": 62484
+  },
+  "progress-zh.webp": {
+    "source": "capture of https://hql7-luo.github.io/demos/cut-log/?lang=zh: Weight Change card in Progress, 30-day range",
+    "size": [
+      2304,
+      1092
+    ],
+    "sha256": "fcb154b041c50ee2ec5aa45f04e39948d6365cf32e4d7924a67bb06bb87a3636",
+    "bytes": 54134
+  }
+}

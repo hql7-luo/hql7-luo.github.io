@@ -30,7 +30,7 @@ Edit these root files directly. There is no package manager, framework bundle, r
 The whole site uses one design system defined at the top of `style.css`: colors, native system fonts (SF Pro / PingFang on Apple, Segoe UI / Microsoft YaHei on Windows, a system monospace for labels; no web-font request), type scale, spacing, card radius, motion durations and breakpoints (1180 / 1000 / 900 / 760 / 640 px).
 
 - Homepage: a results board with three tabs (supply chain, LLM pricing analysis, knowledge assistant), three featured cards with Problem / What I did / Takeaway, team coursework rows with a slide thumbnail, and a "More projects" shelf. The shelf moves with drag, the arrow buttons, a trackpad's horizontal swipe or the keyboard arrows; the ordinary mouse wheel always scrolls the page.
-- Project pages: back link and position (n / 17), a business-first hero, an "On this page" menu, an image viewer (previous / next, zoom, Escape, focus return), and next / previous project links in homepage order. Analytics, AI-system and product cases use section orders suited to their content.
+- Project pages: back link and position (n / 18), a business-first hero, an "On this page" menu, an image viewer (previous / next, zoom, Escape, focus return), and next / previous project links in homepage order. Analytics, AI-system and product cases use section orders suited to their content.
 - `app.js` has three parts: shared behaviour, homepage interactions and project-page interactions. Language priority: a link's `?lang=` value, except after Back / Forward, where the visitor's latest choice wins; otherwise the stored choice, then the browser language.
 
 The ignored `portfolio-v2-demo/`, its generator and local staging/backups are historical files. They contain older content and assets and must not be used to regenerate or overwrite the current production files.
@@ -46,7 +46,7 @@ Personal facts were updated against the supplied English Resume in October 2026.
 5. AutoZone Workforce Optimization & Demand Forecasting: UW QMETH 450 team project, Sep–Dec 2025
 6. Gen Z Consumer Spending Analytics: UW IS 445 team project, Mar–Jun 2025
 
-Eleven more projects sit in the "More projects" shelf, in this order: Supply Chain Decision Intelligence, Marketing Experimentation & Growth Strategy, AI Talk vs. AI Results, AI Infrastructure Value Chain, Chinese Consumer Brands Going Global, NYC Rideshare Economics, LLM Selection & ROI, Customer Investigation Skill, Export Sales Intelligence, FengShui Layout Planner and What to Eat Today. ColorBox AI was removed from the site in October 2026; its source stays in its own repository. Detailed project descriptions preserve accurate information beyond the Resume.
+Twelve more projects sit in the "More projects" shelf, in this order: Supply Chain Decision Intelligence, Marketing Experimentation & Growth Strategy, AI Talk vs. AI Results, AI Infrastructure Value Chain, Chinese Consumer Brands Going Global, NYC Rideshare Economics, LLM Selection & ROI, Customer Investigation Skill, Export Sales Intelligence, FengShui Layout Planner, What to Eat Today and Cut Log. ColorBox AI was removed from the site in October 2026; its source stays in its own repository. Detailed project descriptions preserve accurate information beyond the Resume.
 
 - English and Chinese pages with persisted language preference
 - Experience, education, skills and contact sections
@@ -71,6 +71,8 @@ Demand Forecast + Replenishment LP (independent project, Nov 2026) uses real M5 
 
 The [replenishment live demo](https://hql7-luo.github.io/demos/replenishment/) is copied unchanged from `web_demo/` in [hql7-luo/demand-forecast-inventory-optimization](https://github.com/hql7-luo/demand-forecast-inventory-optimization) at commit `7da8707` (rebuild with `scripts/build_web_demo.py --out <site>/demos/replenishment` there). It re-solves the project's LP in the browser with highs-js 1.16.0 (MIT, served locally under `demos/replenishment/vendor/`) for 83 real test evenings, and replays the next 7 days on real sales against the order-up-to rule. The page is bilingual (`?lang=en` / `?lang=zh`, and it follows the site's stored language). `node scripts/check-replenishment-demo.mjs` checks the file hashes in its manifest and that the browser LP reaches the same optimal cost as Python on six evenings.
 
+The [Cut Log live demo](https://hql7-luo.github.io/demos/cut-log/) is the single-file offline build (`npm run build:demo`) of [hql7-luo/cut-log-bilingual](https://github.com/hql7-luo/cut-log-bilingual) at commit `2fa7c31`, with a canonical link, a description and one language line added to its head (see `assets/projects/cut-log/SOURCES.md`). It runs entirely in the browser with sample records, makes no network requests, and opens in the site's stored language unless the link sets `?lang=`.
+
 Customer Investigation Skill now has a bilingual case study in the secondary builds section. Its two visual concepts show the implemented investigation workflow and a source-derived fictional Aurora report summary with actual score dimensions. No public web demo or real customer result is claimed. Both language pairs are copied unchanged from the MIT-licensed skill repository; hashes and sources are retained under `assets/projects/foreign-customer-investigation/`.
 
 ## Local preview and validation
@@ -81,13 +83,13 @@ From the repository root:
 python3 -m http.server 8000
 ```
 
-Open [http://localhost:8000/](http://localhost:8000/). Use `?lang=en` or `?lang=zh` to check either language. Verify the homepage and all seventeen project pages at desktop, tablet and mobile widths; test navigation, language switching, reduced motion, image dialogs, local assets, links and both Resume PDF downloads. Switch English → Chinese → English and confirm each Resume button's destination, download filename and label. Check key dates and statistics against the latest Resume before future updates.
+Open [http://localhost:8000/](http://localhost:8000/). Use `?lang=en` or `?lang=zh` to check either language. Verify the homepage and all eighteen project pages at desktop, tablet and mobile widths; test navigation, language switching, reduced motion, image dialogs, local assets, links and both Resume PDF downloads. Switch English → Chinese → English and confirm each Resume button's destination, download filename and label. Check key dates and statistics against the latest Resume before future updates.
 
 Changes to these local files do not update the public site until they are committed and pushed to the configured GitHub Pages branch.
 
 Search discovery uses `robots.txt` and `sitemap.xml`. Run `node scripts/check-site-navigation.mjs` after adding or renaming a page; CI checks canonical routes, every local link and fragment, and complete sitemap coverage (including the supply-chain explorer).
 
-Bilingual HTML, local and responsive image references, selected visual hashes and image-size limits are checked with `node scripts/check-portfolio-pages.mjs`. B2B, meal-decision and knowledge-governance cases reuse their actual source-project visuals, with provenance in each assets folder. Image dialogs preserve the currently selected mobile image and allow detail inspection.
+Bilingual HTML, local and responsive image references, selected visual hashes and image-size limits are checked with `node scripts/check-portfolio-pages.mjs`. B2B, meal-decision and knowledge-governance cases reuse their actual source-project visuals, and the Cut Log case uses captures of its hosted demo, with provenance in each assets folder. Image dialogs preserve the currently selected mobile image and allow detail inspection.
 
 Supply-chain publication checks run in CI: `node --check demos/supply-chain/demo.js` and `node scripts/check-supply-chain.mjs`. These reconcile the 200-series payload and KPIs, holdout/future forecast splits, bilingual case keys, and chart image hashes.
 
