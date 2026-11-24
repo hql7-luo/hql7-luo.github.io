@@ -71,6 +71,7 @@
       else if (el.tagName === 'TITLE') el.textContent = strip(value);
       else el.innerHTML = value;
     });
+    document.querySelectorAll('source[data-srcset-en]').forEach(s => { s.srcset = s.dataset[next === 'zh' ? 'srcsetZh' : 'srcsetEn']; });
     document.querySelectorAll('img[data-src-en]').forEach(img => { img.src = img.dataset[next === 'zh' ? 'srcZh' : 'srcEn']; });
     document.querySelectorAll('[data-bg-en][data-bg-ready]').forEach(paintBackground);
     document.querySelectorAll('a[data-case]').forEach(a => { a.href = withLang(`${siteRoot}projects/${a.dataset.case}.html`, next); });

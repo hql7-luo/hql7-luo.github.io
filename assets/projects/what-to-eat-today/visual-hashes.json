@@ -22,5 +22,35 @@
     "source_sha256": "de57ebc61a60d27ab95f21a58023ca9320a352addcd066ac7ebfd4e03d435282",
     "sha256": "848b95b74ed817b619151846569065a8333838a61d8d5844e59797afce28cb3f",
     "bytes": 100700
+  },
+  "walkthrough-en.webp": {
+    "source_repository_path": "what-to-eat-today/public/screenshots/walkthrough-en.webp",
+    "source_sha256": "a196c4058e173685d22d5cf613d7de11c8a48043f991a94366710eab5b5c835a",
+    "sha256": "a196c4058e173685d22d5cf613d7de11c8a48043f991a94366710eab5b5c835a",
+    "bytes": 155976
+  },
+  "walkthrough-mobile-en.webp": {
+    "source_repository_path": "what-to-eat-today/public/screenshots/walkthrough-mobile-en.webp",
+    "source_sha256": "724ce06ac6b0acc0452c5e040548509601953735441c5d015672d5fc0ddc36d2",
+    "sha256": "724ce06ac6b0acc0452c5e040548509601953735441c5d015672d5fc0ddc36d2",
+    "bytes": 149102
+  },
+  "result-en.webp": {
+    "source_repository_path": "what-to-eat-today/public/screenshots/source/en/04-result.webp",
+    "crop": [
+      87,
+      50,
+      1113,
+      752
+    ],
+    "source_sha256": "cfc4191ee0cc8567efb7a5a96ab53df43e1395503e3873bea0f891768ebaa3d9",
+    "sha256": "0531ef96f5fd7f737ff8ebe9eefbecc365c69905c52122ab9f9a7e1e6f222cc5",
+    "bytes": 89070
+  },
+  "home-en.webp": {
+    "source_repository_path": "what-to-eat-today/public/screenshots/source/en/00-home.webp",
+    "source_sha256": "034fac7d3ef28fdd44fcc4a44f75d11abea4aa78a4d26ad79ee4c5f9c0c8f3f5",
+    "sha256": "034fac7d3ef28fdd44fcc4a44f75d11abea4aa78a4d26ad79ee4c5f9c0c8f3f5",
+    "bytes": 73762
   }
 }

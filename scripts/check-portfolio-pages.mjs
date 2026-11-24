@@ -23,13 +23,19 @@ for (const file of pages) {
  const en = Object.keys(dictionary.en).sort();
  const zh = Object.keys(dictionary.zh).sort();
  assert(JSON.stringify(en) === JSON.stringify(zh), `${file}: bilingual key mismatch`);
- for (const [, attr, value] of html.matchAll(/\b(src|href|data-src-en|data-src-zh|data-bg-en|data-bg-zh)="([^"]+)"/g)) {
+ for (const [, attr, value] of html.matchAll(/\b(src|href|data-src-en|data-src-zh|data-srcset-en|data-srcset-zh|data-bg-en|data-bg-zh)="([^"]+)"/g)) {
   if (/^(https?:|mailto:|data:|#)/.test(value)) continue;
   const clean = decodeURIComponent(value.split(/[?#]/)[0]);
   const target = resolve(dirname(join(root, file)), clean);
   assert(target.startsWith(root), `${file}: asset escapes site root`);
   assert(existsSync(target), `${file}: missing ${attr} ${value}`);
   if (attr === 'src') images++;
+ }
+ // A language-specific image needs both versions.
+ for (const [tag] of html.matchAll(/<(?:img|source|span)\b[^>]*\bdata-(?:src|srcset|bg)-(?:en|zh)=[^>]*>/g)) {
+  for (const kind of ['src', 'srcset', 'bg']) {
+   assert(tag.includes(`data-${kind}-en=`) === tag.includes(`data-${kind}-zh=`), `${file}: data-${kind} needs both en and zh: ${tag.slice(0, 120)}`);
+  }
  }
  // Validate every responsive image candidate, not only the desktop fallback.
  for (const [, value] of html.matchAll(/\bsrcset="([^"]+)"/g)) {
