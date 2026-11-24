@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Re-plan tonight's orders for 50 Walmart grocery items with a linear program that runs in your browser, then replay the next week on real sales."><title>Live Demo · Demand Forecast + Replenishment LP</title><link rel="canonical" href="https://hql7-luo.github.io/demos/replenishment/"><link rel="icon" href="../../assets/meta/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="demo.css"><script defer src="vendor/highs.js"></script><script defer src="model.js"></script><script defer src="demo.js"></script></head>
+<body><main>
+<header><a href="../../projects/demand-forecast-inventory-optimization.html" id="case-link" data-t="back">← Project case study</a><button id="language" type="button" lang="zh-CN">中文</button></header>
+<p class="eyebrow" data-t="eyebrow">SUPPLY CHAIN · LIVE OPTIMIZATION DEMO</p>
+<h1 data-t="title">Re-plan tonight's orders for 50 grocery items, right in your browser.</h1>
+<div class="scope"><strong data-t="scope">Walmart store CA_1 · 50 FOODS_3 items · 83 evenings, Feb 29 to May 21, 2016</strong><p data-t="boundary">Sales and shelf prices are real (M5 data). Costs and the delivery and storage limits are assumptions. Stock on hand and orders in transit on each evening come from the project's 84-day LP backtest.</p></div>
+<p data-t="intro">Pick an evening and set the store's limits. A linear program (the HiGHS solver, compiled to WebAssembly) plans the next six evenings of orders for every item. Then replay the next 7 days on actual sales and compare it with a standard order-up-to rule.</p>
+<nav class="section-nav" aria-label="Demo sections"><a href="#plan" data-t="planNav">Tonight's plan</a><a href="#replay" data-t="replayNav">Replay a week</a><a href="#backtest" data-t="backtestNav">84-day results</a><a href="#source" data-t="sourceNav">How it works</a></nav>
+
+<section id="plan">
+<p class="eyebrow" data-t="s1">01 · PLAN</p><h2 data-t="planTitle">Tonight's plan</h2>
+<div class="controls">
+<label><span data-t="evening">Evening</span><select id="evening" disabled></select></label>
+<label><span data-t="delivery">Delivery limit, × average daily demand</span><span class="range"><input id="delivery" type="range" min="0.8" max="1.6" step="0.05" value="1.05" disabled><output id="delivery-out">1.05×</output></span></label>
+<label><span data-t="storage">Storage limit, days of average demand</span><span class="range"><input id="storage" type="range" min="2" max="5" step="0.25" value="3" disabled><output id="storage-out">3.00</output></span></label>
+</div>
+<div class="presets" role="group" aria-label="Scenarios"><span data-t="presets">Scenarios:</span><button type="button" data-preset="1.05,3" data-t="presetBase" disabled>Base limits</button><button type="button" data-preset="0.95,3" data-t="presetTightDelivery" disabled>Tight deliveries (0.95×)</button><button type="button" data-preset="1.05,2.5" data-t="presetTightStorage" disabled>Tight storage (2.5 days)</button><button type="button" data-preset="1.3,3" data-t="presetLoose" disabled>Spare deliveries (1.30×)</button></div>
+<div class="kpis" id="kpis" aria-live="polite"><p data-t="loading">Loading the solver (4 MB) and the data…</p></div>
+<figure class="chart"><figcaption data-t="chartTitle">Orders planned for each evening, all 50 items</figcaption><div id="plan-chart" class="svg-wrap"></div><p class="note" data-t="chartNote">Only tonight's orders are placed. Tomorrow evening the plan is solved again with the new sales. An order arrives two days later, so each bar is compared with the forecast demand on its arrival day.</p></figure>
+<h3 data-t="tableTitle">Where the LP and the rule disagree tonight</h3>
+<p class="note" data-t="tableNote">Items sorted by the gap between the two orders. The rule orders up to the 2-day forecast plus a 99.9% buffer (its best target in the backtest) and cuts every item by the same share when the truck or the space is full.</p>
+<div class="table-scroll"><table><thead><tr><th data-t="item">Item</th><th data-t="margin">Margin / unit</th><th data-t="onHand">On hand tonight</th><th data-t="arriving">Arriving tomorrow</th><th data-t="forecast2">Forecast, next 2 days</th><th data-t="lpOrder">LP order tonight</th><th data-t="ruleOrder">Rule order tonight</th><th data-t="actual2">Actual sales, next 2 days</th></tr></thead><tbody id="items"></tbody></table></div>
+<button id="show-all" type="button" data-t="showAll" disabled>Show all 50 items</button>
+</section>
+
+<section id="replay">
+<p class="eyebrow" data-t="s2">02 · REPLAY</p><h2 data-t="replayTitle">Replay the next 7 days on real sales</h2>
+<p data-t="replayIntro">Both policies start from tonight's stock, face the same actual sales and the limits you set, and order every evening. The LP is solved again each evening.</p>
+<button id="run-replay" class="primary" type="button" data-t="runReplay" disabled>Replay 7 days</button>
+<div id="replay-out" aria-live="polite"></div>
+<p class="note" id="weekly-note"></p>
+<p class="note" data-t="replayNote">A single week is noisy, and the rule wins some weeks. The 84-day backtest below is the fair comparison.</p>
+</section>
+
+<section id="backtest">
+<p class="eyebrow" data-t="s3">03 · BACKTEST</p><h2 data-t="backtestTitle">84-day backtest results</h2>
+<p data-t="backtestIntro">Each rule uses its lowest-cost service target, picked after seeing the test window (its best case). The LP has nothing to tune.</p>
+<div class="table-scroll"><table id="headline"></table></div>
+<h3 data-t="capacityTitle">Total cost as the limits change</h3>
+<div class="table-scroll"><table id="capacity"></table></div>
+</section>
+
+<section id="source"><h2 data-t="sourceTitle">How it works, and its limits</h2>
+<ul><li data-t="how1">Forecast: Holt-Winters (damped trend, weekly season), refit every evening on the last 364 days. Its daily error is 33.8%, against 39.4% for a 7-day moving average.</li><li data-t="how2">Plan: one linear program for all 50 items over 7 days. It pays the lost margin on forecast demand it cannot meet and on the shortage expected from forecast error (a piecewise-linear normal loss curve), plus holding and $0.10 for each delivered unit that does not fit.</li><li data-t="how3">Limits: units delivered per day, and units on hand after a delivery, shared by all items.</li><li data-t="how4">The same model runs in Python in the project. On six test evenings the browser and Python reach the same optimal cost.</li><li data-t="how5">Recorded sales stand in for demand, and they understate it when an item was out of stock. Costs and limits are assumptions.</li></ul>
+<p><a href="https://github.com/hql7-luo/demand-forecast-inventory-optimization" data-t="github">Code, data and full results on GitHub ↗</a></p></section>
+<footer data-t="footer">Independent portfolio project. The solver runs entirely in your browser; nothing is sent to a server.</footer>
+</main></body></html>

@@ -9,7 +9,8 @@ const origin = 'https://hql7-luo.github.io';
 const projectSites = new Set(['china-brands-going-global', 'llm-selection-roi',
   'rideshare-platform-economics', 'tariff-sourcing-decision', 'what-to-eat-today']);
 const pages = ['index.html', ...readdirSync(resolve(root, 'projects'))
-  .filter(file => file.endsWith('.html')).map(file => `projects/${file}`), 'demos/supply-chain/index.html'];
+  .filter(file => file.endsWith('.html')).map(file => `projects/${file}`), 'demos/supply-chain/index.html',
+  'demos/replenishment/index.html'];
 const assert = (ok, message) => { if (!ok) throw new Error(message); };
 const read = file => readFileSync(resolve(root, file), 'utf8');
 const route = file => '/' + file.replace(/index\.html$/, '');
