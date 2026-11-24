@@ -1,15 +1,15 @@
 {
   "walkthrough.webp": {
     "source_repository_path": "what-to-eat-today/public/screenshots/walkthrough.webp",
-    "source_sha256": "6a6b151216a92f5f2c024f78a61315e0ac9af640da5691b1e8203162803c1f82",
-    "sha256": "6a6b151216a92f5f2c024f78a61315e0ac9af640da5691b1e8203162803c1f82",
-    "bytes": 159660
+    "source_sha256": "19a5eaf1606fb77d75c944acf92c86b84121a1ea81491ee0d7ed4bdf8e997f1c",
+    "sha256": "19a5eaf1606fb77d75c944acf92c86b84121a1ea81491ee0d7ed4bdf8e997f1c",
+    "bytes": 158984
   },
   "walkthrough-mobile.webp": {
     "source_repository_path": "what-to-eat-today/public/screenshots/walkthrough-mobile.webp",
-    "source_sha256": "dda399beb56aadc1c0e49c74700240983ed5c2fc22807656613af34f114bba31",
-    "sha256": "dda399beb56aadc1c0e49c74700240983ed5c2fc22807656613af34f114bba31",
-    "bytes": 150324
+    "source_sha256": "d820f772f5cefbfd93b868af99e7e3b706b8b0e67c120f110c0b3cbcb86a2f0b",
+    "sha256": "d820f772f5cefbfd93b868af99e7e3b706b8b0e67c120f110c0b3cbcb86a2f0b",
+    "bytes": 150840
   },
   "result.webp": {
     "source_repository_path": "what-to-eat-today/public/screenshots/source/04-result.webp",

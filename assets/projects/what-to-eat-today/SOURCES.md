@@ -18,6 +18,11 @@ AI artwork, not real restaurant photography. No ML, nearby-restaurant data, orde
 or measured user improvement is claimed. See source `provenance.json` and the
 Pillow combination script for dimensions, capture details and regeneration.
 
+Update (2026-11-24): the draw step (panel 2) of `walkthrough.webp` and `walkthrough-mobile.webp` now
+uses a recapture of the Chinese draw page made after the source app fixed its card text color
+(source commit f567064); the original capture had hidden the dish names and prices. Both files are
+still unchanged copies of the source repository's files.
+
 English versions: `walkthrough-en.webp`, `walkthrough-mobile-en.webp` and
 `home-en.webp` are unchanged copies of `public/screenshots/walkthrough-en.webp`,
 `walkthrough-mobile-en.webp` and `source/en/00-home.webp` from the source repository.
