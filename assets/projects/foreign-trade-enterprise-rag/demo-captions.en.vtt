@@ -1,0 +1,55 @@
+WEBVTT
+
+NOTE Scene captions for the silent demo recording, timed from docs/demo/recording_runbook.md in hql7-luo/foreign-trade-enterprise-rag. Fictional Northstar data.
+
+1
+00:00.000 --> 00:07.000
+Login screen. Credentials are entered off camera.
+
+2
+00:07.000 --> 00:13.000
+The employee workspace: Northstar's internal Knowledge Desk.
+
+3
+00:13.000 --> 00:29.000
+Asked about NSTR-VESSEL-731, the assistant answers steel, 500 ml and MOQ 144 units, each with a source.
+
+4
+00:29.000 --> 00:43.000
+Opening a citation shows the catalog file, row, SKU and a short excerpt.
+
+5
+00:43.000 --> 00:58.000
+The lantern's current lead time is not in the approved data, so the answer says it is unverified.
+
+6
+00:58.000 --> 01:15.000
+Historical payment terms and Incoterms are shown as dated records, not as current policy.
+
+7
+01:15.000 --> 01:25.000
+The admin stages a proposed update from a synthetic CSV. It becomes a review item, not a fact.
+
+8
+01:25.000 --> 01:39.000
+The reviewer compares 144 and 180 units with their sources and adds a note.
+
+9
+01:39.000 --> 01:48.000
+The change is approved.
+
+10
+01:48.000 --> 02:03.000
+Product Master history: 180 is now approved, and 144 is kept as the prior value.
+
+11
+02:03.000 --> 02:09.000
+The admin refreshes the search index, and the job completes.
+
+12
+02:09.000 --> 02:24.000
+Asked again, the assistant now answers 180 units.
+
+13
+02:24.000 --> 02:35.620
+The citation points to the approved change, and its excerpt shows the same 180.

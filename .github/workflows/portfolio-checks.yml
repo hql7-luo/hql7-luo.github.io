@@ -20,6 +20,7 @@ jobs:
           node --check assets/projects/ai-hype-vs-performance/explorer.js
           node --check demos/replenishment/demo.js
           node --check demos/replenishment/model.js
+          node --check assets/projects/foreign-trade-enterprise-rag/review-flow.js
       - name: Verify published analytics and bilingual assets
         run: node scripts/check-supply-chain.mjs
       - name: Verify bilingual project pages and visual references

@@ -67,3 +67,11 @@ extractive. Reported metrics remain deterministic hash + BM25/RRF results from
 small internal synthetic evaluations; they are not neural quality, enterprise
 answer accuracy or measured ROI. AI tool use across projects is stated once in
 the homepage About section.
+
+Review flow and captions (added 2026-11-24): `review-flow.js` lets visitors stage the
+fictional MOQ update, approve or reject it, and refresh the index. Values, file names, the
+question and the reviewer note come from `data/demo/` and `docs/demo_script.md` in the
+source repository; the screens are the existing `governance-stage-0*.png` crops. The
+recording shows only the approval path, so the rejection path reuses the step 1 screen and
+says so. `demo-captions.en.vtt` and `demo-captions.zh.vtt` are scene captions for the silent
+recording, timed from `docs/demo/recording_runbook.md`.
