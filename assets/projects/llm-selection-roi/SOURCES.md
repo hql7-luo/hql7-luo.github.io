@@ -8,7 +8,10 @@ Data: 100 fictional inquiries with an answer key, model replies kept unchanged i
 | --- | ---: | --- |
 | 1_cost_vs_labor.png | 200888 | `387521be79a9d92cf23856e6c893fadda0fd2a5543ee37be189bc3703df660bb` |
 | 2_breakeven.png | 284652 | `a168ecdaced09d140ea944202feb52db1c53fef40701ad16dc18094193611547` |
+| 2_breakeven.webp | 85440 | `c1ce73c591b65e2973270fdd056d7baa6df5cd4a9dbd35a237247e71fc340e81` |
 | 4_sensitivity.png | 237938 | `118689e36e9f661f26cd5d1bc09f8a8ca4916e2010bb0714f32c3d88a5d103cb` |
 | 5_measured.png | 235741 | `d053881cf918ac97aa481670ce2c05d727c9ccc2c36c23faec1a381a44ddfaf4` |
 | calculator-en.webp | 55512 | `96dc0fbd6933a20bea887377bd57791d00fa3781644a7b705d5d763b479f1900` |
 | calculator-zh.webp | 46586 | `40b7b4a980473c22599cf8e7dd52a4dbc6b91859854b1a9afcb66d7bb2cc43d6` |
+
+`2_breakeven.webp` is a lossless WebP re-encoding of `2_breakeven.png` (decoded pixels identical, 70% smaller). The case page shows the WebP; the PNG is the unchanged copy listed above.

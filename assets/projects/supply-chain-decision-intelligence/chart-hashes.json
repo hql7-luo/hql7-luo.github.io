@@ -17,5 +17,13 @@
     "source_findings_copy": "full-data-findings.json",
     "width": 840,
     "height": 1670
+  },
+  "webp_lossless": {
+    "stockout-risk-matrix.webp": {
+      "from": "stockout-risk-matrix.png",
+      "sha256": "61fc501dec44be501297c0f89155f21ce17c09323ddeb83cb2f6ac114151fe51",
+      "bytes": 264854,
+      "note": "Lossless WebP re-encoding; decoded pixels are identical to the PNG. The case page shows this file."
+    }
   }
 }

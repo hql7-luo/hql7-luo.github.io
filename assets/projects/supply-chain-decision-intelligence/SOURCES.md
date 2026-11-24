@@ -20,7 +20,7 @@ The five analysis charts are generated from the verified **full FreshRetailNet-5
 
 Sales use the source's globally normalized scale. No conversion into physical units or revenue is possible from the available fields. No actual inventory, supplier, procurement-cost or realized-savings claims are made. The demonstration subset contains 19,400 real source observations / 200 series and is not population-representative; its metrics must not be presented as full-data conclusions.
 
-The PNG files are copied byte-for-byte from the analysis repository's `docs/assets/` outputs. `chart-hashes.json` records their SHA-256 hashes for cross-repository verification.
+The PNG files are copied byte-for-byte from the analysis repository's `docs/assets/` outputs. `chart-hashes.json` records their SHA-256 hashes for cross-repository verification. The case page shows `stockout-risk-matrix.webp`, a lossless WebP re-encoding of `stockout-risk-matrix.png` (decoded pixels identical, 53% smaller); its hash is under `webp_lossless` in the same file.
 
 ## Business overview added October 8, 2026
 

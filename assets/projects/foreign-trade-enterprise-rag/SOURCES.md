@@ -21,6 +21,8 @@ governance behavior remain unchanged. No application screenshot was reconstructe
   Crops and source/output SHA-256 digests are recorded in
   `docs/demo/governance-workflow.sources.json`; the complete provenance and regeneration
   instructions are in `docs/demo/governance-visual.md` in the source repository.
+  The case page shows `governance-workflow.webp`, a lossless WebP re-encoding of the PNG
+  (decoded pixels identical, 40% smaller); the PNG stays as the social preview image.
 
 Standalone screenshots retain the original UI and full frame; only WebP compression and
 960px responsive variants differ. The governance montage adds numbering, captions and

@@ -7,6 +7,9 @@ Data: US tariff rulings and Section 301 notices (Oct 2026), Drewry World Contain
 | File | Bytes | SHA-256 |
 | --- | ---: | --- |
 | 1_cost_components.png | 261878 | `f9424ae5e007e69c430029351e3a7ba4c0e6f74354247596dee3418175b91ee5` |
+| 1_cost_components.webp | 76528 | `189fd9a75a4f34cefb30a1bf9d2ba8880e535e581287b9d6408e4d077ba06bca` |
 | 2_decision_map.png | 246937 | `f068f4f2d7ecffee2d72113c042fd8a8900e4957e55a79b6cdda27d4dbae0973` |
 | 3_strategies_under_uncertainty.png | 219927 | `b28c0ad2888e1a8a03b79d00422d5ad31222ecb74b123f76e6d8fe7c662736e7` |
 | 4_what_changes_the_answer.png | 233592 | `f4a5d4b989c4404c3a6380a95cf1acaa1ac87c514d87f649351195260fe03a52` |
+
+`1_cost_components.webp` is a lossless WebP re-encoding of `1_cost_components.png` (decoded pixels identical, 71% smaller). The case page shows the WebP; the PNG is the unchanged copy listed above.

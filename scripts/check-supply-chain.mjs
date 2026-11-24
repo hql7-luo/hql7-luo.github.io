@@ -45,6 +45,8 @@ for(const [tag,src] of images){assert(/\balt="[^"]+"/.test(tag));assert(existsSy
 for(const match of html.matchAll(/href="([^"#?]+\.png)"/g))assert(existsSync(resolve(root,dirname(file),match[1])));
 const hashes=JSON.parse(read('assets/projects/supply-chain-decision-intelligence/chart-hashes.json'));
 for(const [name,hash] of Object.entries(hashes.sha256)){if(typeof hash!=='string')continue;assert.equal(createHash('sha256').update(readFileSync(resolve(root,'assets/projects/supply-chain-decision-intelligence',name))).digest('hex'),hash);}
+// Lossless WebP copies shown on the case page; the PNG originals above stay byte-identical to the source repository.
+for(const [name,{from,sha256,bytes}] of Object.entries(hashes.webp_lossless||{})){const file=readFileSync(resolve(root,'assets/projects/supply-chain-decision-intelligence',name));assert.equal(createHash('sha256').update(file).digest('hex'),sha256);assert.equal(file.length,bytes);assert.ok(Object.hasOwn(hashes.sha256,from),`${name}: unknown source ${from}`);}
 const overview=JSON.parse(read('assets/projects/supply-chain-decision-intelligence/management-action-overview.json'));
 const sourceBytes=readFileSync(resolve(root,'assets/projects/supply-chain-decision-intelligence/full-data-findings.json'));
 const full=JSON.parse(sourceBytes);

@@ -48,5 +48,11 @@
     "source_repository_path": "foreign-trade-enterprise-rag/docs/demo/governance-stage-04-480.png",
     "sha256": "7295481186d50ed91ebce983e47c981d43afa972fa385de861fb62af7058aa94",
     "bytes": 100767
+  },
+  "governance-workflow.webp": {
+    "derived_from": "governance-workflow.png",
+    "encoding": "lossless WebP, decoded pixels identical to the PNG",
+    "sha256": "df91cfa18e670b269bce6c5ab1ea0744d4cbf7fbb551f09ad9117dcc9c5b00ba",
+    "bytes": 187926
   }
 }

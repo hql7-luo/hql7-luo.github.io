@@ -90,7 +90,7 @@ Changes to these local files do not update the public site until they are commit
 
 Search discovery uses `robots.txt` and `sitemap.xml`. Run `node scripts/check-site-navigation.mjs` after adding or renaming a page; CI checks canonical routes, every local link and fragment, and complete sitemap coverage (including the supply-chain explorer).
 
-Bilingual HTML, local and responsive image references, selected visual hashes and image-size limits are checked with `node scripts/check-portfolio-pages.mjs`. B2B, meal-decision and knowledge-governance cases reuse their actual source-project visuals, and the Cut Log case uses captures of its hosted demo, with provenance in each assets folder. Image dialogs preserve the currently selected mobile image and allow detail inspection.
+Bilingual HTML, local and responsive image references, selected visual hashes and image-size limits are checked with `node scripts/check-portfolio-pages.mjs`. B2B, meal-decision and knowledge-governance cases reuse their actual source-project visuals, and the Cut Log case uses captures of its hosted demo, with provenance in each assets folder. Image dialogs preserve the currently selected mobile image and allow detail inspection. Four large charts (stockout risk matrix, governance workflow, ROI break-even, tariff cost components) are shown as lossless WebP copies of their PNGs, with identical pixels and 40–71% fewer bytes; the PNGs stay as the verified copies and social previews.
 
 Supply-chain publication checks run in CI: `node --check demos/supply-chain/demo.js` and `node scripts/check-supply-chain.mjs`. These reconcile the 200-series payload and KPIs, holdout/future forecast splits, bilingual case keys, and chart image hashes.
 
