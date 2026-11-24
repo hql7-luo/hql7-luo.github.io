@@ -13,9 +13,10 @@
 <div class="controls">
 <label><span data-t="evening">Evening</span><select id="evening" disabled></select></label>
 <label><span data-t="delivery">Delivery limit, × average daily demand</span><span class="range"><input id="delivery" type="range" min="0.8" max="1.6" step="0.05" value="1.05" disabled><output id="delivery-out">1.05×</output></span></label>
-<label><span data-t="storage">Storage limit, days of average demand</span><span class="range"><input id="storage" type="range" min="2" max="5" step="0.25" value="3" disabled><output id="storage-out">3.00</output></span></label>
+<label><span data-t="storage">Storage limit, days of average demand</span><span class="range"><input id="storage" type="range" min="2" max="5" step="0.25" value="2.5" disabled><output id="storage-out">2.50</output></span></label>
 </div>
 <div class="presets" role="group" aria-label="Scenarios"><span data-t="presets">Scenarios:</span><button type="button" data-preset="1.05,3" data-t="presetBase" disabled>Base limits</button><button type="button" data-preset="0.95,3" data-t="presetTightDelivery" disabled>Tight deliveries (0.95×)</button><button type="button" data-preset="1.05,2.5" data-t="presetTightStorage" disabled>Tight storage (2.5 days)</button><button type="button" data-preset="1.3,3" data-t="presetLoose" disabled>Spare deliveries (1.30×)</button></div>
+<p class="note" data-t="presetNote">The demo opens with tight storage, where planning all items together matters most. Choose Base limits for the default store settings.</p>
 <div class="kpis" id="kpis" aria-live="polite"><p data-t="loading">Loading the solver (4 MB) and the data…</p></div>
 <figure class="chart"><figcaption data-t="chartTitle">Orders planned for each evening, all 50 items</figcaption><div id="plan-chart" class="svg-wrap"></div><p class="note" data-t="chartNote">Only tonight's orders are placed. Tomorrow evening the plan is solved again with the new sales. An order arrives two days later, so each bar is compared with the forecast demand on its arrival day.</p></figure>
 <h3 data-t="tableTitle">Where the LP and the rule disagree tonight</h3>

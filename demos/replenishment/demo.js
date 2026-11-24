@@ -11,7 +11,7 @@ const ZH = {
   intro: '选一个晚上，设定门店的容量上限。线性规划（HiGHS 求解器，编译成 WebAssembly）会为每个商品规划接下来六个晚上的订货。然后用真实销量回放接下来 7 天，和常见的补货规则（order-up-to）对比。',
   planNav: '今晚的计划', replayNav: '回放一周', backtestNav: '84 天结果', sourceNav: '原理',
   s1: '01 · 计划', planTitle: '今晚的计划', evening: '晚上', delivery: '送货上限（平均日需求的倍数）', storage: '库存上限（平均需求的天数）',
-  presets: '情景：', presetBase: '基准设置', presetTightDelivery: '送货吃紧（0.95×）', presetTightStorage: '库存吃紧（2.5 天）', presetLoose: '送货宽松（1.30×）', loading: '正在加载求解器（4 MB）和数据……', chartTitle: '每个晚上计划的订货量（50 个商品合计）',
+  presets: '情景：', presetBase: '基准设置', presetTightDelivery: '送货吃紧（0.95×）', presetTightStorage: '库存吃紧（2.5 天）', presetLoose: '送货宽松（1.30×）', presetNote: 'Demo 默认打开“库存吃紧”，这时统一规划所有商品最有用。点“基准设置”可以换回门店的默认参数。', loading: '正在加载求解器（4 MB）和数据……', chartTitle: '每个晚上计划的订货量（50 个商品合计）',
   chartNote: '只执行今晚的订单，明晚会用新的销量重新求解。订货两天后到，所以每根柱子对比的是它到货那天的预测需求。',
   tableTitle: '今晚 LP 和规则分歧最大的商品',
   tableNote: '按两种订单的差距排序。规则订到"2 天预测 + 99.9% 缓冲"（回测里它的最优目标），卡车或空间不够时把所有商品按同一比例砍。',
@@ -30,7 +30,7 @@ const ZH = {
   github: '在 GitHub 查看代码、数据和完整结果 ↗', footer: '独立作品集项目。求解器完全在你的浏览器里运行，不会向服务器发送任何数据。',
   // dynamic
   kpiLp: 'LP 今晚订的件数', kpiRule: '规则今晚订的件数', kpiLimit: '今晚的送货上限（件）', kpiSolve: '在你的浏览器里求解用时', kpiMoved: 'LP 和规则分配给不同商品的件数',
-  weekly: w => `测试期内全部 ${w.weeks} 个 7 天窗口：基准设置下 LP 在 ${w.baseWins} 周更便宜，平均每周成本低 ${w.baseShare}；送货吃紧（0.95×）时在 ${w.tightWins} 周更便宜，平均低 ${w.tightShare}。`,
+  weekly: w => `测试期内全部 ${w.weeks} 个 7 天窗口：基准设置下 LP 在 ${w.baseWins} 周更便宜，平均每周成本低 ${w.baseShare}；送货吃紧（0.95×）时在 ${w.tightWins} 周更便宜，平均低 ${w.tightShare}；库存吃紧（2.5 天）时在 ${w.storageWins} 周更便宜，平均低 ${w.storageShare}。`,
   legendLp: 'LP 订货计划', legendForecast: '到货当天的预测需求', legendLimit: '送货上限', tonight: '今晚',
   ruleName: '补货规则（99.9%）', lpName: 'Holt-Winters + LP', replaying: '正在回放……每晚求解一次 LP',
   fillRate: '填充率', lostUnits: '缺货件数', lostUsd: '损失毛利', holdingUsd: '持有成本', returnsUsd: '退货成本', totalUsd: '总成本',
@@ -43,7 +43,7 @@ const ZH = {
 const EN_DYNAMIC = {
   showAll: 'Show all 50 items', showFewer: 'Show the top 12 only',
   kpiLp: 'units the LP orders tonight', kpiRule: 'units the rule orders tonight', kpiLimit: 'delivery limit tonight (units)', kpiSolve: 'to solve, in your browser', kpiMoved: 'units the LP puts on different items than the rule',
-  weekly: w => `Across all ${w.weeks} seven-day windows in the test period: at the base limits the LP was cheaper in ${w.baseWins} weeks and ${w.baseShare} cheaper on average; with tight deliveries (0.95×), in ${w.tightWins} weeks and ${w.tightShare} cheaper.`,
+  weekly: w => `Across all ${w.weeks} seven-day windows in the test period: at the base limits the LP was cheaper in ${w.baseWins} weeks and ${w.baseShare} cheaper on average; with tight deliveries (0.95×), in ${w.tightWins} weeks and ${w.tightShare} cheaper; with tight storage (2.5 days), in ${w.storageWins} weeks and ${w.storageShare} cheaper.`,
   legendLp: 'LP order plan', legendForecast: 'forecast demand on the arrival day', legendLimit: 'delivery limit', tonight: 'tonight',
   ruleName: 'Order-up-to rule (99.9%)', lpName: 'Holt-Winters + LP', replaying: 'Replaying… one LP solve per evening',
   fillRate: 'Fill rate', lostUnits: 'Lost units', lostUsd: 'Lost margin', holdingUsd: 'Holding', returnsUsd: 'Returns', totalUsd: 'Total cost',
@@ -98,7 +98,8 @@ function renderWeekly() {
   const w = Object.fromEntries(data.results.weekly.map(x => [x.setting, x]));
   const share = x => pct(-x.diff_share_of_rule, 1);
   $('weekly-note').textContent = t('weekly')({ weeks: w.base.weeks, baseWins: w.base.lp_cheaper_weeks, baseShare: share(w.base),
-    tightWins: w.tight_delivery.lp_cheaper_weeks, tightShare: share(w.tight_delivery) });
+    tightWins: w.tight_delivery.lp_cheaper_weeks, tightShare: share(w.tight_delivery),
+    storageWins: w.tight_storage.lp_cheaper_weeks, storageShare: share(w.tight_storage) });
 }
 
 function markPreset() {
@@ -242,7 +243,9 @@ async function start() {
     return;
   }
   const meta = data.meta;
-  $('delivery').value = meta.base_delivery_mult; $('storage').value = meta.base_storage_days;
+  // Open on the tight-storage preset, where planning all items together shows most clearly in a single week.
+  const [startDelivery, startStorage] = document.querySelector('[data-t="presetTightStorage"]').dataset.preset.split(',');
+  $('delivery').value = startDelivery; $('storage').value = startStorage;
   updateOutputs();
   applyLanguage();
   $('evening').value = '0';

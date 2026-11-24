@@ -1,11 +1,11 @@
 {
  "source": "https://github.com/hql7-luo/demand-forecast-inventory-optimization",
  "solver": "HiGHS 1.16.0 (highs-js 1.16.0, MIT) in the browser; HiGHS 1.16.0 via PuLP in Python",
- "data_sha256": "27de8ca5bf2fa76f7b16a74b0490dcf37c228017132223c636133c9c31cda491",
+ "data_sha256": "20ca0b92f2d2b68f3df7d870440879204f848d4bcbc72e55bad473eb10f9b243",
  "files_sha256": {
-  "index.html": "e2aa4ca68658fdd079a5f77ad38dd909c61862fe0c406fed4a2fe7e33fa4e535",
+  "index.html": "42c3f6f4263b0f1ebbb2d6c93cea396b2f60bce1f12d5121013cdc68601d4762",
   "demo.css": "ccac932a114abad2098fbb1227a6fdc93dc13a71470203939f53720fff5a4aba",
-  "demo.js": "66b895e53eb8bf1def947ef4da387b0417d7c7285c2030ddb4aa60fdd81f6e8f",
+  "demo.js": "1e7d45ba65f25558bd62f259262811027df7922ac4dfa27d96464d0379ff7f0f",
   "model.js": "146589746504ba8556a2927b45e7a8027795b6088d8f332a2b61b54499364fb7",
   "vendor/highs.js": "4e21caba96b452eb70c7796779082b7997727850a468d8ce5b0a3ee82e030e6e",
   "vendor/highs.wasm": "69a85477acde13876c8fe83357959724e795abdfd144af0531f920d41b5f813e",
