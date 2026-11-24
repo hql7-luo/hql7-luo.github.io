@@ -39,14 +39,14 @@ The ignored `portfolio-v2-demo/`, its generator and local staging/backups are hi
 
 Personal facts were updated against the supplied English Resume in October 2026. The homepage features three independent projects and three UW team projects:
 
-1. Supply Chain Decision Intelligence: independent project, Oct 2026
+1. Demand Forecast + Replenishment LP: independent project, Nov 2026 (also shown in the homepage board's supply chain tab)
 2. Tariff-Era Sourcing Decision: independent project, Oct 2026
 3. Foreign Trade Enterprise Knowledge Assistant: independent project, Sep 2026
 4. LLM Price-Performance Analytics: UW IS 451 team project, Apr–Jun 2026
 5. AutoZone Workforce Optimization & Demand Forecasting: UW QMETH 450 team project, Sep–Dec 2025
 6. Gen Z Consumer Spending Analytics: UW IS 445 team project, Mar–Jun 2025
 
-Eleven more projects sit in the "More projects" shelf, in this order: Demand Forecast + Replenishment LP, Marketing Experimentation & Growth Strategy, AI Talk vs. AI Results, AI Infrastructure Value Chain, Chinese Consumer Brands Going Global, NYC Rideshare Economics, LLM Selection & ROI, Customer Investigation Skill, Export Sales Intelligence, FengShui Layout Planner and What to Eat Today. ColorBox AI was removed from the site in October 2026; its source stays in its own repository. Detailed project descriptions preserve accurate information beyond the Resume.
+Eleven more projects sit in the "More projects" shelf, in this order: Supply Chain Decision Intelligence, Marketing Experimentation & Growth Strategy, AI Talk vs. AI Results, AI Infrastructure Value Chain, Chinese Consumer Brands Going Global, NYC Rideshare Economics, LLM Selection & ROI, Customer Investigation Skill, Export Sales Intelligence, FengShui Layout Planner and What to Eat Today. ColorBox AI was removed from the site in October 2026; its source stays in its own repository. Detailed project descriptions preserve accurate information beyond the Resume.
 
 - English and Chinese pages with persisted language preference
 - Experience, education, skills and contact sections
