@@ -76,6 +76,8 @@
     document.querySelectorAll('[data-bg-en][data-bg-ready]').forEach(paintBackground);
     document.querySelectorAll('a[data-case]').forEach(a => { a.href = withLang(`${siteRoot}projects/${a.dataset.case}.html`, next); });
     document.querySelectorAll('a[data-page]:not([data-case])').forEach(a => { a.href = withLang(a.getAttribute('href'), next); });
+    // Demos open in the language on screen.
+    document.querySelectorAll('a[data-lang-link]').forEach(a => { a.href = withLang(a.getAttribute('href'), next); });
     // Resume buttons download the PDF in the page language.
     document.querySelectorAll('[data-resume-link]').forEach(link => {
       const href = link.dataset[next === 'zh' ? 'resumeZh' : 'resumeEn'];
@@ -345,6 +347,9 @@
   const nextBtn = document.querySelector('[data-shelf-next]');
   const bar = document.querySelector('.shelf-progress');
   const thumb = bar.querySelector('span');
+  const group = shelf.closest('.group-shelf');
+  const allBtn = document.querySelector('[data-shelf-all]');
+  const showingAll = () => group.classList.contains('is-all');   // View all: a plain grid, no dragging
 
   const PULL_MAX = 120;         // the furthest the cards can be pulled past an end (px)
   const PULL_RESIST = 0.55;     // lower = stiffer pull (0.55 is the iOS feel)
@@ -481,6 +486,17 @@
   }
   prevBtn.addEventListener('click', () => moveByCards(-1));
   nextBtn.addEventListener('click', () => moveByCards(1));
+  // View all lays every card out as a grid; Show less returns to the row.
+  allBtn.addEventListener('click', () => {
+    const on = !showingAll();
+    group.classList.toggle('is-all', on);
+    allBtn.setAttribute('aria-expanded', String(on));
+    const label = allBtn.querySelector('[data-i18n]');
+    label.dataset.i18n = on ? 'd.shelfLess' : 'd.shelfAll';
+    label.textContent = core.t(label.dataset.i18n);
+    resetShelf();
+    if (!on && group.getBoundingClientRect().top < 0) group.scrollIntoView({ block: 'start', behavior: core.reduced() ? 'auto' : 'smooth' });
+  });
 
   // Native scrolling (trackpad, touch, focus) keeps `pos` in step when no spring or drag is running.
   shelf.addEventListener('scroll', () => {
@@ -492,7 +508,7 @@
 
   // Keyboard: with the row or one of its cards focused, Left / Right move one card.
   shelf.addEventListener('keydown', e => {
-    if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+    if ((e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') || showingAll()) return;
     e.preventDefault();
     const dir = e.key === 'ArrowRight' ? 1 : -1;
     const shelfCards = [...shelf.querySelectorAll('.card:not([hidden])')];
@@ -503,7 +519,7 @@
 
   /* Mouse drag. Touch and pen keep the browser's own swipe and bounce. */
   shelf.addEventListener('pointerdown', e => {
-    if (e.pointerType !== 'mouse' || e.button !== 0) return;
+    if (e.pointerType !== 'mouse' || e.button !== 0 || showingAll()) return;
     stopAnimation();
     pos = shelf.scrollLeft + (pos - clamp(pos, 0, maxScroll()));   // keep any pull still showing
     justDragged = false;
@@ -571,7 +587,7 @@
      motion is read, the event is never cancelled, and vertical wheel scrolling is untouched.
      Safari already bounces natively, so it is left alone there. */
   shelf.addEventListener('wheel', e => {
-    if (drag || Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;          // vertical wheel: leave it to the page
+    if (drag || showingAll() || Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;          // vertical wheel: leave it to the page
     const max = maxScroll();
     const elastic = !isSafari && !core.reduced();
     if (anim) {                                                            // the reader took over from the spring

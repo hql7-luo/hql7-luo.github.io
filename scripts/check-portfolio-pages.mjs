@@ -31,6 +31,10 @@ for (const file of pages) {
   assert(existsSync(target), `${file}: missing ${attr} ${value}`);
   if (attr === 'src') images++;
  }
+ // Links to demos must carry the page language (app.js adds ?lang= to data-lang-link).
+ for (const [tag] of html.matchAll(/<a\b[^>]*\bhref="(?:https:\/\/hql7-luo\.github\.io\/|(?:\.\.\/)?)(?:demos\/|tariff-sourcing-decision\/|china-brands-going-global\/|rideshare-platform-economics\/|llm-selection-roi\/|what-to-eat-today\/)[^>]*>/g)) {
+  assert(tag.includes('data-lang-link'), `${file}: demo link without data-lang-link: ${tag.slice(0, 120)}`);
+ }
  // A language-specific image needs both versions.
  for (const [tag] of html.matchAll(/<(?:img|source|span)\b[^>]*\bdata-(?:src|srcset|bg)-(?:en|zh)=[^>]*>/g)) {
   for (const kind of ['src', 'srcset', 'bg']) {

@@ -8,7 +8,9 @@ const translations = {
 const english = {};
 document.querySelectorAll('[data-t]').forEach(node => { english[node.dataset.t] = node.textContent; });
 Object.assign(english, {daysKpi:'Days with stockouts · subset',hoursKpi:'Unavailable operating hours · subset',reviewKpi:'Series requiring review · recent 28 days',wapeKpi:'Per-series selector WAPE · subset',salesAxis:'Observed sales · normalized scale',hoursAxis:'Stockout exposure (%)',date:'Date',sales:'Observed sales',hours:'Stockout exposure',riskX:'Recent 28-day sales share of demo cohort',riskY:'Stockout exposure (%) · recent 28 days',actual:'Actual observed sales',scored:'Holdout prediction · scored',future:'Future forecast · unscored',holdout:'Holdout',queueCount:'Showing',of:'of',recordsCount:'matching series',model:'Selected model',wape:'Holdout WAPE',noScore:'Actual sales sum is zero; WAPE is undefined',actionTitle:'Management review',criticalAction:'Prioritize availability investigation and validate stockout causes.',highAction:'Review replenishment inputs and persistent stockout exposure.',watchAction:'Check intermittent demand, availability records and active assortment.',healthyAction:'Continue monitoring availability and observed sales.',verify:'Verify active assortment, inventory balances, open orders and measured lead times before acting. These data cannot determine stockout causes or purchase quantities.',error:'Demo data could not be loaded. Please try again.',retry:'Try again'});
-let lang = new URLSearchParams(location.search).get('lang') === 'zh' ? 'zh' : 'en';
+// A link's ?lang= wins; otherwise follow the language stored by the portfolio site.
+const urlLang = new URLSearchParams(location.search).get('lang');
+let lang = urlLang === 'zh' || urlLang === 'en' ? urlLang : (() => { try { return localStorage.getItem('portfolio-language') === 'zh' ? 'zh' : 'en'; } catch { return 'en'; } })();
 let data, queueRows = [], selectedId, loadState = 'loading', loading = false;
 const $ = id => document.getElementById(id);
 const t = key => (lang === 'zh' ? translations.zh[key] : english[key]) || english[key] || key;
